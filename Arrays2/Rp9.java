@@ -16,8 +16,13 @@ public class Rp9 {
                 indexMax = i;
             }
         }
-        for (int i = 0; i < arr[indexMax]; i++) {
-            arr[i] = arr[i + 1];
+        int tmp = 0;
+        for (int i = 0; i < indexMax - 1; i++) {
+            if (arr[i] < arr[indexMax]) {
+                tmp = arr[i + 1];
+                arr[i + 1] = arr[i];
+                arr[i] = tmp;
+            }
         }
         System.out.println(Arrays.toString(arr));
     }
