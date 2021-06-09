@@ -1,5 +1,7 @@
 package ArrayList.Rp1;
 
+import java.util.Objects;
+
 public class Rectangle {
 
     private int a;
