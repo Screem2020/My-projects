@@ -1,4 +1,4 @@
-package ArrayList.Rp1;
+package ArrayList.Rp1r;
 
 import java.util.Arrays;
 

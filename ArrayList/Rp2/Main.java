@@ -1,43 +1,80 @@
-package ArrayList.Rp1;
+package ArrayList.Rp2;
+
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Main {
+    /**
+     * В мейне создать ArrayList товаров (типа Product) и консольное меню:
+     * 1. Добавить новый товар в список (юзер вводит с консоли значения для товара)
+     * 2. Вывести все товары из списка (через toString)
+     * 3. Вывести стоимость товара по названию (юзер вводит с консоли название товара, через equals ищется товар
+     * в списке и после нахождения выводится его цена)
+     * 4. Удалить товар из списка по индексу (юзер вводит индекс)
+     * 5. Удалить товар из списка по значению (юзер вводит название товара с консоли)
+     * 6. Выход
+     */
     public static void main(String[] args) {
+        int size = 10;
+        Product[] arr = new Product[size];
+        int input = 0;
+        int currentIndex = 0;
+        Product prod = new Product();
+        Scanner scn = new Scanner(System.in);
+        while (input != 6) {
+            System.out.println(
+                    "1. Добавить новый товар в список\n" +
+                            "2. Вывести все товары из списка\n" +
+                            "3. Вывести стоимость товара по названию\n" +
+                            "4. Удалить товар из списка по индексу \n" +
+                            "5. Удалить товар из списка по значению \n" +
+                            "6. Выход");
 
-        List1 arr = new List1();
+            input = scn.nextInt();
+            switch (input) {
+                case 1: {
+                    System.out.println("Введите имя");
+                    String name = scn.next().toLowerCase(Locale.ROOT);
+                    prod.setName(name);
+                    System.out.println("Введите цену");
+                    int price = scn.nextInt();
+                    prod.setPrice(price);
+                    if (size >= arr.length) {
+                        arr = Arrays.copyOf(arr, arr.length * 3 / 2);
+                    }
+                    arr[currentIndex] = prod;
+                    currentIndex++;
+                    System.out.println("Товар добавлен!");
+                    break;
+                }
+                case 2: {
+                    for (int i = 0; i < arr.length; i++) {
+                        System.out.println(arr[i] + " ");
+                    }
+                    break;
+                }
+                case 3: {
+                    boolean flag = false;
+                    System.out.println("Введите название");
+                    String name = scn.next().toLowerCase(Locale.ROOT);
+                    Product newProduct = new Product(name);
+                    for (int i = 0; i < currentIndex; i++) {
+                       // if (arr[i].getName().equalsIgnoreCase((name))) {
+                        if (arr[i].equals((newProduct))) {
+                            System.out.println(arr[i].getPrice());
+                            flag = true;
+                        }
+                        if (!flag) {
+                            System.out.println("Товара в списке нет");
+                        }
+                        break;
+                    }
+                }
+                case 4: {
 
-        Rectangle rect = new Rectangle(12,37);
-        Rectangle pos = new Rectangle(11,3);
-        Rectangle neg2 = new Rectangle(2,14);
-        Rectangle neg3 = new Rectangle(2,14);
-        Rectangle neg4 = new Rectangle(2,14);
-        Rectangle neg5 = new Rectangle(2,14);
-        Rectangle neg6 = new Rectangle(2,14);
-        Rectangle neg7 = new Rectangle(2,14);
-        Rectangle neg8 = new Rectangle(2,14);
-        Rectangle neg = new Rectangle(2,14);
-        Rectangle neg9 = new Rectangle(2,14);
-        Rectangle neg10 = new Rectangle(2,14);
-        Rectangle neg11 = new Rectangle(2,14);
-
-        arr.add(new Rectangle(12,37));
-        arr.add(pos);
-        arr.add(neg);
-        arr.add(neg2);
-        arr.add(neg3);
-        arr.add(neg4);
-        arr.add(neg5);
-        arr.add(neg6);
-        arr.add(neg7);
-        arr.add(neg8);
-        arr.add(neg9);
-        arr.add(neg10);
-        arr.add(neg11);
-
-        int size = arr.size();
-
-        boolean remove = arr.remove(rect);
-        System.out.println(remove);
-        System.out.println(size);
-        System.out.println(arr);
+                }
+            }
+        }
     }
 }

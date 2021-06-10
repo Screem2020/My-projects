@@ -1,6 +1,4 @@
-package ArrayList.Rp1;
-
-import java.util.Objects;
+package ArrayList.Rp1r;
 
 public class Rectangle {
 
