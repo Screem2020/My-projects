@@ -16,11 +16,9 @@ public class Main {
      * 6. Выход
      */
     public static void main(String[] args) {
-        int size = 10;
-        Product[] arr = new Product[size];
+        Product[] arr = new Product[10];
         int input = 0;
         int currentIndex = 0;
-        Product prod = new Product();
         Scanner scn = new Scanner(System.in);
         while (input != 6) {
             System.out.println(
@@ -34,18 +32,21 @@ public class Main {
             input = scn.nextInt();
             switch (input) {
                 case 1: {
+                    Product product = new Product();
                     System.out.println("Введите имя");
                     String name = scn.next().toLowerCase(Locale.ROOT);
-                    prod.setName(name);
+                    product.setName(name);
                     System.out.println("Введите цену");
                     int price = scn.nextInt();
-                    prod.setPrice(price);
-                    if (size >= arr.length) {
-                        arr = Arrays.copyOf(arr, arr.length * 3 / 2);
-                    }
-                    arr[currentIndex] = prod;
+                    product.setPrice(price);
+                    arr[currentIndex] = product;
                     currentIndex++;
-                    System.out.println("Товар добавлен!");
+                    for (int i = 0; i < arr.length; i++) {
+                        if (currentIndex >= arr.length) {
+                            arr = Arrays.copyOf(arr, arr.length * 3 / 2);
+                        }
+                    }
+                    System.out.println("Товар добавлен!" + " Товаров всего: " + currentIndex);
                     break;
                 }
                 case 2: {
@@ -62,7 +63,7 @@ public class Main {
                     for (int i = 0; i < currentIndex; i++) {
                        // if (arr[i].getName().equalsIgnoreCase((name))) {
                         if (arr[i].equals((newProduct))) {
-                            System.out.println(arr[i].getPrice());
+                            System.out.println("Цена товара: " + arr[i].getPrice());
                             flag = true;
                         }
                         if (!flag) {
@@ -72,7 +73,46 @@ public class Main {
                     }
                 }
                 case 4: {
-
+                    System.out.println("Введите индекс");
+                    int index = scn.nextInt();
+                    boolean flag = false;
+                    for (int i = index; i < arr.length; i++) {
+                        if (arr[i] != null) {
+                            arr[i] = arr[i + 1];
+                            arr[i + 1] = null;
+                            flag = true;
+                        }
+                    }
+                    if (flag) {
+                        currentIndex--;
+                        System.out.println("Товар удален " + "Товаров всего: " + currentIndex);
+                    }
+                    else if (arr[index] == null){
+                        System.out.println("Не существует");
+                    } else  System.out.println("Не существует");
+                }
+                break;
+                case 5: {
+                    System.out.println("Ведите название");
+                    String name = scn.next().toLowerCase(Locale.ROOT);
+                    Product product = new Product(name);
+                    boolean flag = false;
+                    for (int i = 0; i < currentIndex; i++) {
+                        if (arr[i].equals(product) & arr[i] != null){
+                            arr[i] = arr[i + i];
+                            arr[i + 1] = null;
+                            flag = true;
+                            currentIndex--;
+                        }
+                        else if (arr[i] == null && arr[i] != null) {
+                            arr[i] = null;
+                            flag = true;
+                            currentIndex--;
+                        }
+                    }
+                    if (flag) System.out.println("Товар удален " + "Товаров всего: " + currentIndex);
+                    else System.out.println("Товар не существует");
+                    break;
                 }
             }
         }

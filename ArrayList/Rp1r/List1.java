@@ -45,7 +45,7 @@ public class List1 {
         if (index < 0 && index >= size()) {
             return false;
         }
-            for (int i = 0; i < size(); i++) {
+            for (int i = index; i < size(); i++) {
                 arr[i] = arr[i + 1];
             }
         currentIndex--;
