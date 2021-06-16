@@ -17,12 +17,45 @@ public class Book {
         currentIndex++;
     }
 
-    public void removePage(int index) {
-        for (int i = index; i < list.length; i++) {
-            list[i] = list[i + 1];
-            //list[i + 1] = null;
+    public void removeIndex(int index) {
+        for (int i = 0; i < size(); i++) {
+            if (list[i] == list[index]) {
+                list[i] = list[i + 1];
+                list[i] = null;
+            }
         }
         currentIndex--;
+    }
+
+    public void removePage(Page page) {
+        for (int i = 0; i < size(); i++) {
+            if (list[i].equals(page)) {
+                list[i] = list[i + 1];
+                list[i] = null;
+            }
+        }
+        currentIndex--;
+    }
+
+    public String getPageText(int number) {
+        for (int i = 0; i < size(); i++) {
+            if (list[i].getNumPage() == number) {
+                System.out.println(list[i].getText());
+            }
+        }
+        return "";
+    }
+
+    public int getPageCount() {
+        return this.currentIndex;
+    }
+
+    public int size() {
+        return this.currentIndex;
+    }
+
+    public int getCurrentIndex(Page page) {
+        return this.currentIndex;
     }
 
     @Override
