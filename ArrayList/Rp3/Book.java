@@ -18,17 +18,18 @@ public class Book {
     }
 
     public void removeIndex(int index) {
-        for (int i = 0; i < size(); i++) {
-            if (list[i] == list[index]) {
-                list[i] = list[i + 1];
-                list[i] = null;
+            for (int i = 1; i < size(); i++) {
+                if (list[i].getNumPage() == index) {
+                    list[i] = list[i + 1];
+                    list[i] = null;
+                }
             }
-        }
         currentIndex--;
     }
 
+
     public void removePage(Page page) {
-        for (int i = 0; i < size(); i++) {
+        for (int i = 0; i < list.length - 1; i++) {
             if (list[i].equals(page)) {
                 list[i] = list[i + 1];
                 list[i] = null;
@@ -38,7 +39,7 @@ public class Book {
     }
 
     public String getPageText(int number) {
-        for (int i = 0; i < size(); i++) {
+        for (int i = 0; i < list.length - 1; i++) {
             if (list[i].getNumPage() == number) {
                 System.out.println(list[i].getText());
             }
@@ -46,8 +47,13 @@ public class Book {
         return "";
     }
 
-    public int getPageCount() {
-        return this.currentIndex;
+    public int getPageCount(int index) {
+        for (int i = 0; i < list.length; i++) {
+            if(list[i].getNumPage() == index) {
+                return list[i].getNumPage();
+            }
+        }
+        return -1;
     }
 
     public int size() {
@@ -56,6 +62,14 @@ public class Book {
 
     public int getCurrentIndex(Page page) {
         return this.currentIndex;
+    }
+
+    public String getNameBook() {
+        return nameBook;
+    }
+
+    public Page[] getList() {
+        return list;
     }
 
     @Override
