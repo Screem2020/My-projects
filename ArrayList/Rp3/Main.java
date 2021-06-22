@@ -49,11 +49,10 @@ public class Main {
                     String text = scn.next().toLowerCase(Locale.ROOT);
                     Page page = new Page(num, text);
                     boolean flag = false;
-                    Book[] arrListBook = listBook.toArray(new Book[currentIndex]);
-                    for (int i = 0; i < arrListBook.length; i++) {
-                        boolean equals = arrListBook[i].equals(book);
-                        if (equals) {
-                            arrListBook[i].addPage(page);
+//                    Book[] arrListBook = listBook.toArray(new Book[currentIndex]);
+                    for (int i = 0; i < listBook.size(); i++) {
+                        if (listBook.get(i).equals(book)) {
+                            listBook.get(i).addPage(page);
                             flag = true;
                         }
                     }
@@ -68,12 +67,11 @@ public class Main {
                     System.out.println("enter number page for delete");
                     int num = scn.nextInt();
                     Book book = new Book(name);
-                    Book[] arrListBook = listBook.toArray(new Book[currentIndex]);
+//                    Book[] arrListBook = listBook.toArray(new Book[currentIndex]);// конвертирование листа  в массив
                     boolean flag = false;
-                    for (int i = 0; i < arrListBook.length; i++) {
-                        boolean equals = arrListBook[i].equals(book);
-                        if (equals) {
-                            arrListBook[i].removeIndex(num);
+                    for (int i = 0; i < listBook.size(); i++) {
+                        if (listBook.get(i).equals(book)) {
+                            listBook.get(i).removePageByIndex(num);
                             flag = true;
                         }
                     }
@@ -86,12 +84,9 @@ public class Main {
                     String name = scn.next().toLowerCase(Locale.ROOT);
                     Book book = new Book(name);
                     boolean flag = false;
-                    Book[] arrListBook = listBook.toArray(new Book[book.size()]);
-                    for (int i = 0; i < arrListBook.length; i++) {
-                        boolean equals = arrListBook[i].equals(book);
-                        if (equals) {
-                            arrListBook[i] = arrListBook[i + 1];
-                            arrListBook = null;
+                    for (int i = 0; i < listBook.size() - 1; i++) {
+                        if (listBook.get(i).equals(book)) {
+                            listBook.remove(i);
                             flag = true;
                         }
                     }
@@ -104,7 +99,20 @@ public class Main {
                     break;
                 }
                 case 6: {
-
+                    System.out.println("enter name book");
+                    String name = scn.next().toLowerCase(Locale.ROOT);
+                    Book book = new Book(name);
+                    System.out.println("enter num page");
+                    int num = scn.nextInt();
+                    boolean flag = false;
+                    for (int i = 0; i < listBook.size(); i++) {
+                        if (listBook.get(i).equals(book)) {
+                            System.out.println(listBook.get(i).getPageText(num));
+                            flag = true;
+                        }
+                    }
+                    if (!flag) System.out.println("not found page");
+                    break;
                 }
             }
         }

@@ -11,7 +11,7 @@ public class min {
         book.addPage(page2);
         book.addPage(page3);
 
-        book.removeIndex(15);
+        book.removePageByIndex(14);
 
         System.out.println(book);
     }

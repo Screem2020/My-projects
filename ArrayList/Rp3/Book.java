@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Book {
     private String nameBook;
     private Page[] list = new Page[10];
-    private int currentIndex;
+    private int currentIndex = 0;
 
     public Book(String nameBook) {
         this.nameBook = nameBook;
@@ -17,31 +17,37 @@ public class Book {
         currentIndex++;
     }
 
-    public void removeIndex(int index) {
-            for (int i = 1; i < size(); i++) {
-                if (list[i].getNumPage() == index) {
-                    list[i] = list[i + 1];
-                    list[i] = null;
-                }
+    public void removePageByIndex(int index) {
+            for (int i = 0; i < list.length; i++) {
+             if (list[i] != null) {
+                 if (list[i].getNumPage() == index) {
+                     list[i] = list[i + 1];
+                     list[i] = null;
+                 }
+             }
             }
         currentIndex--;
     }
 
 
     public void removePage(Page page) {
-        for (int i = 0; i < list.length - 1; i++) {
-            if (list[i].equals(page)) {
-                list[i] = list[i + 1];
-                list[i] = null;
-            }
+        for (int i = 0; i < list.length; i++) {
+           if (list[i] != null) {
+               if (list[i].equals(page)) {
+                   list[i] = list[i + 1];
+                   list[i] = null;
+               }
+           }
         }
         currentIndex--;
     }
 
     public String getPageText(int number) {
         for (int i = 0; i < list.length - 1; i++) {
-            if (list[i].getNumPage() == number) {
-                System.out.println(list[i].getText());
+            if (list[i] != null) {
+                if (list[i].getNumPage() == number) {
+                    System.out.println(list[i].getText());
+                }
             }
         }
         return "";
