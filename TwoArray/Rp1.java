@@ -17,7 +17,6 @@ public class Rp1 {
 
     public static void main(String[] args) {
         int[][] arr = new int[5][3];
-        Scanner scn = new Scanner(System.in);
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 arr[i][j] = (int) (Math.random() * 10);
@@ -25,7 +24,6 @@ public class Rp1 {
             }
             System.out.println();
         }
-        System.out.println("////////////////////////////////////////");
 //        System.out.println("enter number to line");
 //        int indexOne = scn.nextInt();
 //        System.out.println("enter two number to line");
@@ -48,34 +46,35 @@ public class Rp1 {
                 sum = sum + arr[i][j];
             }
         }
-        System.out.println(sum);
+        System.out.println("sum = " + sum);
 
+        int indexOne = 0;
+        int indexTwo = 0;
         int index = 0;
         int max = 0;
-        int maxIndex = arr[index][0];
-        int minIndex = arr[index][0];
+        int maxIndex = arr[0][0];
+        int minIndex = arr[0][0];
         int min = 0;
-        int i;
-        for (i = 0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
-                if (arr[i][j] > max) {
-                    max = arr[i][j];
+                if (arr[index][i] > max) {
+                    max = arr[index][i];
                     maxIndex = i;
                 }
             }
         }
-        int k;
-        for (k = 0; k < arr.length; k++) {
-            for (int j = 0; j < arr[k][j]; j++) {
-                if (arr[k][j] < min) {
-                    min = arr[k][j];
+
+        for (int k = 0; k < arr.length; k++) {
+            for (int j = 0; j < arr[indexOne][k]; j++) {
+                if (arr[indexOne][k] < min) {
+                    min = arr[indexOne][k];
                     minIndex = j;
                 }
             }
         }
         System.out.println();
-        arr[i][maxIndex] = min;
-        arr[i][minIndex] = max;
+        arr[index][maxIndex] = min;
+        arr[indexOne][minIndex] = max;
 
         System.out.println("max = " + max);
         System.out.println("min = " + min);
