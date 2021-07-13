@@ -1,6 +1,5 @@
 package TwoArray;
 
-import ArrayList.Rp3.Page;
 
 import java.util.Locale;
 import java.util.Scanner;
