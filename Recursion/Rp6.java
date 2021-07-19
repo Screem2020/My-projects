@@ -5,7 +5,7 @@ public class Rp6 {
      * Написать рекурсивный метод, сравнивающий две строки на равенство посимвольно (попробовать с возвратом результата и просто с печатью на консоль)
      */
     public static void main(String[] args) {
-        //compare("Дима", "Дима", 0);
+        compare("Дима", "Дима", 0);
         System.out.println(compareT("Dima", "Dima", 0, 0));
     }
 
