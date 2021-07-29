@@ -8,6 +8,7 @@ public class Gun extends Weapon{
 
     @Override
     public void shot() {
-        System.out.println("Выстрел из пистолета. Урон 40");
+        super.shot();
     }
+
 }

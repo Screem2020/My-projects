@@ -8,6 +8,6 @@ public class Machine extends Weapon {
 
     @Override
     public void shot() {
-        System.out.println("Выстрел из Автомата. Урон 80");
+        super.shot();
     }
 }

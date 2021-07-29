@@ -1,5 +1,6 @@
 package Inheritance.Sapper;
 
+import java.util.ArrayDeque;
 import java.util.Scanner;
 
 public class Main {
@@ -12,7 +13,6 @@ public class Main {
     public static void main(String[] args) {
         int[][] field = new int[3][4];
         int indexBomb = 0;
-
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
                 field[i][j] = (int) (Math.random() * 2);
@@ -25,21 +25,28 @@ public class Main {
         int coordinatesA = scn.nextInt();
         System.out.println("Enter coordinates B");
         int coordinatesB = scn.nextInt();
-        search(coordinatesA, coordinatesB, field, 0, indexBomb);
+        search(coordinatesA, coordinatesB,0, field, indexBomb);
+
     }
 
-    public static void search(int coordinatesA, int coordinatesB, int[][] arr, int index, int indexBomb) {
+    public static void search(int coordinatesA, int coordinatesB, int index, int[][] arr, int indexBomb) {
+        ArrayDeque<Integer> cell = new ArrayDeque<>();
         for (int i = 0; i < arr.length; i++) {
-            if (arr[index][i] == coordinatesA) {
-                for (int j = 0; j < arr[i].length; j++) {
-                    if (j == coordinatesB) {
-                    } else if (arr[coordinatesA][coordinatesB] == 0) { //нужна проверка если больше ходов нет, то выводим количество бомб, если попапдаем на бомбу то "game over"
+            if (i == coordinatesA) {
+                coordinatesA = arr[index][i];
+            }
+            for (int j = 0; j < arr[i].length; j++) {
+                if (j == coordinatesB) {
+                    coordinatesB = arr[index][j];
+                }
+                cell.addLast(coordinatesA); //создание очереди
+                cell.addLast(coordinatesB);
+                while (cell.size() != 0) {
+                    search(cell.poll(), cell.poll(), index, arr, indexBomb + 1);
+                }
+                if (coordinatesA != arr.length - 1) {
+                    if (arr[coordinatesA - 1][j] == 0) {
 
-                        search(coordinatesA + 1, coordinatesB + 1, arr, index, indexBomb);
-                        if (arr[coordinatesA][coordinatesB] == 1) {
-                            System.out.println("game over");
-                            return;
-                        }
                     }
                 }
             }

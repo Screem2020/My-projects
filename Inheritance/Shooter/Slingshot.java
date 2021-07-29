@@ -1,6 +1,6 @@
 package Inheritance.Shooter;
 
-public class Slingshot extends Weapon{
+public class Slingshot extends Weapon {
 
     public Slingshot(String name, int power) {
         super(name, power);
@@ -8,6 +8,6 @@ public class Slingshot extends Weapon{
 
     @Override
     public void shot() {
-        System.out.println("Выстрел из рогатки. Урон 10");
+        super.shot();
     }
 }

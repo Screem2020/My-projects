@@ -8,6 +8,6 @@ public class WaterGun extends Weapon{
 
     @Override
     public void shot() {
-        System.out.println("Выстрел из водяного пистолета. Урон 1");
+        super.shot();
     }
 }
