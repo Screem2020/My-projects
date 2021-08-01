@@ -1,6 +1,4 @@
 package Inheritance.Sapper;
-
-import java.util.ArrayDeque;
 import java.util.Scanner;
 
 public class Main {
@@ -12,7 +10,6 @@ public class Main {
      */
     public static void main(String[] args) {
         int[][] field = new int[3][4];
-        int indexBomb = 0;
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[i].length; j++) {
                 field[i][j] = (int) (Math.random() * 2);
@@ -25,12 +22,10 @@ public class Main {
         int coordinatesA = scn.nextInt();
         System.out.println("Enter coordinates B");
         int coordinatesB = scn.nextInt();
-        search(coordinatesA, coordinatesB,0, field, indexBomb);
-
+        opened(coordinatesA, coordinatesB,0, field);
     }
 
-    public static void search(int coordinatesA, int coordinatesB, int index, int[][] arr, int indexBomb) {
-        ArrayDeque<Integer> cell = new ArrayDeque<>();
+    /*public static void search(int coordinatesA, int coordinatesB, int index, int[][] arr) {
         for (int i = 0; i < arr.length; i++) {
             if (i == coordinatesA) {
                 coordinatesA = arr[index][i];
@@ -39,17 +34,29 @@ public class Main {
                 if (j == coordinatesB) {
                     coordinatesB = arr[index][j];
                 }
-                cell.addLast(coordinatesA); //создание очереди
-                cell.addLast(coordinatesB);
-                while (cell.size() != 0) {
-                    search(cell.poll(), cell.poll(), index, arr, indexBomb + 1);
-                }
-                if (coordinatesA != arr.length - 1) {
-                    if (arr[coordinatesA - 1][j] == 0) {
-
-                    }
-                }
             }
         }
+    }*/
+
+    public static void opened(int cellA, int cellB, int indexBomb, int[][] arr) {
+        if (arr.length >= cellA & arr.length >= cellB & arr[cellA][cellB] >= 0) {
+            if (arr[cellA][cellB] != 0) {
+                opened(cellA, cellB, indexBomb + 1, arr);
+            }
+            if (arr[cellA][cellB] != 1) {
+                opened(cellA - 1, cellB, indexBomb, arr);
+            } else if (arr[cellA - 1][cellB] != 1) {
+                opened(cellA, cellB - 1, indexBomb, arr);
+            } else if (arr[cellA][cellB - 1] != 1) {
+                opened(cellA + 1, cellB, indexBomb, arr);
+            } else if (arr[cellA + 1][cellB] != 1) {
+                opened(cellA, cellB + 1, indexBomb, arr);
+            } else if (arr[cellA][cellB + 1] != 1) {
+                System.out.println(indexBomb);
+            } else {
+                System.out.println("game over");
+            }
+        }
+        else System.out.println("не верные координаты");
     }
 }
