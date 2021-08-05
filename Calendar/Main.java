@@ -52,7 +52,8 @@ public class Main {
                     break;
                 }
                 case 3: {
-                    System.out.println(calendar.toString());
+                    calendar.getPlansMoths();
+                    //System.out.println(calendar.toString());
                     break;
                 }
                 case 4: {

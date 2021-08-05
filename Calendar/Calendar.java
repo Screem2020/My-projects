@@ -25,6 +25,11 @@ public class Calendar {
         System.out.println(day1);
     }
 
+    public void getPlansMoths(){
+        String size = dayList.toString();
+        System.out.println(size);
+    }
+
     @Override
     public String toString() {
         return "Calendar{" +
