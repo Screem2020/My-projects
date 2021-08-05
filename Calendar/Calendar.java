@@ -30,6 +30,11 @@ public class Calendar {
         System.out.println(size);
     }
 
+    public void getPlansCurrantDay() {
+        Day day = dayList.get(currentDate);
+        System.out.println(day);
+    }
+
     @Override
     public String toString() {
         return "Calendar{" +

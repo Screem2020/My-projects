@@ -57,7 +57,8 @@ public class Main {
                     break;
                 }
                 case 4: {
-                    calendar.getPlans(currentDate + 1);
+                    calendar.getPlansCurrantDay();
+                    //calendar.getPlans(currentDate + 1);
                     break;
                 }
             }
