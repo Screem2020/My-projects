@@ -1,4 +1,5 @@
 package Inheritance.Sapper;
+
 import java.util.Scanner;
 
 public class Main {
@@ -22,7 +23,10 @@ public class Main {
         int coordinatesA = scn.nextInt();
         System.out.println("Enter coordinates B");
         int coordinatesB = scn.nextInt();
-        opened(coordinatesA, coordinatesB,0, field);
+        opened(coordinatesA, coordinatesB, 0, field);
+        if (field[coordinatesA][coordinatesB] != 0) {
+            System.out.println("game over");
+        } else opened(coordinatesA, coordinatesB, +1, field);
     }
 
     /*public static void search(int coordinatesA, int coordinatesB, int index, int[][] arr) {
@@ -40,9 +44,6 @@ public class Main {
 
     public static void opened(int cellA, int cellB, int indexBomb, int[][] arr) {
         if (arr.length >= cellA & arr.length >= cellB & arr[cellA][cellB] >= 0) {
-            if (arr[cellA][cellB] != 0) {
-                opened(cellA, cellB, indexBomb + 1, arr);
-            }
             if (arr[cellA][cellB] != 1) {
                 opened(cellA - 1, cellB, indexBomb, arr);
             } else if (arr[cellA - 1][cellB] != 1) {
@@ -53,10 +54,7 @@ public class Main {
                 opened(cellA, cellB + 1, indexBomb, arr);
             } else if (arr[cellA][cellB + 1] != 1) {
                 System.out.println(indexBomb);
-            } else {
-                System.out.println("game over");
-            }
+            } else System.out.println("не верные координаты");
         }
-        else System.out.println("не верные координаты");
     }
 }
