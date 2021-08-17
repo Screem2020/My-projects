@@ -1,3 +1,5 @@
+package TwetnyOne;
+
 import java.util.Scanner;
 
 public class TwentyOne {
