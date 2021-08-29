@@ -1,4 +1,4 @@
-package Plimorfizm.Sootrer;
+package Polimorfizm.Shootrer;
 
 public class RPG extends Weapon {
     public RPG(String name, int power) {

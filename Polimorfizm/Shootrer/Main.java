@@ -1,4 +1,4 @@
-package Plimorfizm.Sootrer;
+package Polimorfizm.Shootrer;
 
 import java.util.ArrayList;
 import java.util.List;

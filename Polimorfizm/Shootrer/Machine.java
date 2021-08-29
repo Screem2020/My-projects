@@ -1,4 +1,4 @@
-package Plimorfizm.Sootrer;
+package Polimorfizm.Shootrer;
 
 public class Machine extends Weapon {
 
