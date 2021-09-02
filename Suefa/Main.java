@@ -19,16 +19,6 @@ public class Main {
         int player2 = 0;
         int player1Index = 0;
         int player2Index = 0;
-
-//        if (this.num == 3) {
-//            System.out.println("Бумага");
-//        }
-//        else if (this.num == 2) {
-//            System.out.println("Ножницы");
-//        }
-//        else System.out.println("Камень");
-//    }
-
         Scanner scn = new Scanner(System.in);
         while (input != 3) {
             System.out.println(

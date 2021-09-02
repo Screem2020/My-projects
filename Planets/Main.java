@@ -58,11 +58,10 @@ public class Main {
             for (int i = 0; i < planet.size(); i++) {
                 if (planet.get(i).equals(planets)) {
                     List<Parcel> deliveredParcel = planet.get(i).getDeliveredParcel();
-                    deliveredParcel.add(parcels.get(index));
+                    deliveredParcel.add(parcels.remove(index));
                     System.out.println(deliveredParcel);
                 }
             }
-            parcels.remove(index);
             System.out.println(parcels.size());
             if (parcels.size() == 0) {
                 System.out.println("Все посылки доставлены");
