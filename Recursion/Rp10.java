@@ -8,20 +8,22 @@ public class Rp10 {
      * чтобы метод мог принимать массив в любом типе данных и искать в этом массиве значение также в любом типе данных, а не только в виде строки.
      */
     public static void main(String[] args) {
-        String[] strings = {"строка1", "строка", "строка3"};
-        for (int i = 0; i < strings.length; i++) {
-            System.out.println(strings[i] + " ");
-        }
+        String[] strings = {"строка1", "строка2", "строка3"};
+//        for (int i = 0; i < strings.length; i++) {
+//            System.out.println(strings[i] + " ");
+//        }
         System.out.println(rec(strings, "строка", 0));
     }
 
-    public static boolean rec(String[] arr, String  a, int index) {
-        if (index < arr.length){
+    public static boolean rec(String[] arr, String a, int index) {
+        if (index < arr.length) {
             if (arr[index].equalsIgnoreCase(a)) {
                 return true;
             }
             rec(arr, a, index + 1);
+        return true;
+        } else {
+            return false;
         }
-        return false;
     }
 }

@@ -8,23 +8,18 @@ public class Rp8 {
      */
 
     public static void main(String[] args) {
-        String n = "56353429";
-        strRec(n, 0);
-//        int[] arr = {2, 4, 6, 6};
-//        for (int i = arr.length - 1; i >= 0; i--) {
-//            System.out.print(arr[i] + " ");
-//        }
+        String f = "123wefwefwe";
+        express(0, f, 0);
     }
-    public static void strRec(String n, int index) {
-        if (index < n.length() && index >= 0) {
-            if (index == n.length() - 1) {
-                char c = n.charAt(index);
-                n = Character.toString(c);
-                System.out.print(n);
-                strRec(n, index - 1);
+    public static void express(int index, String a, int charIndex) {
+        char c = ' ';
+        if (index >= 0 & a.length() > index) {
+            if (charIndex < a.length()) {
+                c = a.charAt(charIndex);
+                express(index, a, charIndex + 1);
             }
-            strRec(n, index + 1);
+            express(index - 1, a, charIndex - 1);
+            System.out.print(c);
         }
-        else System.out.println();
     }
 }
