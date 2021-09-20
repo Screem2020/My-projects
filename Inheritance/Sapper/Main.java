@@ -43,18 +43,30 @@ public class Main {
     }*/
 
     public static void opened(int cellA, int cellB, int indexBomb, int[][] arr) {
-        if (arr.length >= cellA & arr.length >= cellB & arr[cellA][cellB] >= 0) {
+        if ((arr.length > cellA & arr.length > cellB) & (arr[cellA][cellB] >= 0)) {
             if (arr[cellA][cellB] != 1) {
                 opened(cellA - 1, cellB, indexBomb, arr);
-            } else if (arr[cellA - 1][cellB] != 1) {
-                opened(cellA, cellB - 1, indexBomb, arr);
-            } else if (arr[cellA][cellB - 1] != 1) {
-                opened(cellA + 1, cellB, indexBomb, arr);
-            } else if (arr[cellA + 1][cellB] != 1) {
-                opened(cellA, cellB + 1, indexBomb, arr);
-            } else if (arr[cellA][cellB + 1] != 1) {
-                System.out.println(indexBomb);
-            } else System.out.println("не верные координаты");
+                if (arr[cellA - 1][cellB] != 1) {
+                    opened(cellA, cellB - 1, indexBomb, arr);
+                    if (arr[cellA][cellB - 1] != 1) {
+                        opened(cellA + 1, cellB, indexBomb, arr);
+                        if (arr[cellA + 1][cellB] != 1) {
+                            opened(cellA, cellB + 1, indexBomb, arr);
+                            if (arr[cellA][cellB + 1] != 1) {
+                                System.out.println(indexBomb);
+                            } else System.out.println("не верные координаты");
+                        }
+                    }
+                }
+            }
         }
     }
 }
+//            } else if (arr[cellA - 1][cellB] != 1) {
+//                opened(cellA, cellB - 1, indexBomb, arr);
+//            } else if (arr[cellA][cellB - 1] != 1) {
+//                opened(cellA + 1, cellB, indexBomb, arr);
+//            } else if (arr[cellA + 1][cellB] != 1) {
+//                opened(cellA, cellB + 1, indexBomb, arr);
+//            } else if (arr[cellA][cellB + 1] != 1) {
+//                System.out.println(indexBomb);

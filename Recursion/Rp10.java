@@ -12,7 +12,7 @@ public class Rp10 {
 //        for (int i = 0; i < strings.length; i++) {
 //            System.out.println(strings[i] + " ");
 //        }
-        System.out.println(rec(strings, "строка", 0));
+        System.out.println(rec(strings, "строка2", 0));
     }
 
     public static boolean rec(String[] arr, String a, int index) {
@@ -21,9 +21,7 @@ public class Rp10 {
                 return true;
             }
             rec(arr, a, index + 1);
-        return true;
-        } else {
-            return false;
         }
+            return false;
     }
 }

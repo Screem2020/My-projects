@@ -11,6 +11,7 @@ public class Rp8 {
         String f = "123wefwefwe";
         express(0, f, 0);
     }
+
     public static void express(int index, String a, int charIndex) {
         char c = ' ';
         if (index >= 0 & a.length() > index) {
