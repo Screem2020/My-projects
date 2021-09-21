@@ -1,5 +1,6 @@
 package Polimorfizm.tic_tak_tao;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
@@ -34,7 +35,7 @@ public class Game {
         }
         Player cur = player1;
         Player opp = player2;
-        while (!isWinner(opp, cur)) {
+        while (!ByCheckWinner(playField, opp.symbol)) {
             print();
             System.out.println("Ходит " + cur.name);
             if (cur.makeShot()) {
@@ -42,57 +43,52 @@ public class Game {
                 cur = opp;
                 opp = tmp;
             } else if (!cur.makeShot()) {
-                System.out.println("Не верно введины координаты");
-                cur.makeShot();
-            } else if (isNicha()) {
+                System.out.println("Не верно введены координаты");
+            } else {
                 System.out.println("Ничья");
             }
+            if (ByCheckWinner(playField, opp.symbol)) {
+                print();
+                System.out.println(opp + " Игрок победил");
+            }
         }
     }
 
-    public boolean isNicha() {
-        if (!(isWinner(player1, player2))) {
+    /*public boolean isNicha() {
+        if () {
             return true;
         }
         return false;
-    }
+    }*/
 
-    public boolean isWinner(Player player1, Player player2) {
-        if (ByCheckWinner(player1.symbol, playField, 0, 0)) {
-            return true;
-        } else if (ByCheckWinner(player2.symbol, playField, 0, 0)) {
-            return true;
-        }
-        return false;
-    }
-
-    public static boolean ByCheckWinner(Main.Symbol symbol, Main.Symbol[][] playField, int indexX, int indexY) {
-        int lastSlot = 0;
-        if (indexX < playField.length & indexY < playField.length) {
-            if (symbol == playField[indexX][indexY]) {
-                ByCheckWinner(symbol, playField, indexX, indexY + 1);
-            }
-            if (symbol == playField[indexX][indexY]) {
-                if (indexX == playField.length - 1) {
-                    lastSlot = indexX;
-                }
-                ByCheckWinner(symbol, playField, indexX + 1, indexY);
-            }
-            if (symbol == playField[indexX][indexY]) {
-                ByCheckWinner(symbol, playField, indexX + 1, indexY + 1);
-            }
-            if (symbol == playField[lastSlot][indexY]) {
-                ByCheckWinner(symbol, playField, lastSlot - 1, indexY + 1);
-            }
-            return true;
-        }
-        return false;
-    }
 
 //            while (!cur.makeShot()) {
 //                System.out.println("Не верно введины координаты");
 //                cur.makeShot();
 //            }
+
+    public boolean ByCheckWinner(Main.Symbol[][] playField, Main.Symbol symbol) {
+        for (int i = 0; i < playField.length; i++) {
+            if (playField[i][0] == symbol & playField[i][1] == symbol & playField[i][2] == symbol) {
+                return true;
+            }
+        }
+        for (int j = 0; j < playField.length; j++) {
+            if (playField[0][j] == symbol & playField[1][j] == symbol & playField[2][j] == symbol) {
+                return true;
+            }
+        }
+
+        for (int i = 0; i < playField.length; i++) {
+            for (int j = playField.length - 1; 0 >= j; --j) {
+                if ((playField[i][0] == symbol & playField[i][1] == symbol & playField[i][2] == symbol) &&
+                        (playField[0][j] == symbol & playField[1][j] == symbol & playField[0][j] == symbol)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public void print() {
         for (int i = 0; i < playField.length; i++) {
@@ -101,6 +97,15 @@ public class Game {
             }
             System.out.println();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "playField=" + Arrays.toString(playField) +
+                ", player1=" + player1 +
+                ", player2=" + player2 +
+                '}';
     }
 }
 
