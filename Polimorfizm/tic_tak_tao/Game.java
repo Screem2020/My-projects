@@ -42,24 +42,20 @@ public class Game {
                 Player tmp = cur;
                 cur = opp;
                 opp = tmp;
-            } else if (!cur.makeShot()) {
-                System.out.println("Не верно введены координаты");
-            } else {
-                System.out.println("Ничья");
-            }
-            if (ByCheckWinner(playField, opp.symbol)) {
-                print();
-                System.out.println(opp + " Игрок победил");
-            }
+            } else System.out.println("Не верно введены координаты");
+        }
+        if (ByCheckWinner(playField, opp.symbol) & (ByCheckWinner(playField, cur.symbol))) {
+            isNicha();
+        } else if (ByCheckWinner(playField, opp.symbol) || ByCheckWinner(playField, cur.symbol)) {
+            print();
+            System.out.println(opp + " Игрок победил");
         }
     }
 
-    /*public boolean isNicha() {
-        if () {
-            return true;
-        }
-        return false;
-    }*/
+    public boolean isNicha() {
+        System.out.println("Ничья");
+        return true;
+    }
 
 
 //            while (!cur.makeShot()) {
@@ -73,21 +69,15 @@ public class Game {
                 return true;
             }
         }
+
         for (int j = 0; j < playField.length; j++) {
             if (playField[0][j] == symbol & playField[1][j] == symbol & playField[2][j] == symbol) {
                 return true;
             }
         }
 
-        for (int i = 0; i < playField.length; i++) {
-            for (int j = playField.length - 1; 0 >= j; --j) {
-                if ((playField[i][0] == symbol & playField[i][1] == symbol & playField[i][2] == symbol) &&
-                        (playField[0][j] == symbol & playField[1][j] == symbol & playField[0][j] == symbol)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return (playField[0][0] == symbol & playField[1][1] == symbol & playField[2][2] == symbol) ||
+                (playField[0][2] == symbol & playField[1][1] == symbol & playField[2][0] == symbol);
     }
 
     public void print() {
@@ -99,13 +89,10 @@ public class Game {
         }
     }
 
+
     @Override
     public String toString() {
-        return "Game{" +
-                "playField=" + Arrays.toString(playField) +
-                ", player1=" + player1 +
-                ", player2=" + player2 +
-                '}';
+        return "playField=" + Arrays.toString(playField) + " player1=" + player1 + " player2=" + player2;
     }
 }
 

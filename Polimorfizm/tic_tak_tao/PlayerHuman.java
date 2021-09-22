@@ -1,6 +1,5 @@
 package Polimorfizm.tic_tak_tao;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class PlayerHuman extends Player {
@@ -15,15 +14,21 @@ public class PlayerHuman extends Player {
         int col = scn.nextInt();
         System.out.println("enter line horizontal");
         int line = scn.nextInt();
-        if (col < playField.length & line < playField.length & playField[col][line] != symbol) {
+        if ((col < playField.length & line < playField.length) && (checkSlot(col, line))) {
             playField[col][line] = symbol;
             return true;
-        } else return false;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean checkSlot(int col, int line) {
+        return super.checkSlot(col, line);
     }
 
     @Override
     public String toString() {
-        return "PlayerHuman" + "name=" + name  + " symbol=" + symbol;
+        return "PlayerHuman" + " name=" + name;
 
     }
 }
