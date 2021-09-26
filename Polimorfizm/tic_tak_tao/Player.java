@@ -4,6 +4,8 @@ public class Player {
     String name;
     Main.Symbol[][] playField;
     Main.Symbol symbol;
+    int col;
+    int line;
 
     public Player(String name, Main.Symbol[][] playField, Main.Symbol symbol) {
         this.name = name;
@@ -11,12 +13,17 @@ public class Player {
         this.symbol = symbol;
     }
 
+    public Player(int col, int line) {
+        this.col = col;
+        this.line = line;
+    }
+
     public boolean makeShot() {
         return true;
     }
 
     public boolean checkSlot(int col, int line) {
-                if (this.playField[col][line].equals(symbol)) {
+                if (this.playField[this.col][this.line].equals(symbol)) {
                     return false;
                 } else return true;
     }

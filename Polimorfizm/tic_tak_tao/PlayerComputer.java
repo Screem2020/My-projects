@@ -6,9 +6,13 @@ public class PlayerComputer extends Player {
         super(name, playField, symbol);
     }
 
+    public PlayerComputer(int col, int line) {
+        super(col, line);
+    }
+
     public boolean makeShot() {
-        int col = (int) (Math.random() * playField.length);
-        int line = (int) (Math.random() * playField.length);
+        this.col = (int) (Math.random() * playField.length);
+        this.line = (int) (Math.random() * playField.length);
         if (checkSlot(col, line)) {
             playField[col][line] = symbol;
             return true;
