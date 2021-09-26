@@ -38,7 +38,8 @@ public class Game {
         while (!ByCheckWinner(playField, opp.symbol)) {
             print();
             System.out.println("Ходит " + cur.name);
-            if (cur.makeShot()) {
+
+            if (cur.makeShot() && ((cur.checkSlot(cur.col, cur.line)) || (opp.checkSlot(opp.col, opp.line)))) {
                 Player tmp = cur;
                 cur = opp;
                 opp = tmp;
