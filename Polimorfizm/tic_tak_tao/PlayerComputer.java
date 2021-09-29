@@ -13,16 +13,17 @@ public class PlayerComputer extends Player {
     public boolean makeShot() {
         this.col = (int) (Math.random() * playField.length);
         this.line = (int) (Math.random() * playField.length);
-        if (checkSlot(col, line)) {
+
+        //int col = (int) (Math.random() * playField.length);
+        //int line = (int) (Math.random() * playField.length);
+        if (checkSlot()) {
             playField[col][line] = symbol;
             return true;
-        } else return false;
+        }
+        return false;
     }
 
-    @Override
-    public boolean checkSlot(int col, int line) {
-        return super.checkSlot(col, line);
-    }
+
 
     @Override
     public String toString() {

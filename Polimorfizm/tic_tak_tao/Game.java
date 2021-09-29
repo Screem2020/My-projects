@@ -39,11 +39,12 @@ public class Game {
             print();
             System.out.println("Ходит " + cur.name);
 
-            if (cur.makeShot() && ((cur.checkSlot(cur.col, cur.line)) || (opp.checkSlot(opp.col, opp.line)))) {
-                Player tmp = cur;
-                cur = opp;
-                opp = tmp;
-            } else System.out.println("Не верно введены координаты");
+            while (!cur.makeShot()) {
+                System.out.println("Invalid coordinates, try again");
+            }
+            Player tmp = cur;
+            cur = opp;
+            opp = tmp;
         }
         if (ByCheckWinner(playField, opp.symbol) & (ByCheckWinner(playField, cur.symbol))) {
             isNicha();

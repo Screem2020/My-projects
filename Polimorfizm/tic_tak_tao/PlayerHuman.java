@@ -17,17 +17,13 @@ public class PlayerHuman extends Player {
         this.col = scn.nextInt();
         System.out.println("enter line horizontal");
         this.line = scn.nextInt();
-        if ((col < playField.length & line < playField.length) && (checkSlot(col, line))) {
+        if ((col < playField.length & line < playField.length) && (checkSlot())) {
             playField[col][line] = symbol;
             return true;
         }
         return false;
     }
 
-    @Override
-    public boolean checkSlot(int col, int line) {
-        return super.checkSlot(col, line);
-    }
 
     @Override
     public String toString() {

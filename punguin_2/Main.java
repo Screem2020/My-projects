@@ -3,7 +3,7 @@ package punguin_2;
 import java.util.Scanner;
 
 public class Main {
-    /**
+    /*
      * Есть игровое поле в виде таблицы размером width строк на height столбцов, которые юзер вводит с консоли.
      * Игровое поле представляет собой трассу, на которой расположены глыбы льда, ровная поверхность, вода и один пингвин,
      * который по всем этим элементам перебирается с определенными условиями.
@@ -65,6 +65,8 @@ public class Main {
      * Если пингвин не может сделать шаг по какой-то причине, вам нужно выводить соответствует сообщение.
      */
 
+    //
+
     public static void main(String[] args) {
         GameBoard gameBoard = new GameBoard();
         gameBoard.print();
@@ -72,10 +74,10 @@ public class Main {
         String input = "";
         Scanner scn = new Scanner(System.in);
         while (!(input.equalsIgnoreCase("e") || input.equalsIgnoreCase("exit"))) {
-            System.out.println(""" 
+            System.out.println("""
                     r (right) - поворачивает пингвина на 90 градусов вправо
                     l (left) - поворачивает пингвина на 90 градусов влево
-                    s (step) - прингвин делает шаг в выбранном направлении с определенными условиями:
+                    s (step) - прингвин делает шаг в выбранном направлении
                     p (put) - пингвин кладет глыбу льда из своего рюкзака в ячейку перед ним при определенных условиях:
                     t (take) - пингвин забирает глыбу льда из ячеки перед ним с определенными условиями:
                     p (print) - вывод игрового поля на консоль
@@ -84,11 +86,48 @@ public class Main {
             switch (input) {
                 case "r", "right": {
                     gameBoard.getPenguinSymbol(0);
-
                     System.out.println("good");
+                    break;
+                }
+                case "l", "left": {
+                    gameBoard.getPenguinSymbol(3);
+                    break;
+                }
+                case "s", "step": {
+                    gameBoard.stepPenguin();
                     break;
                 }
             }
         }
+//
+//        int[][] arr = {{1,2,3}, {100,4,5}};
+//        for (int i = 0; i < arr.length; i++) {
+//            for (int j = 0; j < arr[i].length; j++) {
+//                //System.out.print(arr[i][j]+" ");
+//                //System.out.printf("first: %d, second: %d ", arr[i][j], -1);
+//                System.out.printf("%3d ", arr[i][j], -1);
+//                //%d - целые числа
+//                //%s - текст
+//                //%f - дробные числа
+//
+//
+//            }
+//            System.out.println();
+//        }
+
+        //2x3
+//        int[][] arr = {{1,2,3}, {100,4,5}};
+//        //так как двумерный массив - это набор из одномерных массивов, то мы можем получить любой одномерный массив из двумерного
+//        int[] arr1 = arr[0]; //получаею первый одномерный массив из двумерного массива arr
+//
+//        //2 можно заменить на arr.length - возврщает кол-во строк
+//        //3 можно заменить на arr[i].length - возврщает кол-во строк
+//        for (int i = 0; i < 2; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                System.out.print(arr[i][j]+" ");
+//            }
+//            System.out.println();
+//        }
+
     }
 }

@@ -9,6 +9,10 @@ public enum SymbolPenguin {
         this.name = name;
     }
 
+    public char getName(){
+        return name;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(name);

@@ -22,9 +22,11 @@ public class Player {
         return true;
     }
 
-    public boolean checkSlot(int col, int line) {
-                if (this.playField[this.col][this.line].equals(symbol)) {
-                    return false;
-                } else return true;
+    public boolean checkSlot() {
+        //if (this.playField[this.col][this.line].equals(symbol)) {
+        if (this.playField[this.col][this.line] != Main.Symbol.EMPTY) {
+            return false;
+        }
+        return true;
     }
 }
