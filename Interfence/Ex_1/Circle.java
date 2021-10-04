@@ -8,7 +8,7 @@ public class Circle implements Shape {
     private int radius;
     private final double p = 3.15;
 
-    protected Circle(int radius) {
+    public Circle(int radius) {
         this.radius = radius;
     }
 
