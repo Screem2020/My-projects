@@ -6,11 +6,6 @@ public class Gun extends Weapon {
         super(name, power);
     }
 
-    public Gun(String name) {
-        super(name);
-    }
-
-
     @Override
     public int shot() {
         return  (int) ((Math.random() * 10) + 10);

@@ -45,7 +45,7 @@ public class Player implements Weapons {
         return name;
     }
 
-    public void step(Player player, Weapon[] weapons) {
+    public void stepPlayer1(Player player, Weapon[] weapons) {
         List<Weapon> list = player.getList();
         list.toArray(weapons);
         for (int i = 0; i < weapons.length; i++) {
@@ -58,7 +58,7 @@ public class Player implements Weapons {
         }
     }
 
-    public void step1(Player player, Weapon[] weapons) {
+    public void stepPlayer2(Player player, Weapon[] weapons) {
         List<Weapon> list = player.getList();
         list.toArray(weapons);
         for (int i = 0; i < weapons.length; i++) {

@@ -4,11 +4,6 @@ public class Slingshot extends Weapon {
 
     private String material;
 
-    public Slingshot(String name, int power, String material) {
-        super(name, power);
-        this.material = material;
-    }
-
     public Slingshot(String name, String material) {
         super(name);
         this.material = material;

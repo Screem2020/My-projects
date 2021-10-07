@@ -5,10 +5,6 @@ public class Machine extends Weapon{
         super(name, power);
     }
 
-    public Machine(String name) {
-        super(name);
-    }
-
     @Override
     public int shot() {
         return 3 * (int) ((Math.random() * 10) + 10);

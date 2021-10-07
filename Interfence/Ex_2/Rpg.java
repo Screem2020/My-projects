@@ -6,10 +6,6 @@ public class Rpg extends Weapon {
         super(name, power);
     }
 
-    public Rpg(String name) {
-        super(name);
-    }
-
     @Override
     public int shot() {
         return 100;

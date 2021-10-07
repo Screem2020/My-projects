@@ -5,10 +5,6 @@ public class Water_Gun  extends Weapon{
         super(name, power);
     }
 
-    public Water_Gun(String name) {
-        super(name);
-    }
-
     @Override
     public int shot() {
         return 0;

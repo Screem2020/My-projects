@@ -39,8 +39,8 @@ public class Game {
                 System.out.println("Выберите оружие: ");
                 Weapon[] weaponList1 = new Weapon[weaponList.size()];
                 Weapon[] weaponList2 = new Weapon[weaponList.size()];
-                player1.step(player1, weaponList1);
-                player2.step1(player2, weaponList2);
+                player1.stepPlayer1(player1, weaponList1);
+                player2.stepPlayer2(player2, weaponList2);
 //                addWeapon();
 //                for (int i = 0; i < list1.size(); i++) {
 //                    System.out.println(list1.get(i).getName());
@@ -61,28 +61,6 @@ public class Game {
             }
             if (input == 3) {
                 return;
-            }
-        }
-    }
-
-    public void addWeapon(Weapon[] arr, Weapon[] arr1) {
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i].getClass() == Gun.class) {
-                System.out.println(arr[i].getName());
-            }
-            if (arr[i].getClass() == Machine.class) {
-                System.out.println(arr[i].getName());
-            }
-        }
-        for (int i = 0; i < arr1.length; i++) {
-            if (arr[i].getClass() == Rpg.class) {
-                System.out.println(arr[i].getName());
-            }
-            if (arr[i].getClass() == Slingshot.class) {
-                System.out.println(arr[i].getName());
-            }
-            if (arr[i].getClass() == Water_Gun.class) {
-                System.out.println(arr[i].getName());
             }
         }
     }
