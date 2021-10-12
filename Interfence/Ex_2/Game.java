@@ -8,17 +8,14 @@ public class Game {
 
     private final Scanner scn = new Scanner(System.in);
     private final List<Weapon> weaponList = new ArrayList<>();
-    private Player player1 = new Player("player1", 100, weaponList);
-    private Player player2 = new Player("player2", 100, weaponList);
-    //private List<Weapon> list1 = player1.getList();
-    //private List<Weapon> list2 = player2.getList();
+    private Player player1 = new Player("player1", 100);
+    private Player player2 = new Player("player2", 100);
     private int input = 0;
 
-    public Player getPlayer1() {
-        return player1;
-    }
 
-    public Game() {
+
+    private void initWeaponList(){
+        weaponList.clear();
         weaponList.add(new Slingshot("Slingshot", ""));
         weaponList.add(new Gun("Gun", 10));
         weaponList.add(new Machine("Machine", 30));
@@ -27,6 +24,10 @@ public class Game {
     }
 
     public void start() {
+        initWeaponList();
+        player1.selectWeapon(weaponList);
+        initWeaponList();
+        player2.selectWeapon(weaponList);
         while (input != 3) {
             System.out.println();
             System.out.println("""
@@ -37,29 +38,20 @@ public class Game {
             if (input == 1) {
                 System.out.println("step " + player1.getName());
                 System.out.println("Выберите оружие: ");
-                Weapon[] weaponList1 = new Weapon[weaponList.size()];
-                Weapon[] weaponList2 = new Weapon[weaponList.size()];
-                player1.stepPlayer1(player1, weaponList1);
-                player2.stepPlayer2(player2, weaponList2);
-//                addWeapon();
-//                for (int i = 0; i < list1.size(); i++) {
-//                    System.out.println(list1.get(i).getName());
-//                }
                 player1.makeShot(player2);
                 if (player2.getHealth() <= 0) {
                     checkWinner();
                     return;
                 }
+                Player tmp = player1;
+                player1 = player2;
+                player2 = tmp;
             }
-            Player tmp = player1;
-            player1 = player2;
-            player2 = tmp;
-
-            if (input == 2) {
+            else if (input == 2) {
                 System.out.println("Здоровье 1 игрока " + player1.getHealth());
                 System.out.println("Здоровье 2 игрока " + player2.getHealth());
             }
-            if (input == 3) {
+            else if (input == 3) {
                 return;
             }
         }

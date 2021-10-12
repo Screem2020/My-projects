@@ -24,6 +24,14 @@ public class Weapon implements Weapons {
     }
 
     @Override
+    public boolean equals(Object o) {
+        Weapon weapon = (Weapon) o;
+        return name.equalsIgnoreCase(weapon.getName());
+    }
+
+
+
+    @Override
     public int shot() {
         return 0;
     }
