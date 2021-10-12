@@ -28,9 +28,7 @@ public class Weapon implements Weapons {
         Weapon weapon = (Weapon) o;
         return name.equalsIgnoreCase(weapon.getName());
     }
-
-
-
+    
     @Override
     public int shot() {
         return 0;
