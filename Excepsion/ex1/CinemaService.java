@@ -54,6 +54,11 @@ public class CinemaService {
         arr[placeReserved][rowReserved] = Main.Symbols.BUSY;
     }
 
+    /**
+     * Метод осуществялет сьем брони с помощью checked исключения NoExistReserveException
+     * @param placeReserved - место
+     * @param rowReserved - ряд
+     */
     public void takeOffReserved(int placeReserved, int rowReserved) {
         try {
             if (arr[placeReserved][rowReserved] != Main.Symbols.BUSY){
