@@ -7,23 +7,23 @@ public class Colculator {
     public Colculator(int number_1, int number_2) {
         this.number_1 = number_1;
         this.number_2 = number_2;
-        if (!(number_1 >= 0 & number_1 < 11 && number_2 >= 0 & number_2 < 11)) {
+        if ((number_1 < 0 || number_1 > 11) && (number_2 < 0 || number_2 > 11)) {
             try {
                 throw new InappropriateValueException("Введите число от 0 до 10");
             } catch (InappropriateValueException inappropriateValueException) {
                 inappropriateValueException.printStackTrace();
             }
-            Main.RomanNumerals[] values = Main.RomanNumerals.values();
-            for (Main.RomanNumerals value : values) {
-                if (!(number_1 == value.getName() & number_2 == value.getName())) {
-                    try {
-                        throw new DifferentNumberSystemsException("Используются одновременно разные системы счисления");
-                    } catch (DifferentNumberSystemsException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }
+//            Main.RomanNumerals[] values = Main.RomanNumerals.values();
+//            for (Main.RomanNumerals value : values) {
+//                if (!(number_1 == value.getName() & number_2 == value.getName())) {
+//                    try {
+//                        throw new DifferentNumberSystemsException("Используются одновременно разные системы счисления");
+//                    } catch (DifferentNumberSystemsException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//
+//            }
         }
     }
 

@@ -7,7 +7,9 @@ public class Main {
         Scanner scn = new Scanner(System.in);
         while (true) {
             System.out.println("Введите значения");
-            int num_1 = scn.nextInt();
+            int num_1 = scn.nextInt();  // вероятнее всего необходимо использовать String для
+                                        // того что бы распарсить в число, а затем использовать для Enum или в методах клсса Calculator
+                                        // либо через метод конвертирования getNum
             String input = scn.next();
             int num_2 = scn.nextInt();
             Colculator colculator = new Colculator(num_1, num_2);
@@ -21,27 +23,28 @@ public class Main {
     }
 
     public enum RomanNumerals {
-        I(1), II(2), III(3), IV(4), V(5), VI(6), VII(7),
-        VIII(8), IX(9), X(10);
+        I("1"), II("2"), III("3"), IV("4"), V("5"), VI("6"), VII("7"),
+        VIII("8"), IX("9"), X("10");
 
-        private int name;
+        private String name;
 
-        RomanNumerals(int name) {
+        RomanNumerals(String name) {
             this.name = name;
         }
 
-        public int getName() {
+        public String getName() {
             return name;
         }
 
-//        public int getNum(int num1, int num2) {
+//        /**
+//         * @param num
+//         * @return
+//         */
+//        public int getNum(String num) {
 //            RomanNumerals[] values = RomanNumerals.values();
-//            for (int i = 0; i < values().length; i++) {
-//                if (values[i].name == num1) {
-//                    return values[i].name;
-//                }
-//                if (values[i].name == num2) {
-//                    return values[i].name;
+//            for (RomanNumerals i : values) {
+//                if (i.name.equals(num)) {
+//                    return Integer.parseInt(i.name.trim());
 //                }
 //            }
 //            return -1;
