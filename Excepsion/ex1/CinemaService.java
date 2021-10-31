@@ -7,7 +7,7 @@ public class CinemaService {
 
     private Scanner scn = new Scanner(System.in);
     private final int place = 5;
-    private final int row = 5;
+    private final int row = 15;
     private final Main.Symbols[][] arr = new Main.Symbols[place][row];
 
     /**
@@ -74,15 +74,17 @@ public class CinemaService {
      * Метод осуществляет отрисовку зала
      */
     public void print() {
-        int index = 0;
-        while (index < arr.length) {
-            System.out.print("  " + index++);
+        int index = 1;
+        while (index < arr[0].length+1) {
+            System.out.printf("%4d", index++);
+
         }
         System.out.println();
         for (int i = 0; i < arr.length; i++) { //строки
-            System.out.print(i);
+            System.out.print(i+1);
             for (int j = 0; j < arr[i].length; j++) { //столбцы
-                System.out.print(arr[i][j].toString());
+                //System.out.print(arr[i][j].toString());
+                System.out.printf("%4s", arr[i][j].toString());
             }
             System.out.println();
         }

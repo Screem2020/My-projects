@@ -18,17 +18,17 @@ public class Main {
         public static void method() {
             Scanner scn = new Scanner(System.in);
             System.out.println("Введите свои данные:");
-            String name = scn.next();
-            String[] split = name.split(",");
+            String line = scn.nextLine();
+            String[] split = line.split(",");
             for (int i = 0; i < split.length; i++) {
-                if (split[i].)
+               split[i] = split[i].trim();
             }
-            String position = scn.next();
-            String position2 = scn.next();
-            String country = scn.next();
-            String company = scn.next();
+            String name = split[0];
+            String position = split[1];
+            String country = split[2];
+            String company = split[3];
             System.out.println("Имя: " + name);
-            System.out.println("Должность: " + position + " " + position2);
+            System.out.println("Должность: " + position);
             System.out.println("Страна: " + country);
             System.out.println("Компания: " + company);
 
