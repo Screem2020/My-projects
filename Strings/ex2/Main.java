@@ -1,6 +1,7 @@
 package Strings.ex2;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -33,23 +34,20 @@ public class Main {
                     3. Вывести все профили
                     4. Выход
                     """);
+            while (!scn.hasNextInt()) {
+                try {
+                    throw new java.lang.Exception("Entered integer");
+                } catch (java.lang.Exception e) {
+                    e.printStackTrace();
+                    scn.nextInt();
+                }
+            }
             input = scn.nextInt();
-                /*while (!scn.hasNextInt()) {
-                    try {
-                        throw new Exception("not string");
-                    } catch (InputMismatchException e) {
-                        System.out.println("not string");
-                        e.printStackTrace();
-                        break;
-                    }
-                }*/
             if (input == 1) {
                 scn = new Scanner(System.in);
-                System.out.println("enter social profile:");
-                System.out.print("1.Name: ");
-                String name = scn.nextLine();
-                String[] constructor1 = new String[name.length()];
-                SocialProfile trim = SocialProfile.trim(name, constructor1);
+                System.out.print("enter social profile: ");
+                String line = scn.nextLine().toLowerCase(Locale.ENGLISH);
+                SocialProfile trim = SocialProfile.trim(line);
                 boolean flag = false;
                 if (socialProfiles.add(trim)) {
                     flag = true;
@@ -60,25 +58,18 @@ public class Main {
             if (input == 2) {
                 scn = new Scanner(System.in);
                 System.out.println("enter social profile");
-                String line = scn.nextLine();
-                String[] constructor2 = new String[line.length()];
-                SocialProfile trim = SocialProfile.trim(line, constructor2);
+                String line = scn.nextLine().toLowerCase(Locale.ENGLISH);
+                SocialProfile trim = SocialProfile.trim(line);
                 for (int i = 0; i < socialProfiles.size(); i++) {
-                    if (socialProfiles.get(i).equals(trim)) {
-                        SocialProfile remove = socialProfiles.remove(i);
-                        System.out.println(remove);
+                    if (socialProfiles.get(i).equals(trim)) {  // заменить get(i) на что то другое, повторное отображение
+                        socialProfiles.remove(i);
+                        System.out.println("deleted");
                     }
+                    else System.out.println("Not found");
                 }
             }
             if (input == 3) {
-                StringBuilder sb = new StringBuilder();
-                for (SocialProfile socialProfile : socialProfiles) {
-                    System.out.println("Name: " + sb.append(socialProfile.getName()));
-                    System.out.println("Last Name: " + sb.append(socialProfile.getTwoName()));
-                    System.out.println("Age: " + sb.append(socialProfile.getAge()));
-                    System.out.println("Postal: " + sb.append(socialProfile.getPostal()));
-                    System.out.println("Country: " + sb.append(socialProfile.getCountry()));
-                }
+                System.out.println(socialProfiles);
             }
         }
     }

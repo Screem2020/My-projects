@@ -5,13 +5,14 @@ import java.util.Objects;
 public class SocialProfile {
     private String name;
     private String twoName;
-    private String age;
-    private String postal;
+    private String age;     // при проверке по equals вылетает NullPointerException необходимо
+    private String postal;  // явно инициализировать обЬект в конструкторе, даже если не прописанны, но есть в полях
     private String country;
 
     public SocialProfile(String name, String twoName) {
         this.name = name;
         this.twoName = twoName;
+        this.age = "";
         this.postal = "";
         this.country = "";
     }
@@ -32,53 +33,40 @@ public class SocialProfile {
         this.country = country;
     }
 
-    public static SocialProfile trim(String line, String[] strings1) {
+    public static SocialProfile trim(String line) {
         String[] strings = line.split(" ");
         int i;
         for (i = 0; i < strings.length; i++) {
             strings[i] = strings[i].trim();
-            strings1[i] = strings[i];
         }
         if (i == 2) {
-            String name = strings1[0];
-            String last_name = strings1[1];
+            String name = strings[0];
+            String last_name = strings[1];
             return new SocialProfile(name, last_name);
         }
         if (i == 3) {
-            String name = strings1[0];
-            String last_name = strings1[1];
-            String age = strings1[2];
+            String name = strings[0];
+            String last_name = strings[1];
+            String age = strings[2];
             return new SocialProfile(name, last_name, age);
         }
         if (i == 5) {
-            String name = strings1[0];
-            String last_name = strings1[1];
-            String age = strings1[2];
-            String postal = strings1[3];
-            String country = strings1[4];
+            String name = strings[0];
+            String last_name = strings[1];
+            String age = strings[2];
+            String postal = strings[3];
+            String country = strings[4];
             return new SocialProfile(name, last_name, age, postal, country);
         }
+        try {
+            if (i != 2 || i != 3 || i != 5) {
+                throw new java.lang.Exception();
+            }
+        } catch (java.lang.Exception e) {
+            System.err.println("Data entered incorrect");
+            e.printStackTrace();
+        }
         return null;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getTwoName() {
-        return twoName;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public String getPostal() {
-        return postal;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     @Override
@@ -92,12 +80,17 @@ public class SocialProfile {
 
     @Override
     public String toString() {
-        return "SocialProfile{" +
-                "name='" + name + '\'' +
-                ", twoName='" + twoName + '\'' +
-                ", age=" + age +
-                ", postal='" + postal + '\'' +
-                ", country='" + country + '\'' +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        System.out.println("Name: " + sb.append(name));
+        sb = new StringBuilder();
+        System.out.println("Last Name: " + sb.append(twoName));
+        sb = new StringBuilder();
+        System.out.println("Age: " + sb.append(age));
+        sb = new StringBuilder();
+        System.out.println("Postal: " + sb.append(postal));
+        sb = new StringBuilder();
+        System.out.println("Country: " + sb.append(country));
+        System.out.println();
+        return "";
     }
 }
