@@ -1,4 +1,4 @@
-package Strings.ex2;
+package Strings.ex2_SocialProfile;
 
 import java.util.InputMismatchException;
 

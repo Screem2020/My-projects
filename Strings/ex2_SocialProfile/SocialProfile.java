@@ -1,4 +1,4 @@
-package Strings.ex2;
+package Strings.ex2_SocialProfile;
 
 import java.util.Objects;
 
@@ -33,6 +33,12 @@ public class SocialProfile {
         this.country = country;
     }
 
+    /**
+     * Метод осуществляет поиск и добавление нужного профиля по указанным конструкторам.
+     * Встроенна проверка корректности веденных данных по 3 конструкторам.
+     * @param line строка веденных данных, которая будет обработана.
+     * @return ничего не возвращает
+     */
     public static SocialProfile trim(String line) {
         String[] strings = line.split(" ");
         int i;
@@ -78,6 +84,10 @@ public class SocialProfile {
                 Objects.equals(postal, that.postal) && Objects.equals(country, that.country);
     }
 
+    /**
+     * Переопределенный метод вывода информации через StringBuilder;
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

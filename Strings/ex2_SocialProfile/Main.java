@@ -1,4 +1,4 @@
-package Strings.ex2;
+package Strings.ex2_SocialProfile;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -23,6 +23,17 @@ public class Main {
     //Если при выборе первого пункта пользователь вводит 5 значений данных, то используется третий конструктор для создания объекта
     //Также пользователь может вводить лишние пробелы между символом точка с запятой, необходимо очистить данные от лишних пробелов.
 
+
+    /**
+     * Программа осуществяет добавление социального профиля в базу по имени, фамилии, возрасту, почтовому адресу.
+     * Процесс добавления производится по:
+     * - 2 данным: имя, фамилия;
+     * - 3 данным: имя, фамилия, возраст;
+     * - 5 данным: имя, фамилия, возраст, почтовый адрес и стране проживания;
+     * Поиск удаляемого профеля осуществляется по такому же принципу.
+     * Есть возможность вывода списка всех социальных профелей в базе.
+     * @param args
+     */
     public static void main(String[] args) {
         var scn = new Scanner(System.in);
         var socialProfiles = new ArrayList<SocialProfile>();
@@ -34,15 +45,24 @@ public class Main {
                     3. Вывести все профили
                     4. Выход
                     """);
-            while (!scn.hasNextInt()) {
+            if (input > 4){
+                try {
+                    throw new java.lang.Exception("Entered integer < 4");
+                } catch (java.lang.Exception e) {
+                    e.printStackTrace();
+                    scn = new Scanner(System.in);
+                }
+            }
+            while (!scn.hasNextInt()) {    // необходим while?
                 try {
                     throw new java.lang.Exception("Entered integer");
                 } catch (java.lang.Exception e) {
                     e.printStackTrace();
-                    scn.nextInt();
+                    scn = new Scanner(System.in);
                 }
             }
             input = scn.nextInt();
+
             if (input == 1) {
                 scn = new Scanner(System.in);
                 System.out.print("enter social profile: ");
