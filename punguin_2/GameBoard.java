@@ -8,11 +8,14 @@ import java.util.Scanner;
 public class GameBoard {
 
     private final int[][] gameBoard;
-    private int direction;
     private Scanner scn = new Scanner(System.in);
     private int pinguinI = 0;
     private int pinguinJ = 0;
+    private int direction = 0;
 
+    /**
+     * отрисовка поля и заполенение
+     */
     public GameBoard() {
 
         System.out.println("Введите размеры поля");
@@ -33,32 +36,21 @@ public class GameBoard {
 
     }
 
-    /**
-     * Метод осуществляет поиск символа для игры
-     * @param value код символа в типе int
-     * @return символ в типе String
-     */
+
 
     public String getBoardSymbol(int value) {
-//         if(value == (int)SymbolPenguin.PENGUIN_RIGHT.getName()){
-//            char ch = (char)value;
-//            return String.valueOf(ch);
-//
-//        }
         if (value > 0) {
             return ("|" + value + "|");
         } else if (value == 0) {
             return String.valueOf(Symbol.EMPTY);
         } else if (value == -1) {
             return String.valueOf(Symbol.WATER);
-        }
-
-        else {
+        } else {
             throw new RuntimeException("Invalid value = " + value + ". Board value must from -1 to 9");
         }
     }
 
-    public String getPenguinSymbol(int direction) {
+    public String getPenguinSymbol() {
         if (direction == 0) {
             return String.valueOf(SymbolPenguin.PENGUIN_RIGHT);
         } else if (direction == 1) {
@@ -72,15 +64,26 @@ public class GameBoard {
         }
     }
 
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public int getDirection() {
+        return direction;
+    }
+
     public void print() {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard.length; j++) {
-                if(i == pinguinI && j == pinguinJ){
-                    System.out.println(getPenguinSymbol(direction));
-                }
-                else{
+                if (i == 0 && j == 0) {
+                    System.out.print(" " + getPenguinSymbol() + "\t");
+                    }
+//                else if (i > 0 && j > 0) {
+//                    System.out.print(" " + getBoardSymbol(0) + "\t");
+                    //System.out.printf(getPenguinSymbol("%2d", direction));
+                 else {
                     System.out.print(getBoardSymbol(gameBoard[i][j]) + "\t");
-                    //System.out.printf(getBoardSymbol("%3d", gameBoard[i][j]));
+                    //System.out.printf(getBoardSymbol("%2d", gameBoard[i][j]));
                 }
             }
             System.out.println();
@@ -91,19 +94,35 @@ public class GameBoard {
      * Делает шаг пингвином
      */
     public void stepPenguin() {
-
         while (true) {
             for (int i = 0; i < gameBoard.length; i++) {
                 for (int j = 0; j < gameBoard.length; j++) {
                     if (direction == 0) {
-                        //gameBoard[i][j + 1] = ;
+                        gameBoard[pinguinI][pinguinJ + 1] = SymbolPenguin.PENGUIN_RIGHT.getName();
+                        int i1 = gameBoard[pinguinI][pinguinJ];
+                        SymbolPenguin.PENGUIN_RIGHT.parseChar(i1);
+                        return;
+                    } else if (direction == 1) {
+                        gameBoard[pinguinI + 1][pinguinJ] = SymbolPenguin.PENGUIN_BOTTOM.getName();
+                        return;
+                    } else if (direction == 2) {
+                        gameBoard[pinguinI - 1][pinguinJ] = SymbolPenguin.PENGUIN_LEFT.getName();
+                        return;
+                    } else if (direction == 3) {
+                        gameBoard[i][j - 1] = SymbolPenguin.PENGUIN_TOP.getName();
+                        return;
                     }
-                    else if (direction == 1) {
-                        //gameBoard[i][j];
+                    gameBoard[0][0] = 0;
+                    if (gameBoard[i][j] < 0) {
+                        try {
+                            throw new Exception("Выход за пределы поля, измените направление движения");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
-                System.out.println(getPenguinSymbol(scn.nextInt()));
             }
+            //System.out.println(getPenguinSymbol());
         }
     }
 }

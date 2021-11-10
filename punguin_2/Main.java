@@ -70,7 +70,8 @@ public class Main {
     public static void main(String[] args) {
         GameBoard gameBoard = new GameBoard();
         gameBoard.print();
-        gameBoard.stepPenguin();
+        gameBoard.getPenguinSymbol();
+        int direction = gameBoard.getDirection();
         String input = "";
         Scanner scn = new Scanner(System.in);
         while (!(input.equalsIgnoreCase("e") || input.equalsIgnoreCase("exit"))) {
@@ -78,23 +79,38 @@ public class Main {
                     r (right) - поворачивает пингвина на 90 градусов вправо
                     l (left) - поворачивает пингвина на 90 градусов влево
                     s (step) - прингвин делает шаг в выбранном направлении
-                    p (put) - пингвин кладет глыбу льда из своего рюкзака в ячейку перед ним при определенных условиях:
-                    t (take) - пингвин забирает глыбу льда из ячеки перед ним с определенными условиями:
+                    u (put) - пингвин кладет глыбу льда из своего рюкзака в ячейку перед ним
+                    t (take) - пингвин забирает глыбу льда из ячеки перед ним
                     p (print) - вывод игрового поля на консоль
                     e (exit) - завершение работы приложения""");
             input = scn.next();
             switch (input) {
                 case "r", "right": {
-                    gameBoard.getPenguinSymbol(0);
-                    System.out.println("good");
+                    direction++;
+                    if (direction < 0) {
+                        direction = 3;
+                    } else if (direction > 3) {
+                        direction = 0;
+                    }
+                    gameBoard.setDirection(direction);
                     break;
                 }
                 case "l", "left": {
-                    gameBoard.getPenguinSymbol(3);
+                    direction--;
+                    if (direction < 0) {
+                        direction = 3;
+                    } else if (direction > 3) {
+                        direction = 0;
+                    }
+                    gameBoard.setDirection(direction);
                     break;
                 }
                 case "s", "step": {
                     gameBoard.stepPenguin();
+                    break;
+                }
+                case "p", "print": {
+                    gameBoard.print();
                     break;
                 }
             }

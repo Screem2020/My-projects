@@ -1,5 +1,6 @@
 package Strings.ex3_Sum;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -25,19 +26,24 @@ public class Main {
     //При выполнении задания можно считать, что для представления входных данных и промежуточных результатов достаточен тип int
 
     public static void main(String[] args) {
-        Sum sum = new Sum();
-        Scanner scn = new Scanner(System.in);
-        while (true) {
-            if (scn.hasNextInt()) {
-                int a = scn.nextInt();
-                int b = scn.nextInt();
-                sum.sum_args(a, b);
-                scn = new Scanner(System.in);
-            }
-            else {
-                System.err.println("entered integer");
-                scn = new Scanner(System.in);
-            }
-        }
+
+        int[] arr = {4,3,1,123, 6};
+        System.out.println(Arrays.toString(arr));
+
+        System.out.println(Arrays.toString(args));
+//        Sum sum = new Sum();
+//        Scanner scn = new Scanner(System.in);
+//        while (true) {
+//            if (scn.hasNextInt()) {
+//                int a = scn.nextInt();
+//                int b = scn.nextInt();
+//                sum.sum_args(a, b);
+//                scn = new Scanner(System.in);
+//            }
+//            else {
+//                System.err.println("entered integer");
+//                scn = new Scanner(System.in);
+//            }
+//        }
     }
 }

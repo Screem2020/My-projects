@@ -81,7 +81,7 @@ public class CinemaService {
         }
         System.out.println();
         for (int i = 0; i < arr.length; i++) { //строки
-            System.out.print(i+1);
+            System.out.print(i + 1);
             for (int j = 0; j < arr[i].length; j++) { //столбцы
                 //System.out.print(arr[i][j].toString());
                 System.out.printf("%4s", arr[i][j].toString());

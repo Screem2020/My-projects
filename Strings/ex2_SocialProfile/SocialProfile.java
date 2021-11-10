@@ -50,13 +50,13 @@ public class SocialProfile {
             String last_name = strings[1];
             return new SocialProfile(name, last_name);
         }
-        if (i == 3) {
+        else if (i == 3) {
             String name = strings[0];
             String last_name = strings[1];
             String age = strings[2];
             return new SocialProfile(name, last_name, age);
         }
-        if (i == 5) {
+        else if (i == 5) {
             String name = strings[0];
             String last_name = strings[1];
             String age = strings[2];
@@ -64,15 +64,7 @@ public class SocialProfile {
             String country = strings[4];
             return new SocialProfile(name, last_name, age, postal, country);
         }
-        try {
-            if (i != 2 || i != 3 || i != 5) {
-                throw new java.lang.Exception();
-            }
-        } catch (java.lang.Exception e) {
-            System.err.println("Data entered incorrect");
-            e.printStackTrace();
-        }
-        return null;
+        throw new RuntimeException("Data entered incorrect");
     }
 
     @Override
@@ -91,16 +83,11 @@ public class SocialProfile {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        System.out.println("Name: " + sb.append(name));
-        sb = new StringBuilder();
-        System.out.println("Last Name: " + sb.append(twoName));
-        sb = new StringBuilder();
+        sb.append("Name: ").append(name).append("\n");
+        sb.append("Last Name: ").append(twoName).append("\n");
         System.out.println("Age: " + sb.append(age));
-        sb = new StringBuilder();
         System.out.println("Postal: " + sb.append(postal));
-        sb = new StringBuilder();
         System.out.println("Country: " + sb.append(country));
-        System.out.println();
-        return "";
+        return sb.toString();
     }
 }

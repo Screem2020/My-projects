@@ -9,6 +9,17 @@ public enum SymbolPenguin {
         this.name = name;
     }
 
+    public String parseChar(int value) {
+        SymbolPenguin[] values = SymbolPenguin.values();
+        for (SymbolPenguin symbolPenguin : values) {
+            if (symbolPenguin.getName() == value) {
+                char ch = (char) value;
+                return String.valueOf(ch);
+            }
+        }
+        return null;
+    }
+
     public char getName(){
         return name;
     }

@@ -1,6 +1,7 @@
 package Strings.ex2_SocialProfile;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -37,6 +38,9 @@ public class Main {
     public static void main(String[] args) {
         var scn = new Scanner(System.in);
         var socialProfiles = new ArrayList<SocialProfile>();
+        socialProfiles.add(new SocialProfile("name1", "s1"));
+        socialProfiles.add(new SocialProfile("name2", "s2"));
+        socialProfiles.add(new SocialProfile("name3", "s3"));
         int input = 0;
         while (input != 4) {
             System.out.println("""
@@ -67,12 +71,14 @@ public class Main {
                 scn = new Scanner(System.in);
                 System.out.print("enter social profile: ");
                 String line = scn.nextLine().toLowerCase(Locale.ENGLISH);
-                SocialProfile trim = SocialProfile.trim(line);
-                boolean flag = false;
-                if (socialProfiles.add(trim)) {
-                    flag = true;
-                    System.out.println(flag);
-                } else System.out.println("Not add social profile " + flag);
+                try {
+                    SocialProfile trim = SocialProfile.trim(line);
+                    if (socialProfiles.add(trim)) {
+                        System.out.println("added");
+                    } else System.out.println("Not added");
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
 
             }
             if (input == 2) {
@@ -80,13 +86,19 @@ public class Main {
                 System.out.println("enter social profile");
                 String line = scn.nextLine().toLowerCase(Locale.ENGLISH);
                 SocialProfile trim = SocialProfile.trim(line);
-                for (int i = 0; i < socialProfiles.size(); i++) {
-                    if (socialProfiles.get(i).equals(trim)) {  // заменить get(i) на что то другое, повторное отображение
-                        socialProfiles.remove(i);
-                        System.out.println("deleted");
-                    }
-                    else System.out.println("Not found");
+
+                if(socialProfiles.remove(trim)){
+                    System.out.println("deleted");
+                }else{
+                    System.out.println("Not found");
                 }
+//                for (int i = 0; i < socialProfiles.size(); i++) {
+//                    if (socialProfiles.get(i).equals(trim)) {  // заменить get(i) на что то другое, повторное отображение
+//                        socialProfiles.remove(i);
+//                        System.out.println("deleted");
+//                    }
+//                    else System.out.println("Not found");
+//                }
             }
             if (input == 3) {
                 System.out.println(socialProfiles);
