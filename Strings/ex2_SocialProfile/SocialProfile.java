@@ -37,7 +37,6 @@ public class SocialProfile {
      * Метод осуществляет поиск и добавление нужного профиля по указанным конструкторам.
      * Встроенна проверка корректности веденных данных по 3 конструкторам.
      * @param line строка веденных данных, которая будет обработана.
-     * @return ничего не возвращает
      */
     public static SocialProfile trim(String line) {
         String[] strings = line.split(" ");
