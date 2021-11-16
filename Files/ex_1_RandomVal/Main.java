@@ -26,8 +26,8 @@ public class Main {
         }
         try {
             PrintWriter printWriter = new PrintWriter(randomVal);
-            for (int i = 0; i < arr.length; i++) {
-                printWriter.println(arr[i] + "");
+            for (int j : arr) {
+                printWriter.println(j + "");
             }
             printWriter.close();
         } catch (FileNotFoundException e) {
@@ -53,6 +53,7 @@ public class Main {
             System.out.println("Max " + max);
             System.out.println("Min " + min);
             System.out.println("Итог " + tmp);
+            scn.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

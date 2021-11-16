@@ -40,22 +40,18 @@ public class Main {
                 String password = scanner.nextLine();
                 File file = new File(way);
                 try {
-                    Scanner scn = new Scanner(file);
-                    Person person = new Person(login, password);
-                    for (Person value : listPerson) {
-                        if (person.getLogin().equals(value.getLogin())) {
-                            System.out.println("This user exist, please enter other data");
+                    Scanner sc = new Scanner(file);
+                        Person person = new Person(login, password);
+                        for (Person value : listPerson) {
+                            if (person.getLogin().equals(value.getLogin())) {
+                                System.out.println("This user exist, please enter other data");
+                            }
                         }
-                    }
-                    listPerson.add(person);
-                    scn.close();
+                        listPerson.add(person);
+                        sc.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-
-                //Person person = new Person(login, password);
-
-                //listPerson.add(person);
             }
 
 
@@ -89,15 +85,13 @@ public class Main {
                 try {
                     PrintWriter printWriter = new PrintWriter(way);
                     for (Person pers : listPerson) {
-                        printWriter.println("login = " + pers.getLogin() + "; " + "password " + pers.getPassword());
+                        printWriter.println("login = " + pers.getLogin() + "; " + "password = " + pers.getPassword());
                     }
                     printWriter.close();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
-//
                 return;
-
             }
         }
     }
