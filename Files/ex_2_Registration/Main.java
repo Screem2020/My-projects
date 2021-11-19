@@ -1,9 +1,6 @@
 package Files.ex_2_Registration;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,10 +17,8 @@ public class Main {
     //2. Поделить
     //3. Выход (при выборе пользователь возвращается в главное меню)
     public static void main(String[] args) {
-        String way = "src\\Files\\ex_2_Registration\\LoginAndPassword.txt";
-
         Scanner scan = new Scanner(System.in);
-        List<Person> listPerson = new ArrayList<>();
+        List<Person> people = PersonOfRgistr.loadOfRegistrList();
         int input = 0;
         while (input != 3) {
             System.out.println("""
@@ -32,66 +27,71 @@ public class Main {
                     3. Выход
                     """);
             input = scan.nextInt();
+
             if (input == 1) {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Enter login");
                 String login = scanner.nextLine();
                 System.out.println("Enter password");
                 String password = scanner.nextLine();
-                File file = new File(way);
+                Person person = new Person(login, password);
+                PersonOfRgistr.loadOfRegistrList();
                 try {
-                    Scanner sc = new Scanner(file);
-                        Person person = new Person(login, password);
-                        for (Person value : listPerson) {
-                            if (person.getLogin().equals(value.getLogin())) {
-                                System.out.println("This user exist, please enter other data");
-                            }
+                    for (Person value : people) {
+                        if (person.getLogin().equals(value.getLogin())) {
+                            throw new Exception();
                         }
-                        listPerson.add(person);
-                        sc.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    }
+                    people.add(person);
+                    System.out.println("User added");
+                } catch (Exception e) {
+                    System.err.println("This user exist, please enter other data");
                 }
             }
 
-
-//                try{
-//                    File file = new File(way);
-//                    Scanner scnFile = new Scanner(file);
-//                    while (scnFile.hasNextLine()) {
-//                        String line = scnFile.nextLine();
-//                    }
-//                    scnFile.close();
-//                } catch (FileNotFoundException e) {
-//                    e.printStackTrace();
-//                }
             if (input == 2) {
-                int inputColc = 0;
-                while (inputColc != 3) {
-                    System.out.println("""
-                            1. Сложить
-                            2. Поделить
-                            3. Выход
-                            """);
-                    inputColc = scan.nextInt();
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("Enter your login");
+                String login = scanner.nextLine();
+                System.out.println("Enter your password");
+                String password = scanner.nextLine();
+                Person person = new Person(login, password);
+                try {
+                    for (Person value : people) {
+                        if (person.equals(value)) {
+                            int inputColc = 0;
+                            while (inputColc != 3) {
+                                System.out.println("""
+                                        1. Сложить
+                                        2. Поделить
+                                        3. Выход
+                                        """);
+                                inputColc = scan.nextInt();
 
-                    if (inputColc == 1) {
-
+                                if (inputColc == 1) {
+                                    System.out.println("Enter num by summer");
+                                    int a = scan.nextInt();
+                                    int b = scan.nextInt();
+                                    Colc colc = new Colc(a, b);
+                                    System.out.println(colc.sum());
+                                }
+                                if (inputColc == 2) {
+                                    System.out.println("Enter num by division");
+                                    int a = scan.nextInt();
+                                    int b = scan.nextInt();
+                                    Colc colc = new Colc(a, b);
+                                    System.out.println(colc.division());
+                                }
+                            }
+                        }
                     }
+                    throw new Exception("Data incorrect");
+                }catch (Exception e) {
                 }
             }
 
             if (input == 3) {
-                try {
-                    PrintWriter printWriter = new PrintWriter(way);
-                    for (Person pers : listPerson) {
-                        printWriter.println("login = " + pers.getLogin() + "; " + "password = " + pers.getPassword());
-                    }
-                    printWriter.close();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                return;
+                PersonOfRgistr.saveOfRegister(people);
             }
         }
     }

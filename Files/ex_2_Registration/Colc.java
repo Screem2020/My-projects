@@ -4,6 +4,11 @@ public class Colc {
     private int a;
     private int b;
 
+    public Colc(int a, int b) {
+        this.a = a;
+        this.b = b;
+    }
+
     public int sum() {
         return a + b;
     }
@@ -11,4 +16,5 @@ public class Colc {
     public int division() {
         return a / b;
     }
+
 }
