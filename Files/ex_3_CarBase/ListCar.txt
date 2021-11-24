@@ -1,2 +1,4 @@
-bmw,  x5,  4
-bmw, x5, 4
+bmw,    x5,    4
+bmw,   x5,   4
+bmw,  x5,  5
+bmw, x6, 5

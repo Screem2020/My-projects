@@ -1,6 +1,7 @@
 package Files.ex_3_CarBase;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -11,10 +12,11 @@ public class Main {
     //количество
     //
     //Создайте меню просмотра автомобилей на складе в виде таблицы со столбцами: Марка, Модель, Количество.
-    //Добавьте возможность увеличивать, уменьшать количество автомобилей на складе и добавлять новые автомобили у пользователя через консольное меню.
+    //Добавьте возможность увеличивать, уменьшать количество автомобилей на складе и добавлять новые
+    // автомобили у пользователя через консольное меню.
     //
     //Например, есть следующие автомобили:
-    //название марка кол-во
+    //название     марка     кол-во
     //audi          q7          3
     //bmw           x5          2
     //
@@ -28,36 +30,41 @@ public class Main {
     //bmw           x6          5
     public static void main(String[] args) {
         List<Car> listCar = Car.loadCarFromList();
-        //String way = "IdeaProjects\\Repeet\\src\\Files\\ex_3_CarBase\\ListCar.txt";
         int input = 0;
         Scanner scn = new Scanner(System.in);
         while (input != 4) {
             System.out.println("""
                     1.Print list car
-                    2.Fix number car
+                    2.Set number car
                     3.Add new car
                     4.Exit
                     """);
             input = scn.nextInt();
 
             if (input == 1) {
-                for (Car car : listCar) {
-                    System.out.print(car);
+                String line = "Brand, Model, Number";
+                String[] split = line.split(",");
+                for (String s : split) {
+                    System.out.print(s);
                 }
+                System.out.println();
+                for (Car car : listCar) {
+                   car.print();
+                }
+                System.out.println();
             }
             if (input == 2) {
-
-
+                Car.setNumberCar();
             }
             if (input == 3) {
                 scn = new Scanner(System.in);
                 System.out.println("Add brend new car");
-                String brend = scn.nextLine();
+                String brand = scn.nextLine().toLowerCase(Locale.ROOT);
                 System.out.println("Add model new car");
-                String model = scn.nextLine();
+                String model = scn.nextLine().toLowerCase(Locale.ROOT);
                 System.out.println("Add number new car");
-                String number = scn.nextLine();
-                Car car = new Car(brend, model, number);
+                String number = scn.nextLine().toLowerCase(Locale.ROOT);
+                Car car = new Car(brand, model, number);
                 listCar.add(car);
                 Car.loadCarFromList();
             }

@@ -1,6 +1,5 @@
 package Files.ex_2_Registration;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
