@@ -30,6 +30,7 @@ public class Main {
     //bmw           x6          5
     public static void main(String[] args) {
         List<Car> listCar = Car.loadCarFromList();
+        System.out.println(listCar);
         int input = 0;
         Scanner scn = new Scanner(System.in);
         while (input != 4) {
@@ -54,7 +55,7 @@ public class Main {
                 System.out.println();
             }
             if (input == 2) {
-                Car.setNumberCar();
+                Car.setNumberCar(listCar);
             }
             if (input == 3) {
                 scn = new Scanner(System.in);
@@ -65,12 +66,21 @@ public class Main {
                 System.out.println("Add number new car");
                 String number = scn.nextLine().toLowerCase(Locale.ROOT);
                 Car car = new Car(brand, model, number);
-                listCar.add(car);
                 Car.loadCarFromList();
+                    try {
+                        for (Car val : listCar) {
+                            if (car.equals(val)) {
+                                throw new Exception("This car exist, please enter other data");
+                            } else listCar.add(car);
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
             }
             if (input == 4) {
                 Car.saveCarFromList(listCar);
             }
         }
+
     }
 }
