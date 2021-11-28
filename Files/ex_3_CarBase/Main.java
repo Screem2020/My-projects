@@ -71,8 +71,9 @@ public class Main {
                         for (Car val : listCar) {
                             if (car.equals(val)) {
                                 throw new Exception("This car exist, please enter other data");
-                            } else listCar.add(car);
+                            }
                         }
+                        listCar.add(car);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

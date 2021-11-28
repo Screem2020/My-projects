@@ -1,13 +1,9 @@
 package Files.ex_4_RPG;
 
-public class Hunter  extends Player {
+public class Hunter extends Player {
 
-    public Hunter(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
+    public Hunter(String name, int level, Character health, double damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
-    }
-
-    public int damageTopor() {
-        return 20;
     }
 
     @Override
@@ -17,11 +13,13 @@ public class Hunter  extends Player {
 
     @Override
     public void specialAttack(Character ch) {
-        damageTopor();
+        System.out.println((int)ch - 20);
     }
 
     @Override
     public void updateLevel() {
         super.updateLevel();
     }
+
+
 }

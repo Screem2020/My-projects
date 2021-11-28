@@ -45,7 +45,7 @@ public class Game {
                 pw.println(player.getName() + ", " + player.getLevel() +  ", " + player.getHealth() + ", " + player.getDamage() +
                         ", " + player.getPhysicalProtection() + ", " + player.getMagicProtection());
             }
-            pw.println();
+            pw.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

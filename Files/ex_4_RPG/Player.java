@@ -1,14 +1,14 @@
 package Files.ex_4_RPG;
 
-public class Player {
+public class Player implements Skills{
     private String name;
     private int level;
-    private int health;
-    private int damage;
+    private Character health;
+    private double damage;
     private int physicalProtection;
     private int magicProtection;
 
-    public Player(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
+    public Player(String name, int level, Character health, double damage, int physicalProtection, int magicProtection) {
         this.name = name;
         this.level = level;
         this.health = health;
@@ -25,15 +25,15 @@ public class Player {
         return level;
     }
 
-    public int getHealth() {
-        return health;
+    public double getHealth() {
+        return 50*level*1.5;
     }
 
-    public int getDamage() {
+    public double getDamage() {
         return damage;
     }
 
-    public int getPhysicalProtection() {
+    public double getPhysicalProtection() {
         return physicalProtection;
     }
 
@@ -41,16 +41,17 @@ public class Player {
         return magicProtection;
     }
 
+    @Override
     public void basicAttack(Character ch) {
-        System.out.println(damage);
+        System.out.println((int)ch - (10*level*1.2));
     }
 
+    @Override
     public void specialAttack(Character ch) {
 
     }
 
+    @Override
     public void updateLevel() {
-
     }
-
 }
