@@ -2,6 +2,7 @@ package Files.ex_4_RPG;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,5 +35,19 @@ public class Game {
         } catch (FileNotFoundException e) {
         }
         return listPlayer;
+    }
+
+    public void saveListPlayer(List <Player> playerList) {
+        String way = "src\\Files\\ex_4_RPG\\BasePlayer.txt";
+        try {
+            PrintWriter pw = new PrintWriter(way);
+            for (Player player : playerList) {
+                pw.println(player.getName() + ", " + player.getLevel() +  ", " + player.getHealth() + ", " + player.getDamage() +
+                        ", " + player.getPhysicalProtection() + ", " + player.getMagicProtection());
+            }
+            pw.println();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

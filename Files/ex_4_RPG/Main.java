@@ -1,5 +1,9 @@
 package Files.ex_4_RPG;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Main {
     //У каждого персонажа есть атрибуты:
     //name - название персонажа
@@ -82,6 +86,23 @@ public class Main {
     //physical protection 10%
     //magic protection 20%
     public static void main(String[] args) {
+        List <Player> playerList = new ArrayList<>();
+        int input = 0;
+        Scanner scn = new Scanner(System.in);
+        while (input != 5) {
+            System.out.println("""
+                    1.Вход в игру
+                    2.Выход
+                    """);
+            input = scn.nextInt();
 
+            if (input == 1) {
+                System.out.println("Enter login");
+                String login = scn.nextLine();
+                System.out.println("Enter password");
+                String password = scn.nextLine();
+
+            }
+        }
     }
 }

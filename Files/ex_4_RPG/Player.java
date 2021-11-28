@@ -17,6 +17,30 @@ public class Player {
         this.magicProtection = magicProtection;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getPhysicalProtection() {
+        return physicalProtection;
+    }
+
+    public int getMagicProtection() {
+        return magicProtection;
+    }
+
     public void basicAttack(Character ch) {
         System.out.println(damage);
     }
