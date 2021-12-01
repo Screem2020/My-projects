@@ -1,27 +1,9 @@
-package Files.ex_4_RPG;
+package Files.RPG_version2.ex_4_RPG;
 
 public class Hunter extends Player {
 
-    public Hunter() {
-        super();
-    }
-
     public Hunter(String name) {
         super(name);
-    }
-
-    @Override
-    public int physicalProtection() {
-        return super.physicalProtection();
-    }
-
-    @Override
-    public int magicProtection() {
-        return super.magicProtection();
-    }
-
-    public Hunter(String name, int level) {
-        super(name, level);
     }
 
     public Hunter(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
@@ -44,16 +26,6 @@ public class Hunter extends Player {
     }
 
     @Override
-    public int getHealth() {
-        return super.getHealth();
-    }
-
-    @Override
-    public void updateLevel() {
-        super.updateLevel();
-    }
-
-    @Override
     public double getPhysicalProtection() {
         return super.getPhysicalProtection();
     }
@@ -63,8 +35,15 @@ public class Hunter extends Player {
         super.basicAttack(player);
     }
 
-        @Override
+    @Override
     public void specialAttack(Player player) {
-        System.out.println(player.getHealth() - (super.getDamage() + 20));
+        System.out.println(player.getHealth() - (this.getDamage() + 20));
     }
+
+    @Override
+    public void updateLevel() {
+        super.updateLevel();
+    }
+
+
 }

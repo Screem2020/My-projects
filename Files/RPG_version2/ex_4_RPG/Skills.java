@@ -1,4 +1,4 @@
-package Files.ex_4_RPG;
+package Files.RPG_version2.ex_4_RPG;
 
 public interface Skills {
     void basicAttack(Player player);

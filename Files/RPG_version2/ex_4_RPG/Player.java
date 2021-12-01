@@ -1,6 +1,6 @@
-package Files.ex_4_RPG;
+package Files.RPG_version2.ex_4_RPG;
 
-public class Player implements Skills{
+public class Player implements Skills {
     private String name;
     private int level;
     private int health;
@@ -8,32 +8,17 @@ public class Player implements Skills{
     private double physicalProtection;
     private double magicProtection;
 
-    public Player() {
-    }
-
     public Player(String name) {
         this.name = name;
     }
 
-    public Player(String name, int level) {
+    public Player(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
         this.name = name;
         this.level = level;
-    }
-
-    public Player(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
-        this(name, level);
         this.health = health;
         this.damage = damage;
         this.physicalProtection = physicalProtection;
         this.magicProtection = magicProtection;
-    }
-
-    public int physicalProtection() {
-        return (int) (damage - (damage * physicalProtection / 100));
-    }
-
-    public int magicProtection() {
-        return (int) (damage - (damage * magicProtection / 100));
     }
 
     public String getName() {
@@ -44,7 +29,7 @@ public class Player implements Skills{
         return level;
     }
 
-    public int getHealth() {
+    final public int getHealth() {
         return (int) (50*level*1.5);
     }
 
@@ -71,7 +56,6 @@ public class Player implements Skills{
 
     @Override
     public void updateLevel() {
-        System.out.println("Congratulation your level up");
     }
 
     @Override

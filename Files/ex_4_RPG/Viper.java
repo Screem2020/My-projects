@@ -1,20 +1,20 @@
 package Files.ex_4_RPG;
 
-public class Magic extends Player {
+public class Viper extends Magic {
 
-    public Magic() {
+    public Viper() {
         super();
     }
 
-    public Magic(String name) {
+    public Viper(String name) {
         super(name);
     }
 
-    public Magic(String name, int level) {
+    public Viper(String name, int level) {
         super(name, level);
     }
 
-    public Magic(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public Viper(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
@@ -35,6 +35,7 @@ public class Magic extends Player {
 
     @Override
     public void specialAttack(Player player) {
+        super.specialAttack(player);
     }
 
     @Override

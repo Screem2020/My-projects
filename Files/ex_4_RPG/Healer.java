@@ -1,13 +1,21 @@
 package Files.ex_4_RPG;
 
-public class Hunter extends Player {
+public class Healer extends Player {
 
-    public Hunter() {
+    public Healer() {
         super();
     }
 
-    public Hunter(String name) {
+    public Healer(String name) {
         super(name);
+    }
+
+    public Healer(String name, int level) {
+        super(name, level);
+    }
+
+    public Healer(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+        super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
     @Override
@@ -20,17 +28,9 @@ public class Hunter extends Player {
         return super.magicProtection();
     }
 
-    public Hunter(String name, int level) {
-        super(name, level);
-    }
-
-    public Hunter(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
-        super(name, level, health, damage, physicalProtection, magicProtection);
-    }
-
     @Override
-    public int getDamage() {
-        return super.getDamage();
+    public String getName() {
+        return super.getName();
     }
 
     @Override
@@ -39,18 +39,13 @@ public class Hunter extends Player {
     }
 
     @Override
-    public double getMagicProtection() {
-        return super.getMagicProtection();
-    }
-
-    @Override
     public int getHealth() {
         return super.getHealth();
     }
 
     @Override
-    public void updateLevel() {
-        super.updateLevel();
+    public int getDamage() {
+        return super.getDamage();
     }
 
     @Override
@@ -59,12 +54,22 @@ public class Hunter extends Player {
     }
 
     @Override
+    public double getMagicProtection() {
+        return super.getMagicProtection();
+    }
+
+    @Override
     public void basicAttack(Player player) {
         super.basicAttack(player);
     }
 
-        @Override
+    @Override
     public void specialAttack(Player player) {
-        System.out.println(player.getHealth() - (super.getDamage() + 20));
+
+    }
+
+    @Override
+    public void updateLevel() {
+        super.updateLevel();
     }
 }

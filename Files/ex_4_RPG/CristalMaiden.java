@@ -1,31 +1,16 @@
 package Files.ex_4_RPG;
 
-public class Magic extends Player {
-
-    public Magic() {
-        super();
-    }
-
-    public Magic(String name) {
+public class CristalMaiden extends Magic {
+    public CristalMaiden(String name) {
         super(name);
     }
 
-    public Magic(String name, int level) {
+    public CristalMaiden(String name, int level) {
         super(name, level);
     }
 
-    public Magic(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public CristalMaiden(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
-    }
-
-    @Override
-    public int physicalProtection() {
-        return super.physicalProtection();
-    }
-
-    @Override
-    public int magicProtection() {
-        return super.magicProtection();
     }
 
     @Override
@@ -35,6 +20,7 @@ public class Magic extends Player {
 
     @Override
     public void specialAttack(Player player) {
+        super.specialAttack(player);
     }
 
     @Override
@@ -64,11 +50,11 @@ public class Magic extends Player {
 
     @Override
     public double getPhysicalProtection() {
-        return super.getPhysicalProtection();
+        return 5;
     }
 
     @Override
     public double getMagicProtection() {
-        return super.getMagicProtection();
+        return 50;
     }
 }

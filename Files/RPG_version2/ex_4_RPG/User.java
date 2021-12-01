@@ -1,4 +1,4 @@
-package Files.ex_4_RPG;
+package Files.RPG_version2.ex_4_RPG;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,14 +12,6 @@ public class User {
     private int id;
     private String login;
     private String password;
-    private List<Player> listHeroPlayer = new ArrayList<>();
-
-    public User() {
-    }
-
-    public List<Player> getListHeroPlayer() {
-        return listHeroPlayer;
-    }
 
     public User(String login, String password) {
         this.login = login;

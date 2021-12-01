@@ -1,6 +1,5 @@
-package Files.ex_4_RPG;
+package Files.RPG_version2.ex_4_RPG;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -89,7 +88,6 @@ public class Main {
 
     public static void main(String[] args) {
         List<User> userList = User.loadListUser();
-        List<Player> playerList = new ArrayList<>();
         int input = 0;
         Scanner scn = new Scanner(System.in);
         while (input != 3) {
@@ -132,14 +130,11 @@ public class Main {
                     String password = scn.nextLine();
                     int id = 0;
                     User user = new User(id, login, password);
-                    boolean flag = false;
                     for (User val : userList) {
                         if (val.equals(user)) {
-                            flag = true;
                             user.setId(val.getId());
-                            Created created = new Created();
-                            Created.loadListPlayer();
-                            System.out.println(created);
+                            Game game = new Game();
+                            System.out.println(game);
                         }
                                     // int val = 0;
 //                        while (val != 2) {
@@ -160,13 +155,11 @@ public class Main {
 //                                int health = huskar1.getHealth();
 //                                double physicalProtection = huskar1.physicalProtection();
 //                                double magicProtection = huskar1.magicProtection();
-//                                Huskar huskar12 = new Huskar(name, le3vel, damage, health, magicProtection, physicalProtection);
+//                                Huskar huskar12 = new Huskar(name, level, damage, health, magicProtection, physicalProtection);
 //                                System.out.println(huskar12);
 //                            }
 //                        }
-                        if (!flag) {
-                            throw new Exception("This login not exist, checked entered your data");
-                        }
+                        throw new Exception("This login not exist, checked entered your data");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
