@@ -14,7 +14,7 @@ public class Chen extends Healer {
         super(name, level);
     }
 
-    public Chen(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public Chen(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
@@ -64,12 +64,12 @@ public class Chen extends Healer {
     }
 
     @Override
-    public double getPhysicalProtection() {
+    public int getPhysicalProtection() {
         return 10;
     }
 
     @Override
-    public double getMagicProtection() {
+    public int getMagicProtection() {
         return 20;
     }
 }

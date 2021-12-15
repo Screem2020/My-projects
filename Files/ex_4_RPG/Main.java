@@ -1,6 +1,5 @@
 package Files.ex_4_RPG;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -12,7 +11,7 @@ public class Main {
     //health (здоровье) - вычисляется по формуле 50*level*1.5
     //damage - базовый урон базовой атаки, вычисляется по формуле 10*level*1.2
     //physical protection (защита от физических атакам, в процентах). Снижает урон от физической атаки
-    //magic protection (защита от магических атакам, в процентах). Снижает урон от магической атаки
+    //magic protection (защита от магич mеских атакам, в процентах). Снижает урон от магической атаки
     //
     //Все персонажи должны содержать методы
     //void basicAtack(Character character) - базовая атака, урон основан на параметре damage у игрока
@@ -89,7 +88,8 @@ public class Main {
 
     public static void main(String[] args) {
         List<User> userList = User.loadListUser();
-        List<Player> playerList = new ArrayList<>();
+        List<Player>playerList = Created.loadListPlayer();
+        System.out.println(userList);
         int input = 0;
         Scanner scn = new Scanner(System.in);
         while (input != 3) {
@@ -107,9 +107,14 @@ public class Main {
                 System.out.println("Enter password");
                 String password = scn.nextLine().toLowerCase(Locale.ROOT);
                 int id = 0;
-                id++;
-                User user = new User(id, login, password);
-                User.loadListUser();
+                if (userList.size() > 0) {
+                    for (User user : userList) {
+                        id = user.getId();
+                        id++;
+                    }
+                } else id = 1;
+                User user = new User(id, login, password, playerList);
+                User.loadListUser(); // не понимаю назначения метода в этом месте
                 try {
                     for (User val : userList) {
                         if (user.getLogin().equals(val.getLogin())) {
@@ -130,18 +135,59 @@ public class Main {
                     String login = scn.nextLine();
                     System.out.println("Enter password");
                     String password = scn.nextLine();
-                    int id = 0;
-                    User user = new User(id, login, password);
+                    User user = new User(login, password);
                     boolean flag = false;
-                    for (User val : userList) {
-                        if (val.equals(user)) {
+                    int index = 0;
+                    for (int i = 0; i < userList.size(); i++) {
+                        if (userList.get(i).equals(user)) {
+                            index = i;
                             flag = true;
-                            user.setId(val.getId());
-                            Created created = new Created();
-                            Created.loadListPlayer();
-                            System.out.println(created);
                         }
-                                    // int val = 0;
+                    }
+                    if (flag) {
+                        Created created = new Created();
+                        User userTrue = userList.get(index);
+                        int inp = 0;
+                        Scanner sc = new Scanner(System.in);
+                        while (inp != 3) {
+                            System.out.println("""
+                                    1.Registration hero
+                                    2.All hero
+                                    3.Gaming
+                                    4.Delete hero
+                                    5.Back
+                                    """);
+                            inp = sc.nextInt();
+                            if (inp == 1) {
+                                created.registrationPlayer(userTrue);
+                            }
+                            if (inp == 2) {
+                                List<Player> listHeroPlayer = userTrue.getListHeroPlayer();
+                                System.out.println(listHeroPlayer);
+                            }
+                            if (inp == 3) {
+                                created.gamePlayer(userTrue);
+                            }
+                            if (inp == 4) {
+                                created.deleteHero(userTrue);
+//                                List<Player> listHeroPlayer = userTrue.getListHeroPlayer();
+//                                System.out.println("Entered player delete");
+//                                Scanner scanner = new Scanner(System.in);
+//                                String name = scanner.nextLine().toLowerCase(Locale.ROOT);
+//                                Player playerDel = new Player(name);
+//                                Player player = created.searchPlayer(userTrue, playerDel);
+//                                listHeroPlayer.removeIf(player::equals);
+//                                System.out.println("hero deleted");
+//                                if (!listHeroPlayer.removeIf(player::equals)) {
+//                                    System.out.println("Not found hero");
+//                                }
+                            }
+                            if (inp == 5) {
+                                break;
+                            }
+                        }
+                    }
+                    // int val = 0;
 //                        while (val != 2) {
 //                            System.out.println("Выберите воина:");
 //                            System.out.println("""
@@ -164,16 +210,15 @@ public class Main {
 //                                System.out.println(huskar12);
 //                            }
 //                        }
-                        if (!flag) {
-                            throw new Exception("This login not exist, checked entered your data");
-                        }
+                    if (!flag) {
+                        throw new Exception("This login not exist, checked entered your data");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
             if (input == 3) {
-                User.saveListUser(userList);
+                User.saveListUser(userList, playerList);
             }
         }
     }

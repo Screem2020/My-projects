@@ -24,7 +24,7 @@ public class Hunter extends Player {
         super(name, level);
     }
 
-    public Hunter(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public Hunter(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
@@ -39,7 +39,7 @@ public class Hunter extends Player {
     }
 
     @Override
-    public double getMagicProtection() {
+    public int getMagicProtection() {
         return super.getMagicProtection();
     }
 
@@ -54,7 +54,7 @@ public class Hunter extends Player {
     }
 
     @Override
-    public double getPhysicalProtection() {
+    public int getPhysicalProtection() {
         return super.getPhysicalProtection();
     }
 
@@ -65,6 +65,6 @@ public class Hunter extends Player {
 
         @Override
     public void specialAttack(Player player) {
-        System.out.println(player.getHealth() - (super.getDamage() + 20));
+        System.out.println("Special attack " + (player.getHealth() - (super.getDamage() + 20)));
     }
 }

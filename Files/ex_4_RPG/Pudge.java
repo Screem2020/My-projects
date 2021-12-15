@@ -14,7 +14,7 @@ public class Pudge extends Hunter{
         super(name, level);
     }
 
-    public Pudge(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public Pudge(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
@@ -59,12 +59,12 @@ public class Pudge extends Hunter{
     }
 
     @Override
-    public double getMagicProtection() {
+    public int getMagicProtection() {
         return 3;
     }
 
     @Override
-    public double getPhysicalProtection() {
+    public int getPhysicalProtection() {
         return 50;
     }
 }

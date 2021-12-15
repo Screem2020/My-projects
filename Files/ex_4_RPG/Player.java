@@ -1,12 +1,16 @@
 package Files.ex_4_RPG;
 
-public class Player implements Skills{
+import java.io.Serializable;
+import java.util.Objects;
+
+public class Player implements Skills, Serializable {
+
     private String name;
     private int level;
     private int health;
     private int damage;
-    private double physicalProtection;
-    private double magicProtection;
+    private int physicalProtection;
+    private int magicProtection;
 
     public Player() {
     }
@@ -16,11 +20,11 @@ public class Player implements Skills{
     }
 
     public Player(String name, int level) {
-        this.name = name;
+        this(name);
         this.level = level;
     }
 
-    public Player(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public Player(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         this(name, level);
         this.health = health;
         this.damage = damage;
@@ -29,11 +33,11 @@ public class Player implements Skills{
     }
 
     public int physicalProtection() {
-        return (int) (damage - (damage * physicalProtection / 100));
+        return (int) (damage - (damage * physicalProtection / 100.0));
     }
 
     public int magicProtection() {
-        return (int) (damage - (damage * magicProtection / 100));
+        return (int) (damage - (damage * magicProtection / 100.0));
     }
 
     public String getName() {
@@ -52,11 +56,11 @@ public class Player implements Skills{
         return (int) (10*level*1.2);
     }
 
-    public double getPhysicalProtection() {
+    public int getPhysicalProtection() {
         return physicalProtection;
     }
 
-    public double getMagicProtection() {
+    public int getMagicProtection() {
         return magicProtection;
     }
 
@@ -71,20 +75,24 @@ public class Player implements Skills{
 
     @Override
     public void updateLevel() {
-        System.out.println("Congratulation your level up");
+        level += 1;
+        System.out.println("Congratulation, your level up");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return level == player.level && health == player.health && damage == player.damage && Objects.equals(name, player.name);
     }
 
     @Override
     public String toString() {
-        return "Player{" +
-                "name='" + name + '\'' +
-                ", level=" + level +
-                ", health=" + health +
+        return "Player{" + "name='" + name + ":" + " level=" + level + ", health=" + health +
                 ", damage=" + damage +
                 ", physicalProtection=" + physicalProtection +
                 ", magicProtection=" + magicProtection +
                 '}';
     }
-
-
 }

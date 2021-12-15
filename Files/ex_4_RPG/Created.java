@@ -3,34 +3,39 @@ package Files.ex_4_RPG;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class Created {
 
-    public Created() {
-        List<Hunter> listHunterPlayer = new ArrayList<>();
-        Huskar huskar = new Huskar("Huskar", 1);
-        listHunterPlayer.add(huskar);
-        Pudge pudge = new Pudge("Pudge", 1);
-        listHunterPlayer.add(pudge);
-        List<Magic> listMagicPlayer = new ArrayList<>();
-        CristalMaiden crystal_maiden = new CristalMaiden("Crystal Maiden", 1);
-        listMagicPlayer.add(crystal_maiden);
-        Magic viper = new Magic("Viper", 1);
-        listMagicPlayer.add(viper);
-        List<Healer> listHealerPlayer = new ArrayList<>();
-        Dazzle dazzle = new Dazzle("Dazzle", 1);
-        listHealerPlayer.add(dazzle);
-        Chen chen = new Chen("Chen", 1);
-        listHealerPlayer.add(chen);
-        Scanner scn = new Scanner(System.in);
+    List<Player> list = new ArrayList<>();
 
+    public void registrationPlayer(User user) {
+        List<Hunter> listHunterPlayer = new ArrayList<>();
+        List<Magic> listMagicPlayer = new ArrayList<>();
+        List<Healer> listHealerPlayer = new ArrayList<>();
+        Huskar huskar = new Huskar("Huskar", 1);
+        Pudge pudge = new Pudge("Pudge", 1);
+        listHunterPlayer.add(huskar);
+        listHunterPlayer.add(pudge);
+        list.add(huskar);
+        list.add(pudge);
+
+        CristalMaiden crystal_maiden = new CristalMaiden("Crystal Maiden", 1);
+        Viper viper = new Viper("Viper", 1);
+        listMagicPlayer.add(crystal_maiden);
+        listMagicPlayer.add(viper);
+        list.add(crystal_maiden);
+        list.add(viper);
+
+        Dazzle dazzle = new Dazzle("Dazzle", 1);
+        Chen chen = new Chen("Chen", 1);
+        listHealerPlayer.add(dazzle);
+        listHealerPlayer.add(chen);
+        list.add(dazzle);
+        list.add(chen);
+        Scanner scn = new Scanner(System.in);
         int value = 0;
         while (value != 4) {
-            User user = new User();
             List<Player> listHeroPlayer = user.getListHeroPlayer();
             System.out.println("Выберите героя:");
             System.out.println("""
@@ -45,21 +50,28 @@ public class Created {
                 Scanner sc = new Scanner(System.in);
                 System.out.println("Entered Hunter:");
                 for (Hunter element : listHunterPlayer) {
-                    System.out.println("-> " + element.getName());
+                    System.out.println("-> " + element.getName());//instanceof
                 }
                 String name = sc.nextLine().toLowerCase(Locale.ROOT);
                 Hunter hunter = new Hunter(name);
+                int flag = 0;
                 for (int i = 0; i < listHunterPlayer.size(); i++) {
                     if (hunter.getName().equalsIgnoreCase(huskar.getName())) {
-                        System.out.println("Your created character Huskar");
-                        listHeroPlayer.add(huskar);
-                        System.out.println(huskar);
-                    } else if (hunter.getName().equalsIgnoreCase(pudge.getName())) {
-                        System.out.println("Your created character Pudge");
-                        listHeroPlayer.add(pudge);
-                        System.out.println(pudge);
+                        flag = 1;
+                    }
+                    if (hunter.getName().equalsIgnoreCase(pudge.getName())) {
+                        flag = 2;
                     }
                 }
+                if (flag == 1) {
+                    System.out.println("Your created character " + huskar.getName());
+                    listHeroPlayer.add(huskar);
+                }
+                if (flag == 2) {
+                    System.out.println("Your created character " + pudge.getName());
+                    listHeroPlayer.add(pudge);
+                }
+                if (flag != 1 && flag != 2) System.err.println("Error entered name character");
             }
             if (value == 2) {
                 Scanner sc = new Scanner(System.in);
@@ -87,7 +99,8 @@ public class Created {
                     System.out.println("Your created character Viper");
                     listHeroPlayer.add(viper);
                     System.out.println(viper);
-                } else System.err.println("Error entered name character");
+                }
+                if (flag != 1 && flag != 2) System.err.println("Error entered name character");
             }
             if (value == 3) {
                 Scanner sc = new Scanner(System.in);
@@ -115,55 +128,117 @@ public class Created {
                     System.out.println("Your created character Chen");
                     listHeroPlayer.add(chen);
                     System.out.println(chen);
-                } else System.err.println("Error entered name character");
-                break;
+                }
+                if (flag != 1 && flag != 2) System.err.println("Error entered name character");
             }
-            if (value == 4) {
-                saveListPlayer(listHeroPlayer);
+        }
+    }
+    public void deleteHero (User user) {
+        List<Player> listHeroPlayer = user.getListHeroPlayer();
+        System.out.println("Entered player delete");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine().toLowerCase(Locale.ROOT);
+        Player playerDel = new Player(name);
+        Player player = searchPlayer(user, playerDel);
+        listHeroPlayer.remove(player);
+        System.out.println("Hero deleted");
+    }
+
+
+    public void gamePlayer(User user) {
+        System.out.println("Entered player can game");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine().toLowerCase(Locale.ROOT);
+        Player pla = new Player(name);
+        Player player = searchPlayer(user, pla);
+        int con = 0;
+        Player player1 = comHero(list);
+        while (player.getHealth() <= 0 && player1.getHealth() <= 0) {
+            stepPlayer(player);
+            System.out.println(player.getHealth() + "осталось жизней" + player.getName());
+            player.updateLevel();
+            con += 1;
+
+            if (con / 2 == 0) {
+
             }
         }
     }
 
+    public void stepPlayer(Player player) {
+        System.out.println("to hit random shot");
+        Player player1 = comHero(list);
+        int val;
+        val = (int) (Math.random() * 2);
+        if (val == 1) {
+            player.specialAttack(player1);
+        }
+        if (val == 2) {
+            player.basicAttack(player1);
+        }
+    }
+
+    public Player comHero(List<Player> list) {
+        int index;
+        index = (int) (Math.random() * 6) + 1;
+        return list.get(index);
+    }
+
+    public Player searchPlayer(User user, Player player) {
+        List<Player> listHeroPlayer = user.getListHeroPlayer();
+        int index = 0;
+        boolean flag = false;
+        for (int i = 0; i < listHeroPlayer.size(); i++) {
+            if (listHeroPlayer.get(i).equals(player)) {
+                System.out.println("You entered " + player.getName());
+                index = i;
+                flag = true;
+            }
+        }
+        if (!flag) {
+            System.err.println("Not found hero");
+        }
+        return listHeroPlayer.get(index);
+    }
+
+    /**
+     * Метод принимает строку с именем персонажа name и level уровень персонажа
+     * разбивает на строку и сохраняет в виде обьекта player добавлет и выгружает в список listPlayer
+     *
+     * @return список персонажей, если данного файла не существует, то он создается
+     */
     public static List<Player> loadListPlayer() {
         List<Player> listPlayer = new ArrayList<>();
         String way = "src\\Files\\ex_4_RPG\\BasePlayer.txt";
         File file = new File(way);
-        try {
-            Scanner scn = new Scanner(file);
+        try (Scanner scn = new Scanner(file)){
             while (scn.hasNextLine()) {
                 String line = scn.nextLine();
-                String[] split = line.split(",");
-                String name = split[0];
+                String[] split = line.split(":");
+                String name = split[0].trim();
                 int level = Integer.parseInt(split[1]);
-                int health = Integer.parseInt(split[2]);
-                int damage = Integer.parseInt(split[3]);
-                double physical = Integer.parseInt(split[4]);
-                double magic = Integer.parseInt(split[5]);
-                Player player = new Player(name, level, health, damage, physical, magic);
+                Player player = new Player(name, level);
                 listPlayer.add(player);
             }
-            scn.close();
         } catch (FileNotFoundException e) {
         }
         return listPlayer;
     }
 
+    /**
+     * Метод сохраняет данные в файл в заданном формате
+     *
+     * @param playerList список игроков
+     */
     public static void saveListPlayer(List<Player> playerList) {
         String way = "src\\Files\\ex_4_RPG\\BasePlayer.txt";
-        try {
-            PrintWriter pw = new PrintWriter(way);
+        File file = new File(way);
+        try (PrintWriter pw = new PrintWriter(file)) {
             for (Player player : playerList) {
-                pw.println(player.getName() + ", " + player.getLevel() + ", " + player.getHealth() + ", " + player.getDamage() +
-                        ", " + player.getPhysicalProtection() + ", " + player.getMagicProtection());
+                pw.println(player.getName() + ":" + player.getLevel());
             }
-            pw.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 }

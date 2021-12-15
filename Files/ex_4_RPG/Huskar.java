@@ -14,7 +14,7 @@ public class Huskar extends Hunter{
         super(name, level);
     }
 
-    public Huskar(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public Huskar(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
@@ -64,12 +64,12 @@ public class Huskar extends Hunter{
     }
 
     @Override
-    public double getPhysicalProtection() {
+    public int getPhysicalProtection() {
         return 30;
     }
 
     @Override
-    public double getMagicProtection() {
+    public int getMagicProtection() {
         return 10;
     }
 

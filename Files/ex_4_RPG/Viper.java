@@ -14,7 +14,7 @@ public class Viper extends Magic {
         super(name, level);
     }
 
-    public Viper(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public Viper(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
@@ -64,12 +64,12 @@ public class Viper extends Magic {
     }
 
     @Override
-    public double getPhysicalProtection() {
+    public int getPhysicalProtection() {
         return super.getPhysicalProtection();
     }
 
     @Override
-    public double getMagicProtection() {
+    public int getMagicProtection() {
         return super.getMagicProtection();
     }
 }

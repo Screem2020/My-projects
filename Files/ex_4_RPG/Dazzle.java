@@ -15,7 +15,7 @@ public class Dazzle extends Healer {
         super(name, level);
     }
 
-    public Dazzle(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public Dazzle(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
@@ -65,12 +65,12 @@ public class Dazzle extends Healer {
     }
 
     @Override
-    public double getPhysicalProtection() {
+    public int getPhysicalProtection() {
         return 5;
     }
 
     @Override
-    public double getMagicProtection() {
+    public int getMagicProtection() {
         return 30;
     }
 }

@@ -9,7 +9,7 @@ public class CristalMaiden extends Magic {
         super(name, level);
     }
 
-    public CristalMaiden(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public CristalMaiden(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
@@ -49,12 +49,12 @@ public class CristalMaiden extends Magic {
     }
 
     @Override
-    public double getPhysicalProtection() {
+    public int getPhysicalProtection() {
         return 5;
     }
 
     @Override
-    public double getMagicProtection() {
+    public int getMagicProtection() {
         return 50;
     }
 }

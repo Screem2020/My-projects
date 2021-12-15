@@ -14,7 +14,7 @@ public class Magic extends Player {
         super(name, level);
     }
 
-    public Magic(String name, int level, int health, int damage, double physicalProtection, double magicProtection) {
+    public Magic(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
@@ -35,6 +35,7 @@ public class Magic extends Player {
 
     @Override
     public void specialAttack(Player player) {
+        System.out.println("Special attack " + (player.getHealth() - (super.getDamage() * 2)));
     }
 
     @Override
@@ -63,12 +64,12 @@ public class Magic extends Player {
     }
 
     @Override
-    public double getPhysicalProtection() {
+    public int getPhysicalProtection() {
         return super.getPhysicalProtection();
     }
 
     @Override
-    public double getMagicProtection() {
+    public int getMagicProtection() {
         return super.getMagicProtection();
     }
 }
