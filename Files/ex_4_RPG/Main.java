@@ -1,5 +1,6 @@
 package Files.ex_4_RPG;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -147,6 +148,8 @@ public class Main {
                     if (flag) {
                         Created created = new Created();
                         User userTrue = userList.get(index);
+                        System.out.println(userTrue);
+                        List<Player> listHeroPlayer = userTrue.getListHeroPlayer();
                         int inp = 0;
                         Scanner sc = new Scanner(System.in);
                         while (inp != 3) {
@@ -162,7 +165,6 @@ public class Main {
                                 created.registrationPlayer(userTrue);
                             }
                             if (inp == 2) {
-                                List<Player> listHeroPlayer = userTrue.getListHeroPlayer();
                                 System.out.println(listHeroPlayer);
                             }
                             if (inp == 3) {
@@ -183,6 +185,7 @@ public class Main {
 //                                }
                             }
                             if (inp == 5) {
+                                Created.saveListPlayer(listHeroPlayer);
                                 break;
                             }
                         }

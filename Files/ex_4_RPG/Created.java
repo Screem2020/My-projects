@@ -55,6 +55,7 @@ public class Created {
                 String name = sc.nextLine().toLowerCase(Locale.ROOT);
                 Hunter hunter = new Hunter(name);
                 int flag = 0;
+
                 for (int i = 0; i < listHunterPlayer.size(); i++) {
                     if (hunter.getName().equalsIgnoreCase(huskar.getName())) {
                         flag = 1;
@@ -93,12 +94,11 @@ public class Created {
                 if (flag == 1) {
                     System.out.println("Your created character Crystal Maiden");
                     listHeroPlayer.add(crystal_maiden);
-                    System.out.println(crystal_maiden);
+
                 }
                 if (flag == 2) {
                     System.out.println("Your created character Viper");
                     listHeroPlayer.add(viper);
-                    System.out.println(viper);
                 }
                 if (flag != 1 && flag != 2) System.err.println("Error entered name character");
             }
@@ -133,7 +133,8 @@ public class Created {
             }
         }
     }
-    public void deleteHero (User user) {
+
+    public void deleteHero(User user) {
         List<Player> listHeroPlayer = user.getListHeroPlayer();
         System.out.println("Entered player delete");
         Scanner scanner = new Scanner(System.in);
@@ -160,7 +161,6 @@ public class Created {
             con += 1;
 
             if (con / 2 == 0) {
-
             }
         }
     }
@@ -211,7 +211,7 @@ public class Created {
         List<Player> listPlayer = new ArrayList<>();
         String way = "src\\Files\\ex_4_RPG\\BasePlayer.txt";
         File file = new File(way);
-        try (Scanner scn = new Scanner(file)){
+        try (Scanner scn = new Scanner(file)) {
             while (scn.hasNextLine()) {
                 String line = scn.nextLine();
                 String[] split = line.split(":");

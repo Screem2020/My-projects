@@ -12,6 +12,7 @@ public class User implements Serializable {
     private String password;
     private List<Player> listHeroPlayer = Created.loadListPlayer();
 
+
     public User(String login, String password) {
         this.login = login;
         this.password = password;
@@ -30,6 +31,10 @@ public class User implements Serializable {
 
     public int getId() {
         return id;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public String getLogin() {
@@ -57,16 +62,14 @@ public class User implements Serializable {
         return userList;
     }
 
-    public static void saveListUser(List<User> userList, List<Player> listHeroPlayer) {
+    public static void saveListUser(List<User> userList, List<Player>  listHeroPlayer) {
         String way = "src\\Files\\ex_4_RPG\\Characterds.txt\\";
         File file = new File(way);
         try(PrintWriter pw = new PrintWriter(file)) {
-            for (User user : userList) {
-                for (Player player : listHeroPlayer) {
-                    pw.println(user.getId() + ", " + user.login + ", " + user.password + ", " + player.getName() + " : "
-                            + player.getLevel() + ";");
-                }
-                pw.close();
+            for (int i = 0; i < listHeroPlayer.size(); i++) {
+                pw.println(userList.get(i).id + ", " + userList.get(i).login + ", " +
+                        userList.get(i).password + ", " + userList.get(i).getListHeroPlayer().get(i).getName() + " : "
+                        + userList.get(i).getListHeroPlayer().get(i).getLevel() + ";");
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
