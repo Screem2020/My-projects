@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Created {
 
-    List<Player> list = new ArrayList<>();
+    private List<Player> list = new ArrayList<>();
 
     public void registrationPlayer(User user) {
         List<Hunter> listHunterPlayer = new ArrayList<>();
@@ -138,18 +138,22 @@ public class Created {
         List<Player> listHeroPlayer = user.getListHeroPlayer();
         System.out.println("Entered player delete");
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine().toLowerCase(Locale.ROOT);
-        Player playerDel = new Player(name);
+        String name = scanner.nextLine();
+        System.out.println("entered level");
+        int level = scanner.nextInt();
+        Player playerDel = new Player(name, level);
         Player player = searchPlayer(user, playerDel);
-        listHeroPlayer.remove(player);
-        System.out.println("Hero deleted");
+        System.out.println(player);
+        if (listHeroPlayer.remove(player)) {
+            System.out.println("Hero deleted");
+        }
     }
 
 
     public void gamePlayer(User user) {
         System.out.println("Entered player can game");
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine().toLowerCase(Locale.ROOT);
+        String name = scanner.nextLine();
         Player pla = new Player(name);
         Player player = searchPlayer(user, pla);
         int con = 0;
@@ -186,6 +190,7 @@ public class Created {
 
     public Player searchPlayer(User user, Player player) {
         List<Player> listHeroPlayer = user.getListHeroPlayer();
+        System.out.println(listHeroPlayer);
         int index = 0;
         boolean flag = false;
         for (int i = 0; i < listHeroPlayer.size(); i++) {
@@ -229,16 +234,20 @@ public class Created {
      * Метод сохраняет данные в файл в заданном формате
      *
      * @param playerList список игроков
+     * @return
      */
     public static void saveListPlayer(List<Player> playerList) {
         String way = "src\\Files\\ex_4_RPG\\BasePlayer.txt";
         File file = new File(way);
         try (PrintWriter pw = new PrintWriter(file)) {
             for (Player player : playerList) {
-                pw.println(player.getName() + ":" + player.getLevel());
+                pw.println(new StringBuilder()
+                        .append(player.getName()).append(":")
+                        .append(player.getLevel()));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
     }
 }

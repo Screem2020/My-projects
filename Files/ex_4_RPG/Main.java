@@ -1,6 +1,5 @@
 package Files.ex_4_RPG;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -148,8 +147,7 @@ public class Main {
                     if (flag) {
                         Created created = new Created();
                         User userTrue = userList.get(index);
-                        System.out.println(userTrue);
-                        List<Player> listHeroPlayer = userTrue.getListHeroPlayer();
+                        List<Player> listHeroPlayer = Created.loadListPlayer();
                         int inp = 0;
                         Scanner sc = new Scanner(System.in);
                         while (inp != 3) {
@@ -172,47 +170,13 @@ public class Main {
                             }
                             if (inp == 4) {
                                 created.deleteHero(userTrue);
-//                                List<Player> listHeroPlayer = userTrue.getListHeroPlayer();
-//                                System.out.println("Entered player delete");
-//                                Scanner scanner = new Scanner(System.in);
-//                                String name = scanner.nextLine().toLowerCase(Locale.ROOT);
-//                                Player playerDel = new Player(name);
-//                                Player player = created.searchPlayer(userTrue, playerDel);
-//                                listHeroPlayer.removeIf(player::equals);
-//                                System.out.println("hero deleted");
-//                                if (!listHeroPlayer.removeIf(player::equals)) {
-//                                    System.out.println("Not found hero");
-//                                }
                             }
                             if (inp == 5) {
-                                Created.saveListPlayer(listHeroPlayer);
+                                Created.saveListPlayer(playerList);
                                 break;
                             }
                         }
                     }
-                    // int val = 0;
-//                        while (val != 2) {
-//                            System.out.println("Выберите воина:");
-//                            System.out.println("""
-//                                    1. Huskar
-//                                    2. Pudge
-//                                    3. Back
-//                                    """);
-//                            val = scn.nextInt();
-//                            if (val == 1) {
-//                                Huskar huskar1 = new Huskar();
-//                                scn = new Scanner(System.in);
-//                                System.out.println("Enter name your hero");
-//                                String name = scn.nextLine();
-//                                int level = 0;
-//                                int damage = huskar1.getDamage();
-//                                int health = huskar1.getHealth();
-//                                double physicalProtection = huskar1.physicalProtection();
-//                                double magicProtection = huskar1.magicProtection();
-//                                Huskar huskar12 = new Huskar(name, le3vel, damage, health, magicProtection, physicalProtection);
-//                                System.out.println(huskar12);
-//                            }
-//                        }
                     if (!flag) {
                         throw new Exception("This login not exist, checked entered your data");
                     }
