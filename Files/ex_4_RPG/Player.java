@@ -84,7 +84,7 @@ public class Player implements Skills, Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return level == player.level && health == player.health && damage == player.damage && Objects.equals(name, player.name);
+        return level == player.level && Objects.equals(name, player.name);
     }
 
     @Override

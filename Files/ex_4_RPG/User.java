@@ -5,12 +5,13 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.*;
+import static Files.ex_4_RPG.Created.loadListPlayer;
 
 public class User implements Serializable {
     private int id;
-    private String login;
-    private String password;
-    private List<Player> listHeroPlayer = Created.loadListPlayer();
+    private final String login;
+    private final String password;
+    private List<Player> listHeroPlayer = loadListPlayer();
 
 
     public User(String login, String password) {
@@ -45,7 +46,6 @@ public class User implements Serializable {
         List<User> userList = new ArrayList<>();
         String way = "src\\Files\\ex_4_RPG\\Characterds.txt\\";
         File file = new File(way);
-
         try (Scanner scn = new Scanner(file)){
             while (scn.hasNextLine()) {
                 String line = scn.nextLine();
@@ -53,7 +53,7 @@ public class User implements Serializable {
                 int id = Integer.parseInt(split[0]);
                 String login = split[1].trim();
                 String password = split[2].trim();
-                List<Player> listHero = Created.loadListPlayer();
+                List<Player> listHero = loadListPlayer();
                 User user = new User(id, login, password, listHero);
                 userList.add(user);
             }
@@ -66,12 +66,17 @@ public class User implements Serializable {
         String way = "src\\Files\\ex_4_RPG\\Characterds.txt\\";
         File file = new File(way);
         try(PrintWriter pw = new PrintWriter(file)) {
-            for (int i = 0; i < listHeroPlayer.size(); i++) {
-                pw.println(userList.get(i).id + ", " + userList.get(i).login + ", " +
-                        userList.get(i).password + ", " + userList.get(i).getListHeroPlayer().get(i).getName() + " : "
-                        + userList.get(i).getListHeroPlayer().get(i).getLevel() + ";");
+            for (int i = 0; i < userList.size(); i++) {
+                pw.println(new StringBuilder()
+                        .append(userList.get(i).id).append(", ")
+                        .append(userList.get(i).login).append(", ")
+                        .append(userList.get(i).password).append(", ")
+                        .append(listHeroPlayer.get(i).getName()).append(":")
+                        .append(listHeroPlayer.get(i).getLevel())
+                        .append(";"));
             }
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
