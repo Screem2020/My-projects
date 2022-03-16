@@ -21,12 +21,28 @@ public class Player implements Skills {
         this.magicProtection = magicProtection;
     }
 
+    public int getPhysicalProtection(int num) {
+        return num / 100;
+    }
+
+    public int getMagicProtection(int num) {
+        return num / 100;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
     public int getHealth() {
-        return health;
+        return (int) (50*level*1.5);
     }
 
     public int getDamage() {
-        return damage;
+        return (int) (10*level*1.2);
     }
 
     @Override

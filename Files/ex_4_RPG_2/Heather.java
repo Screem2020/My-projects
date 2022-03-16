@@ -21,3 +21,35 @@ public class Heather extends Player{
         super.updateLevel();
     }
 }
+
+class Dazzle extends Heather {
+    public Dazzle(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
+        super(name, level, health, damage, physicalProtection, magicProtection);
+    }
+
+    @Override
+    public int getPhysicalProtection(int num) {
+        return 5;
+    }
+
+    @Override
+    public int getMagicProtection(int num) {
+        return 30;
+    }
+}
+
+class Chen extends Heather {
+    public Chen(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
+        super(name, level, health, damage, physicalProtection, magicProtection);
+    }
+
+    @Override
+    public int getPhysicalProtection(int num) {
+        return 10;
+    }
+
+    @Override
+    public int getMagicProtection(int num) {
+        return 20;
+    }
+}

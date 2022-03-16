@@ -94,7 +94,6 @@ public class Main {
         User user2 = null;
         System.out.println(userList);
         int input = 0;
-
         Scanner scn = new Scanner(System.in);
         while (input != 4) {
             System.out.println("""
@@ -112,7 +111,8 @@ public class Main {
                 System.out.println("Enter password");
                 String password = scn.nextLine().toLowerCase(Locale.ROOT);
                 int id = 1;
-                if (userList.size() != 0) id = userList.get(userList.size() - 1).getId() + 1;
+                if (userList.size() != 0)
+                    id = userList.get(userList.size() - 1).getId() + 1;
                 User user = new User(id, login, password, playerList);
                 try {
                     for (User val : userList) {
@@ -126,8 +126,6 @@ public class Main {
                     e.printStackTrace();
                 }
             } else if (input == 2) {
-
-
                 for (int i = 0; i < 2; i++) {
                     User currentUser = null;
                     try {

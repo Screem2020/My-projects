@@ -21,3 +21,16 @@ public class Magic extends Player{
         super.updateLevel();
     }
 }
+
+class CrystalMaiden extends Magic {
+    public CrystalMaiden(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
+        super(name, level, health, damage, physicalProtection, magicProtection);
+    }
+}
+
+class Viper extends Magic {
+    public Viper(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
+        super(name, level, health, damage, physicalProtection, magicProtection);
+    }
+}
+
