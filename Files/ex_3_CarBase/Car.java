@@ -41,15 +41,16 @@ public class Car {
             Car car = new Car(brand, model);
             System.out.println(listCar);
             boolean flag = false;
-            for (Car value : listCar) {
-                if (value.equals(car)) {
-                    scn = new Scanner(System.in);
-                    System.out.println("Enter set number car");
-                    String setNumberByCar = scn.nextLine();
-                    value.setNumber(setNumberByCar);
-                    System.out.println("Number car correction");
-                    flag = true;
-                }
+            int index = listCar.indexOf(car);
+
+            if (index!=-1) {
+                scn = new Scanner(System.in);
+                System.out.println("Enter set number car");
+                String setNumberByCar = scn.nextLine();
+                listCar.get(index).setNumber(setNumberByCar);
+                System.out.println("Number car correction");
+                flag = true;
+
             }
             if (!flag)
                 throw new Exception();
@@ -121,10 +122,13 @@ public class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", number='" + number + '\'' +
-                '}';
+//        return "Car{" +
+//                "brand='" + brand + '\'' +
+//                ", model='" + model + '\'' +
+//                ", number='" + number + '\'' +
+//                '}';
+
+
+        return String.format("%-7s %-7s %-7s", brand,  model,number);
     }
 }

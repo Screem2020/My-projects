@@ -88,15 +88,20 @@ public class Main {
 
     public static void main(String[] args) {
         List<User> userList = User.loadListUser();
-        List<Player>playerList = Created.loadListPlayer();
+        List<Player> playerList = Created.loadListPlayer();
+        Created created = new Created();
+        User user1 = null;
+        User user2 = null;
         System.out.println(userList);
         int input = 0;
+
         Scanner scn = new Scanner(System.in);
-        while (input != 3) {
+        while (input != 4) {
             System.out.println("""
                     1.Registration
                     2.Entrance in system
-                    3.Exit
+                    3.Start Game
+                    4.Exit
                     """);
             input = scn.nextInt();
 
@@ -106,15 +111,9 @@ public class Main {
                 String login = scn.nextLine().toLowerCase(Locale.ROOT);
                 System.out.println("Enter password");
                 String password = scn.nextLine().toLowerCase(Locale.ROOT);
-                int id = 0;
-                if (userList.size() > 0) {
-                    for (User user : userList) {
-                        id = user.getId();
-                        id++;
-                    }
-                } else id = 1;
+                int id = 1;
+                if (userList.size() != 0) id = userList.get(userList.size() - 1).getId() + 1;
                 User user = new User(id, login, password, playerList);
-                User.loadListUser(); // не понимаю назначения метода в этом месте
                 try {
                     for (User val : userList) {
                         if (user.getLogin().equals(val.getLogin())) {
@@ -126,66 +125,71 @@ public class Main {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            } else if (input == 2) {
 
-            if (input == 2) {
-                try {
-                    scn = new Scanner(System.in);
-                    System.out.println("Enter login");
-                    String login = scn.nextLine();
-                    System.out.println("Enter password");
-                    String password = scn.nextLine();
-                    User user = new User(login, password);
-                    boolean flag = false;
-                    int index = 0;
-                    for (int i = 0; i < userList.size(); i++) {
-                        if (userList.get(i).equals(user)) {
-                            index = i;
-                            flag = true;
+
+                for (int i = 0; i < 2; i++) {
+                    User currentUser = null;
+                    try {
+                        scn = new Scanner(System.in);
+                        System.out.println("Enter login");
+                        String login = scn.nextLine();
+                        System.out.println("Enter password");
+                        String password = scn.nextLine();
+                        int index = userList.indexOf(new User(login, password));
+                        if (index == -1) {
+                            throw new Exception("This login not exist, checked entered your data");
                         }
-                    }
-                    if (flag) {
-                        Created created = new Created();
-                        User userTrue = userList.get(index);
-                        List<Player> listHeroPlayer = Created.loadListPlayer();
+
+
+                        currentUser = userList.get(index);
                         int inp = 0;
                         Scanner sc = new Scanner(System.in);
-                        while (inp != 3) {
+                        while (inp != 5) {
                             System.out.println("""
-                                    1.Registration hero
-                                    2.All hero
-                                    3.Gaming
-                                    4.Delete hero
-                                    5.Back
-                                    """);
+                                        1.Registration hero
+                                        2.All hero
+//                                        3.Gaming
+                                        3.Select Hero
+                                        4.Delete hero
+                                        5.Back
+                                        """);
                             inp = sc.nextInt();
                             if (inp == 1) {
-                                created.registrationPlayer(userTrue);
+                                created.registrationPlayer(currentUser);
+                            } else if (inp == 2) {
+                                System.out.println(playerList);
+                            } else if (inp == 3) {
+//                                    created.gamePlayer(currentUser);
+                                created.selectHero(currentUser); //currentUser выбирает персонажа для игры
+                            } else if (inp == 4) {
+                                created.deleteHero(currentUser);
                             }
-                            if (inp == 2) {
-                                System.out.println(listHeroPlayer);
-                            }
-                            if (inp == 3) {
-                                created.gamePlayer(userTrue);
-                            }
-                            if (inp == 4) {
-                                created.deleteHero(userTrue);
-                            }
-                            if (inp == 5) {
-                                Created.saveListPlayer(playerList);
-                                break;
-                            }
+//                                else if (inp == 5) {
+//                                    Created.saveListPlayer(playerList);
+//                                    break;
+//                                }
                         }
+
+                        if (i == 0) user1 = currentUser;
+                        else user2 = currentUser;
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    if (!flag) {
-                        throw new Exception("This login not exist, checked entered your data");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
+
+
             }
-            if (input == 3) {
+            else if(input == 3){
+                if(user1==null) throw new RuntimeException("user 1 is null");
+                if(user2==null) throw new RuntimeException("user 2 is null");
+                created.startGame(user1, user2);
+            }
+            else if (input == 4) {
                 User.saveListUser(userList, playerList);
+                Created.saveListPlayer(playerList);
             }
         }
     }

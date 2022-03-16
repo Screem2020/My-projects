@@ -12,6 +12,7 @@ public class User implements Serializable {
     private final String login;
     private final String password;
     private List<Player> listHeroPlayer = loadListPlayer();
+    public Player selectedPlayer;
 
 
     public User(String login, String password) {
@@ -32,10 +33,6 @@ public class User implements Serializable {
 
     public int getId() {
         return id;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getLogin() {

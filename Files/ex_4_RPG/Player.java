@@ -11,6 +11,7 @@ public class Player implements Skills, Serializable {
     private int damage;
     private int physicalProtection;
     private int magicProtection;
+    public int con;
 
     public Player() {
     }

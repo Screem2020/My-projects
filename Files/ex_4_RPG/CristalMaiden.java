@@ -14,41 +14,6 @@ public class CristalMaiden extends Magic {
     }
 
     @Override
-    public void basicAttack(Player player) {
-        super.basicAttack(player);
-    }
-
-    @Override
-    public void specialAttack(Player player) {
-        super.specialAttack(player);
-    }
-
-    @Override
-    public void updateLevel() {
-        super.updateLevel();
-    }
-
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    @Override
-    public int getLevel() {
-        return super.getLevel();
-    }
-
-    @Override
-    public int getHealth() {
-        return super.getHealth();
-    }
-
-    @Override
-    public int getDamage() {
-        return super.getDamage();
-    }
-
-    @Override
     public int getPhysicalProtection() {
         return 5;
     }

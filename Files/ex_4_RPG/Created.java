@@ -150,24 +150,51 @@ public class Created {
     }
 
 
-    public void gamePlayer(User user) {
+    public void selectHero(User user) {
         System.out.println("Entered player can game");
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
         Player pla = new Player(name);
         Player player = searchPlayer(user, pla);
-        int con = 0;
-        Player player1 = comHero(list);
-        while (player.getHealth() <= 0 && player1.getHealth() <= 0) {
-            stepPlayer(player);
-            System.out.println(player.getHealth() + "осталось жизней" + player.getName());
-            player.updateLevel();
-            con += 1;
+        user.selectedPlayer = player;
+    }
 
-            if (con / 2 == 0) {
-            }
+    public void startGame(User user1, User user2) {
+
+        Player whoAttack = user1.selectedPlayer;
+        Player whoDefend = user2.selectedPlayer;
+
+        while (whoAttack.getHealth() <= 0) {
+            stepPlayer(whoAttack);
+            System.out.println(whoDefend.getHealth() + "осталось жизней" + whoDefend.getName());
+            whoAttack.updateLevel();
+            whoAttack.con++;
+            //Меняем игроков местами:
+            Player tmp = whoAttack;
+            whoAttack = whoDefend;
+            whoDefend = tmp;
         }
     }
+
+
+//    public void gamePlayer(User user) {
+//        System.out.println("Entered player can game");
+//        Scanner scanner = new Scanner(System.in);
+//        String name = scanner.nextLine();
+//        Player pla = new Player(name);
+//        Player player = searchPlayer(user, pla);
+//        int con = 0;
+//        Player player1 = comHero(list);
+//        while (player.getHealth() <= 0 && player1.getHealth() <= 0) {
+//            stepPlayer(player);
+//            System.out.println(player.getHealth() + "осталось жизней" + player.getName());
+//            player.updateLevel();
+//            con += 1;
+//
+//            if (con / 2 == 0) {
+//            }
+//        }
+//    }
 
     public void stepPlayer(Player player) {
         System.out.println("to hit random shot");
@@ -242,7 +269,8 @@ public class Created {
         try (PrintWriter pw = new PrintWriter(file)) {
             for (Player player : playerList) {
                 pw.println(new StringBuilder()
-                        .append(player.getName()).append(":")
+                        .append(player.getName())
+                        .append(":")
                         .append(player.getLevel()));
             }
         } catch (FileNotFoundException e) {
