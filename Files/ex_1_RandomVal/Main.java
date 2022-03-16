@@ -27,7 +27,7 @@ public class Main {
         try {
             PrintWriter printWriter = new PrintWriter(randomVal);
             for (int j : arr) {
-                printWriter.println(j + "");
+                printWriter.println(j);
             }
             printWriter.close();
         } catch (FileNotFoundException e) {

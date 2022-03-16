@@ -14,7 +14,7 @@ public class PersonOfRgistr {
         try {
             PrintWriter pw = new PrintWriter(way);
             for (Person value : personList) {
-                pw.printf(value.getLogin() + ", " + value.getPassword());
+                pw.printf("%s,%s%n", value.getLogin(), value.getPassword());
             }
             pw.close();
         } catch (FileNotFoundException e) {

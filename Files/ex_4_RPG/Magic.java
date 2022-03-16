@@ -19,57 +19,8 @@ public class Magic extends Player {
     }
 
     @Override
-    public int physicalProtection() {
-        return super.physicalProtection();
-    }
-
-    @Override
-    public int magicProtection() {
-        return super.magicProtection();
-    }
-
-    @Override
-    public void basicAttack(Player player) {
-        super.basicAttack(player);
-    }
-
-    @Override
     public void specialAttack(Player player) {
         System.out.println("Special attack " + (player.getHealth() - (super.getDamage() * 2)));
     }
-
-    @Override
-    public void updateLevel() {
-        super.updateLevel();
-    }
-
-    @Override
-    public String getName() {
-        return super.getName();
-    }
-
-    @Override
-    public int getLevel() {
-        return super.getLevel();
-    }
-
-    @Override
-    public int getHealth() {
-        return super.getHealth();
-    }
-
-    @Override
-    public int getDamage() {
-        return super.getDamage();
-    }
-
-    @Override
-    public int getPhysicalProtection() {
-        return super.getPhysicalProtection();
-    }
-
-    @Override
-    public int getMagicProtection() {
-        return super.getMagicProtection();
-    }
 }
+

@@ -34,7 +34,6 @@ public class Main {
                 System.out.println("Enter password");
                 String password = scanner.nextLine();
                 Person person = new Person(login, password);
-                PersonOfRgistr.loadOfRegistrList();
                 try {
                     for (Person value : people) {
                         if (person.getLogin().equals(value.getLogin())) {
@@ -46,9 +45,7 @@ public class Main {
                 } catch (Exception e) {
                     System.err.println("This user exist, please enter other data");
                 }
-            }
-
-            if (input == 2) {
+            } else if (input == 2) {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Enter your login");
                 String login = scanner.nextLine();
@@ -56,36 +53,36 @@ public class Main {
                 String password = scanner.nextLine();
                 Person person = new Person(login, password);
                 try {
-                    for (Person value : people) {
-                        if (person.equals(value)) {
-                            int inputColc = 0;
-                            while (inputColc != 3) {
-                                System.out.println("""
-                                        1. Сложить
-                                        2. Поделить
-                                        3. Выход
-                                        """);
-                                inputColc = scan.nextInt();
 
-                                if (inputColc == 1) {
-                                    System.out.println("Enter num by summer");
-                                    int a = scan.nextInt();
-                                    int b = scan.nextInt();
-                                    Colc colc = new Colc(a, b);
-                                    System.out.println(colc.sum());
-                                }
-                                if (inputColc == 2) {
-                                    System.out.println("Enter num by division");
-                                    int a = scan.nextInt();
-                                    int b = scan.nextInt();
-                                    Colc colc = new Colc(a, b);
-                                    System.out.println(colc.division());
-                                }
+                    if (people.contains(person)) {
+                        int inputColc = 0;
+                        while (inputColc != 3) {
+                            System.out.println("""
+                                    1. Сложить
+                                    2. Поделить
+                                    3. Выход
+                                    """);
+                            inputColc = scan.nextInt();
+
+                            if (inputColc == 1) {
+                                System.out.println("Enter num by summer");
+                                int a = scan.nextInt();
+                                int b = scan.nextInt();
+                                Colc colc = new Colc(a, b);
+                                System.out.println(colc.sum());
+                            }
+                            if (inputColc == 2) {
+                                System.out.println("Enter num by division");
+                                int a = scan.nextInt();
+                                int b = scan.nextInt();
+                                Colc colc = new Colc(a, b);
+                                System.out.println(colc.division());
                             }
                         }
                     }
+
                     throw new Exception("Data incorrect");
-                }catch (Exception e) {
+                } catch (Exception e) {
                 }
             }
 

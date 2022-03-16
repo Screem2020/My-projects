@@ -50,7 +50,8 @@ public class Main {
                 }
                 System.out.println();
                 for (Car car : listCar) {
-                   car.print();
+                   //car.print();
+                    System.out.println(car);
                 }
                 System.out.println();
             }

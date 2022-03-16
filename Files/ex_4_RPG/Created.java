@@ -269,7 +269,8 @@ public class Created {
         try (PrintWriter pw = new PrintWriter(file)) {
             for (Player player : playerList) {
                 pw.println(new StringBuilder()
-                        .append(player.getName()).append(":")
+                        .append(player.getName())
+                        .append(":")
                         .append(player.getLevel()));
             }
         } catch (FileNotFoundException e) {

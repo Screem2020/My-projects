@@ -29,31 +29,6 @@ public class Hunter extends Player {
     }
 
     @Override
-    public int getDamage() {
-        return super.getDamage();
-    }
-
-    @Override
-    public int getLevel() {
-        return super.getLevel();
-    }
-
-    @Override
-    public int getMagicProtection() {
-        return super.getMagicProtection();
-    }
-
-    @Override
-    public int getHealth() {
-        return super.getHealth();
-    }
-
-    @Override
-    public void updateLevel() {
-        super.updateLevel();
-    }
-
-    @Override
     public int getPhysicalProtection() {
         return super.getPhysicalProtection();
     }

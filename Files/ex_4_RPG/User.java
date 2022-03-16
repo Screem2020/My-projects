@@ -35,10 +35,6 @@ public class User implements Serializable {
         return id;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getLogin() {
         return login;
     }
