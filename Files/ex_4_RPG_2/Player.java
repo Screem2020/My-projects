@@ -73,5 +73,17 @@ public class Player implements Skills {
         Player player = (Player) o;
         return level == player.level && Objects.equals(name, player.name);
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", level=" + level +
+                ", health=" + health +
+                ", damage=" + damage +
+                ", physicalProtection=" + physicalProtection +
+                ", magicProtection=" + magicProtection +
+                '}';
+    }
 }
 

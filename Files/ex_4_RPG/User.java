@@ -21,9 +21,8 @@ public class User implements Serializable {
     }
 
     public User(int id, String login, String password, List<Player> listHeroPlayer) {
+        this(login, password);
         this.id = id;
-        this.login = login;
-        this.password = password;
         this.listHeroPlayer = listHeroPlayer;
     }
 

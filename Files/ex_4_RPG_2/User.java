@@ -3,15 +3,16 @@ package Files.ex_4_RPG_2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class User {
+public class User implements Serializable {
     private int id;
-    private String login;
-    private String password;
+    private final String login;
+    private final String password;
     private List<Player> playerList = new ArrayList<>();
 
     public User(String login, String password) {
@@ -33,8 +34,8 @@ public class User {
         return playerList;
     }
 
-    public String getLogin() {
-        return login;
+    public int getId() {
+        return id;
     }
 
     public static List<User> LoadListUser() {

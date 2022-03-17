@@ -46,10 +46,10 @@ public class CreatedPlayer {
                     System.out.println(player.getName());
                 }
                 System.out.println("Entered class Hunter");
-                String nameClass = scanner.nextLine().toLowerCase(Locale.ROOT);
+                String nameClass = scanner.nextLine();
                 Hunter hunter = new Hunter(nameClass);
                 for (Player player : hunterList) {
-                    if (player.equals(hunter)) {
+                    if (player.getName().equals(hunter.getName())) {
                         playerListUser.add(player);
                         System.out.println("Hunter added to you character list");
                     }
@@ -99,15 +99,14 @@ public class CreatedPlayer {
         int i = playerList.indexOf(player);
         if (i != -1) {
             playerList.remove(i);
-        } else System.err.println("This Character is not found");
+        }
     }
 
     public void showCharacter(User user) {
-
         List<Player> playerList = user.getPlayerList();
         if (playerList.size() != 0) {
             for (Player player : playerList) {
-                System.out.println(player.getName());
+                System.out.println(player);
             }
         }
         else System.err.println("No heroes created yet");
@@ -117,8 +116,7 @@ public class CreatedPlayer {
         List<Player> playerList = new ArrayList<>();
         String way = "src\\Files\\ex_4_RPG_2\\PlayerBase.txt";
         File file = new File(way);
-        try {
-            Scanner scn = new Scanner(file);
+        try (Scanner scn = new Scanner(file)){
             while (scn.hasNextLine()) {
                 String line = scn.nextLine();
                 String[] split = line.split(",");
@@ -137,8 +135,8 @@ public class CreatedPlayer {
         File file = new File(way);
         try (PrintWriter pw = new PrintWriter(file)) {
             for (Player player : playerListUser) {
-                pw.print(player.getLevel() + ",");
-                pw.println(player.getName());
+                pw.print(player.getName() + ",");
+                pw.println(player.getLevel());
                 pw.close();
             }
         } catch (FileNotFoundException e) {

@@ -29,8 +29,8 @@ public class Main {
                 String login = scn.nextLine().toLowerCase(Locale.ROOT);
                 System.out.println("Entered password");
                 String password = scn.nextLine().toLowerCase(Locale.ROOT);
-                if (createdUser.size() <= 0)
-                    id += 1;
+                if (createdUser.size() != 0)
+                    id = createdUser.get(createdUser.size() - 1).getId() + 1;
                 User user = new User(id, login, password, playerList);
                 boolean contains = createdUser.contains(user);
                 if (contains) {
@@ -66,12 +66,15 @@ public class Main {
                         createdPlayer.deletedCharacter(currentUser);
                     } else if (num == 3) {
                         createdPlayer.showCharacter(currentUser);
+                        int size = currentUser.getPlayerList().size();
+                        System.out.println(size);
                     }
                 }
             } else if (input == 3) {
                 if (userOne == null) throw new RuntimeException("user 1 is null");
                 if (otherTwo == null) throw new RuntimeException("user 2 is null");
                 createdPlayer.startGame(userOne, otherTwo);
+
             } else if (input == 4) {
                 User.saveListUser(createdUser);
                 CreatedPlayer.savePlayerList(playerList);
