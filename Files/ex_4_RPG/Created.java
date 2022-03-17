@@ -13,22 +13,22 @@ public class Created {
         List<Hunter> listHunterPlayer = new ArrayList<>();
         List<Magic> listMagicPlayer = new ArrayList<>();
         List<Healer> listHealerPlayer = new ArrayList<>();
-        Huskar huskar = new Huskar("Huskar", 1);
-        Pudge pudge = new Pudge("Pudge", 1);
+        Huskar huskar = new Huskar("Huskar");
+        Pudge pudge = new Pudge("Pudge");
         listHunterPlayer.add(huskar);
         listHunterPlayer.add(pudge);
         list.add(huskar);
         list.add(pudge);
 
-        CristalMaiden crystal_maiden = new CristalMaiden("Crystal Maiden", 1);
-        Viper viper = new Viper("Viper", 1);
+        CristalMaiden crystal_maiden = new CristalMaiden("Crystal Maiden");
+        Viper viper = new Viper("Viper");
         listMagicPlayer.add(crystal_maiden);
         listMagicPlayer.add(viper);
         list.add(crystal_maiden);
         list.add(viper);
 
-        Dazzle dazzle = new Dazzle("Dazzle", 1);
-        Chen chen = new Chen("Chen", 1);
+        Dazzle dazzle = new Dazzle("Dazzle");
+        Chen chen = new Chen("Chen");
         listHealerPlayer.add(dazzle);
         listHealerPlayer.add(chen);
         list.add(dazzle);

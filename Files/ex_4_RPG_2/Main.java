@@ -1,15 +1,19 @@
 package Files.ex_4_RPG_2;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         List<User> createdUser = User.LoadListUser();
-        List <Player> playerList = CreatedPlayer.loadPlayerList();
+        List<Player> playerList = CreatedPlayer.loadPlayerList();
+        User userOne = null;
+        User otherTwo = null;
         int input = 0;
+        CreatedPlayer createdPlayer = new CreatedPlayer();
         Scanner scn = new Scanner(System.in);
-        while (input != 4) {
+        while (input != 5) {
             System.out.println("""
                     1.Registration
                     2.Entered in System
@@ -22,21 +26,20 @@ public class Main {
                 scn = new Scanner(System.in);
                 int id = 1;
                 System.out.println("Entered login");
-                String login = scn.nextLine();
+                String login = scn.nextLine().toLowerCase(Locale.ROOT);
                 System.out.println("Entered password");
-                String password = scn.nextLine();
+                String password = scn.nextLine().toLowerCase(Locale.ROOT);
                 if (createdUser.size() <= 0)
                     id += 1;
                 User user = new User(id, login, password);
                 createdUser.add(user);
-            }
-            if (input == 2) {
+            } else if (input == 2) {
                 scn = new Scanner(System.in);
                 User currentUser = null;
                 System.out.print("Entered login => ");
-                String login = scn.nextLine();
+                String login = scn.nextLine().toLowerCase(Locale.ROOT);
                 System.out.print("Entered password => ");
-                String password = scn.nextLine();
+                String password = scn.nextLine().toLowerCase(Locale.ROOT);
                 User userNew = new User(login, password);
                 int index = createdUser.indexOf(userNew);
                 if (index == -1) {
@@ -45,9 +48,27 @@ public class Main {
 
                 scn = new Scanner(System.in);
                 int num = 0;
-                System.out.println("""
-                        1.
-                        """);
+                while (num != 5) {
+                    System.out.println("""
+                            1.Created hero
+                            2.Deleted hero
+                            3.Show all hero
+                            4.Back
+                            """);
+                    num = scn.nextInt();
+                    if (num == 1) {
+                        createdPlayer.chooseCharacter(currentUser);
+                    } else if (num == 2) {
+                        createdPlayer.deletedCharacter(currentUser);
+                    } else if (num == 3) {
+                        createdPlayer.showCharacter(currentUser);
+                    }
+                }
+            } else if (input == 3) {
+                createdPlayer.startGame();
+            } else if (input == 4) {
+                User.saveListUser(createdUser);
+                CreatedPlayer.savePlayerList(playerList);
             }
         }
     }

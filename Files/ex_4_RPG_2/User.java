@@ -12,6 +12,7 @@ public class User {
     private int id;
     private String login;
     private String password;
+    private List<Player> playerList = new ArrayList<>();
 
     public User(String login, String password) {
         this.login = login;
@@ -21,6 +22,10 @@ public class User {
     public User(int id, String login, String password) {
         this(login,password);
         this.id = id;
+    }
+
+    public List<Player> getPlayerList() {
+        return playerList;
     }
 
     public static List<User> LoadListUser() {

@@ -6,12 +6,24 @@ public class Hunter extends Player{
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
+    public Hunter(String name, int level) {
+        super(name, level);
+    }
+
+    public Hunter(String name) {
+        super(name);
+    }
+
     @Override
     public void specialAttack(Player player) {
         System.out.println(20);
     }
 }
 class Huskar extends Hunter {
+    public Huskar(String name, int level) {
+        super(name, level);
+    }
+
     public Huskar(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
@@ -30,6 +42,7 @@ class Pudge extends Hunter {
     public Pudge(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
+
 
     @Override
     public int getPhysicalProtection(int num) {

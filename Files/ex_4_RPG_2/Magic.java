@@ -6,6 +6,14 @@ public class Magic extends Player{
         super(name, level, health, damage, physicalProtection, magicProtection);
     }
 
+    public Magic(String name) {
+        super(name);
+    }
+
+    public Magic(String name, int level) {
+        super(name, level);
+    }
+
     @Override
     public void basicAttack(Player player) {
         super.basicAttack(player);
