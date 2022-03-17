@@ -24,8 +24,17 @@ public class User {
         this.id = id;
     }
 
+    public User(int id, String login, String password, List<Player> playerList) {
+        this(id, login, password);
+        this.playerList = playerList;
+    }
+
     public List<Player> getPlayerList() {
         return playerList;
+    }
+
+    public String getLogin() {
+        return login;
     }
 
     public static List<User> LoadListUser() {
@@ -54,10 +63,11 @@ public class User {
         try {
             PrintWriter pw = new PrintWriter(file);
             for (User user : userList) {
-                pw.println(user.id + ";");
-                pw.println(user.login+ ";");
-                pw.println(user.password);
+                pw.print(user.id + ";");
+                pw.print(user.login+ ";");
+                pw.print(user.password + "\n");
             }
+            pw.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

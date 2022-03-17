@@ -45,21 +45,22 @@ public class CreatedPlayer {
                 for (Player player : hunterList) {
                     System.out.println(player.getName());
                 }
-                System.out.print("Entered class Hunter");
+                System.out.println("Entered class Hunter");
                 String nameClass = scanner.nextLine().toLowerCase(Locale.ROOT);
                 Hunter hunter = new Hunter(nameClass);
                 for (Player player : hunterList) {
                     if (player.equals(hunter)) {
                         playerListUser.add(player);
+                        System.out.println("Hunter added to you character list");
                     }
                 }
             }
-            if (input == 2) {
+            else if (input == 2) {
                 scanner = new Scanner(System.in);
                 for (Player player : magicsList) {
                     System.out.println(player.getName());
                 }
-                System.out.print("Entered class Magic");
+                System.out.println("Entered class Magic");
                 String nameClass = scanner.nextLine().toLowerCase(Locale.ROOT);
                 Magic magic = new Magic(nameClass);
                 for (Player player : magicsList) {
@@ -68,7 +69,7 @@ public class CreatedPlayer {
                     }
                 }
             }
-            if (input == 3) {
+            else if (input == 3) {
                 scanner = new Scanner(System.in);
                 for (Player player : healthersList) {
                     System.out.println(player.getName());
@@ -85,7 +86,7 @@ public class CreatedPlayer {
         }
     }
 
-    public void startGame(){
+    public void startGame(User user1, User user2){
 
     }
 

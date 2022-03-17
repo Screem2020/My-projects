@@ -13,7 +13,7 @@ public class Main {
         int input = 0;
         CreatedPlayer createdPlayer = new CreatedPlayer();
         Scanner scn = new Scanner(System.in);
-        while (input != 5) {
+        while (input != 4) {
             System.out.println("""
                     1.Registration
                     2.Entered in System
@@ -31,7 +31,11 @@ public class Main {
                 String password = scn.nextLine().toLowerCase(Locale.ROOT);
                 if (createdUser.size() <= 0)
                     id += 1;
-                User user = new User(id, login, password);
+                User user = new User(id, login, password, playerList);
+                boolean contains = createdUser.contains(user);
+                if (contains) {
+                    System.err.println("This login exist, please entered other login");
+                }
                 createdUser.add(user);
             } else if (input == 2) {
                 scn = new Scanner(System.in);
@@ -48,12 +52,12 @@ public class Main {
 
                 scn = new Scanner(System.in);
                 int num = 0;
-                while (num != 5) {
+                while (num != 4) {
                     System.out.println("""
                             1.Created hero
                             2.Deleted hero
                             3.Show all hero
-                            4.Back
+                            4.Save
                             """);
                     num = scn.nextInt();
                     if (num == 1) {
@@ -65,7 +69,9 @@ public class Main {
                     }
                 }
             } else if (input == 3) {
-                createdPlayer.startGame();
+                if (userOne == null) throw new RuntimeException("user 1 is null");
+                if (otherTwo == null) throw new RuntimeException("user 2 is null");
+                createdPlayer.startGame(userOne, otherTwo);
             } else if (input == 4) {
                 User.saveListUser(createdUser);
                 CreatedPlayer.savePlayerList(playerList);
