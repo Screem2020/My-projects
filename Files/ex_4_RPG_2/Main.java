@@ -1,12 +1,21 @@
 package Files.ex_4_RPG_2;
 
+import java.io.InvalidObjectException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        List<User> createdUser = User.LoadListUser();
+        List<User> createdUser = new ArrayList<>();
+        try {
+            createdUser = User.inputStream();
+            for (User user : createdUser) {
+                System.out.println(user.toString());
+            }
+        } catch (InvalidObjectException e) {
+        }
         List<Player> playerList = CreatedPlayer.loadPlayerList();
         User userOne = null;
         User otherTwo = null;
@@ -61,7 +70,7 @@ public class Main {
                             """);
                     num = scn.nextInt();
                     if (num == 1) {
-                        createdPlayer.chooseCharacter(currentUser);
+                        userNew.chooseCharacter(currentUser);
                     } else if (num == 2) {
                         createdPlayer.deletedCharacter(currentUser);
                     } else if (num == 3) {
@@ -73,7 +82,7 @@ public class Main {
                 if (otherTwo == null) throw new RuntimeException("user 2 is null");
                 createdPlayer.startGame(userOne, otherTwo);
             } else if (input == 4) {
-                User.saveListUser(createdUser);
+                User.outputStream(createdUser);
                 CreatedPlayer.savePlayerList(playerList);
             }
         }

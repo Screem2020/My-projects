@@ -10,84 +10,17 @@ import java.util.Scanner;
 
 public class CreatedPlayer {
 
-    public void chooseCharacter(User user) {
-        List<Player> playerListUser = user.getPlayerList();
-        List<Player> hunterList = new ArrayList<>();
-        List<Player> magicsList = new ArrayList<>();
-        List<Player> healthersList = new ArrayList<>();
-
-        Hunter huskar = new Hunter("Huskar",1);
-        Hunter pudge = new Hunter("Pudge",1);
-        hunterList.add(huskar);
-        hunterList.add(pudge);
-        Magic crystalMaiden = new Magic("Crystal Maiden",1);
-        Magic viper = new Magic("Viper",1);
-        magicsList.add(crystalMaiden);
-        magicsList.add(viper);
-        Heather Dazzle = new Heather("Dazzle",1);
-        Heather Chen = new Heather("Chen",1);
-        healthersList.add(Dazzle);
-        healthersList.add(Chen);
-
-        Scanner scanner = new Scanner(System.in);
-        int input = 0;
-        while (input != 4) {
-            System.out.println("""
-                    1.Hunter
-                    2.Magic
-                    3.Heather
-                    4.Back
-                    """);
-            input = scanner.nextInt();
-
-            if (input == 1) {
-                scanner = new Scanner(System.in);
-                for (Player player : hunterList) {
-                    System.out.println(player.getName());
-                }
-                System.out.println("Entered class Hunter");
-                String nameClass = scanner.nextLine().toLowerCase(Locale.ROOT);
-                Hunter hunter = new Hunter(nameClass);
-                for (Player player : hunterList) {
-                    if (player.equals(hunter)) {
-                        playerListUser.add(player);
-                        System.out.println("Hunter added to you character list");
-                    }
-                }
-            }
-            else if (input == 2) {
-                scanner = new Scanner(System.in);
-                for (Player player : magicsList) {
-                    System.out.println(player.getName());
-                }
-                System.out.println("Entered class Magic");
-                String nameClass = scanner.nextLine().toLowerCase(Locale.ROOT);
-                Magic magic = new Magic(nameClass);
-                for (Player player : magicsList) {
-                    if (player.equals(magic)) {
-                        playerListUser.add(player);
-                    }
-                }
-            }
-            else if (input == 3) {
-                scanner = new Scanner(System.in);
-                for (Player player : healthersList) {
-                    System.out.println(player.getName());
-                }
-                System.out.println("Entered class Heather");
-                String nameClass = scanner.nextLine().toLowerCase(Locale.ROOT);
-                Heather heather = new Heather(nameClass);
-                for (Player player : healthersList) {
-                    if (player.equals(heather)) {
-                        playerListUser.add(player);
-                    }
-                }
-            } else System.err.println("Characters is not found");
-        }
+    public Player searchPlayer(User user) {
+        Scanner scn = new Scanner(System.in);
+        String name = scn.nextLine().toLowerCase(Locale.ROOT);
+        Player player = new Player(name);
+        List<Player> playerList = user.getPlayerList();
+        int i = playerList.indexOf(player);
+        return playerList.get(i);
     }
 
     public void startGame(User user1, User user2){
-
+        Player player = searchPlayer(user1);
     }
 
     public void deletedCharacter(User user) {
@@ -137,7 +70,7 @@ public class CreatedPlayer {
         File file = new File(way);
         try (PrintWriter pw = new PrintWriter(file)) {
             for (Player player : playerListUser) {
-                pw.print(player.getLevel() + ",");
+                pw.print(player.getLevel() + ":");
                 pw.println(player.getName());
                 pw.close();
             }

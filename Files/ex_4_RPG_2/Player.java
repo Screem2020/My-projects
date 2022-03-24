@@ -1,8 +1,9 @@
 package Files.ex_4_RPG_2;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Player implements Skills {
+public class Player implements Skills, Serializable {
     private String name;
     private int level;
     private int health;
