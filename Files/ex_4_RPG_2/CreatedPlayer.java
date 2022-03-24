@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class CreatedPlayer {
 
+<<<<<<< HEAD
     public void chooseCharacter(User user) {
         List<Player> playerListUser = user.getPlayerList();
         List<Player> hunterList = new ArrayList<>();
@@ -84,10 +85,19 @@ public class CreatedPlayer {
                 }
             } else System.err.println("Characters is not found");
         }
+=======
+    public Player searchPlayer(User user) {
+        Scanner scn = new Scanner(System.in);
+        String name = scn.nextLine().toLowerCase(Locale.ROOT);
+        Player player = new Player(name);
+        List<Player> playerList = user.getPlayerList();
+        int i = playerList.indexOf(player);
+        return playerList.get(i);
+>>>>>>> develop
     }
 
     public void startGame(User user1, User user2){
-
+        Player player = searchPlayer(user1);
     }
 
     public void deletedCharacter(User user) {
@@ -135,8 +145,13 @@ public class CreatedPlayer {
         File file = new File(way);
         try (PrintWriter pw = new PrintWriter(file)) {
             for (Player player : playerListUser) {
+<<<<<<< HEAD
                 pw.print(player.getName() + ",");
                 pw.println(player.getLevel());
+=======
+                pw.print(player.getLevel() + ":");
+                pw.println(player.getName());
+>>>>>>> develop
                 pw.close();
             }
         } catch (FileNotFoundException e) {
