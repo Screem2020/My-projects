@@ -10,23 +10,23 @@ import java.util.Scanner;
 
 public class CreatedPlayer {
 
-<<<<<<< HEAD
+
     public void chooseCharacter(User user) {
         List<Player> playerListUser = user.getPlayerList();
         List<Player> hunterList = new ArrayList<>();
         List<Player> magicsList = new ArrayList<>();
         List<Player> healthersList = new ArrayList<>();
 
-        Hunter huskar = new Hunter("Huskar",1);
-        Hunter pudge = new Hunter("Pudge",1);
+        Hunter huskar = new Hunter("Huskar", 1);
+        Hunter pudge = new Hunter("Pudge", 1);
         hunterList.add(huskar);
         hunterList.add(pudge);
-        Magic crystalMaiden = new Magic("Crystal Maiden",1);
-        Magic viper = new Magic("Viper",1);
+        Magic crystalMaiden = new Magic("Crystal Maiden", 1);
+        Magic viper = new Magic("Viper", 1);
         magicsList.add(crystalMaiden);
         magicsList.add(viper);
-        Heather Dazzle = new Heather("Dazzle",1);
-        Heather Chen = new Heather("Chen",1);
+        Heather Dazzle = new Heather("Dazzle", 1);
+        Heather Chen = new Heather("Chen", 1);
         healthersList.add(Dazzle);
         healthersList.add(Chen);
 
@@ -55,8 +55,7 @@ public class CreatedPlayer {
                         System.out.println("Hunter added to you character list");
                     }
                 }
-            }
-            else if (input == 2) {
+            } else if (input == 2) {
                 scanner = new Scanner(System.in);
                 for (Player player : magicsList) {
                     System.out.println(player.getName());
@@ -69,8 +68,7 @@ public class CreatedPlayer {
                         playerListUser.add(player);
                     }
                 }
-            }
-            else if (input == 3) {
+            } else if (input == 3) {
                 scanner = new Scanner(System.in);
                 for (Player player : healthersList) {
                     System.out.println(player.getName());
@@ -85,7 +83,8 @@ public class CreatedPlayer {
                 }
             } else System.err.println("Characters is not found");
         }
-=======
+    }
+
     public Player searchPlayer(User user) {
         Scanner scn = new Scanner(System.in);
         String name = scn.nextLine().toLowerCase(Locale.ROOT);
@@ -93,7 +92,6 @@ public class CreatedPlayer {
         List<Player> playerList = user.getPlayerList();
         int i = playerList.indexOf(player);
         return playerList.get(i);
->>>>>>> develop
     }
 
     public void startGame(User user1, User user2){
@@ -122,7 +120,7 @@ public class CreatedPlayer {
         else System.err.println("No heroes created yet");
     }
 
-    public static List<Player> loadPlayerList() {
+    /*public static List<Player> loadPlayerList() {
         List<Player> playerList = new ArrayList<>();
         String way = "src\\Files\\ex_4_RPG_2\\PlayerBase.txt";
         File file = new File(way);
@@ -145,17 +143,14 @@ public class CreatedPlayer {
         File file = new File(way);
         try (PrintWriter pw = new PrintWriter(file)) {
             for (Player player : playerListUser) {
-<<<<<<< HEAD
                 pw.print(player.getName() + ",");
                 pw.println(player.getLevel());
-=======
                 pw.print(player.getLevel() + ":");
                 pw.println(player.getName());
->>>>>>> develop
                 pw.close();
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

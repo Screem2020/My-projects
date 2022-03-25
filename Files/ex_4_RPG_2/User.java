@@ -1,18 +1,14 @@
 package Files.ex_4_RPG_2;
 
-<<<<<<< HEAD
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-=======
 import java.io.*;
 import java.util.*;
->>>>>>> develop
+
 
 public class User implements Serializable {
     private int id;
@@ -27,7 +23,7 @@ public class User implements Serializable {
     }
 
     public User(int id, String login, String password) {
-        this(login,password);
+        this(login, password);
         this.id = id;
     }
 
@@ -40,26 +36,26 @@ public class User implements Serializable {
         return playerList;
     }
 
-<<<<<<< HEAD
+
     public int getId() {
         return id;
-=======
-    public void chooseCharacter(User user) {
-        List<Player> playerListUser = user.getPlayerList();
+    }
+
+    public void chooseCharacter() {
         List<Player> hunterList = new ArrayList<>();
         List<Player> magicsList = new ArrayList<>();
         List<Player> healthersList = new ArrayList<>();
 
-        Hunter huskar = new Hunter("Huskar",1);
-        Hunter pudge = new Hunter("Pudge",1);
+        Hunter huskar = new Hunter("Huskar", 1);
+        Hunter pudge = new Hunter("Pudge", 1);
         hunterList.add(huskar);
         hunterList.add(pudge);
-        Magic crystalMaiden = new Magic("Crystal Maiden",1);
-        Magic viper = new Magic("Viper",1);
+        Magic crystalMaiden = new Magic("Crystal Maiden", 1);
+        Magic viper = new Magic("Viper", 1);
         magicsList.add(crystalMaiden);
         magicsList.add(viper);
-        Heather Dazzle = new Heather("Dazzle",1);
-        Heather Chen = new Heather("Chen",1);
+        Heather Dazzle = new Heather("Dazzle", 1);
+        Heather Chen = new Heather("Chen", 1);
         healthersList.add(Dazzle);
         healthersList.add(Chen);
 
@@ -84,12 +80,11 @@ public class User implements Serializable {
                 Hunter hunter = new Hunter(nameClass);
                 for (Player player : hunterList) {
                     if (player.equals(hunter)) {
-                        playerListUser.add(player);
+                        playerList.add(player);
                         System.out.println("Hunter added to you character list");
                     }
                 }
-            }
-            else if (input == 2) {
+            } else if (input == 2) {
                 scanner = new Scanner(System.in);
                 for (Player player : magicsList) {
                     System.out.println(player.getName());
@@ -99,11 +94,10 @@ public class User implements Serializable {
                 Magic magic = new Magic(nameClass);
                 for (Player player : magicsList) {
                     if (player.equals(magic)) {
-                        playerListUser.add(player);
+                        playerList.add(player);
                     }
                 }
-            }
-            else if (input == 3) {
+            } else if (input == 3) {
                 scanner = new Scanner(System.in);
                 for (Player player : healthersList) {
                     System.out.println(player.getName());
@@ -113,70 +107,36 @@ public class User implements Serializable {
                 Heather heather = new Heather(nameClass);
                 for (Player player : healthersList) {
                     if (player.equals(heather)) {
-                        playerListUser.add(player);
+                        playerList.add(player);
                     }
                 }
             } else System.err.println("Characters is not found");
         }
     }
 
-    public String getLogin() {
-        return login;
->>>>>>> develop
-    }
-
-
     public static void outputStream(List<User> userList) {
-        String way = "src\\Files\\ex_4_RPG_2\\UserBase.txt";
-        File file = new File(way);
-        User user1 = userList.get(0);
-        ObjectOutputStream objectoutputStream = null;
         try {
-            FileOutputStream fos = new FileOutputStream(file);
-            if (fos != null) {
-                objectoutputStream = new ObjectOutputStream(fos);
-//                for (User user : userList) {
-//                    objectoutputStream.writeObject(user);
-//                }
-                objectoutputStream.writeObject(user1);
-            }
+            ObjectOutputStream oos =
+                    new ObjectOutputStream(new FileOutputStream("src\\Files\\ex_4_RPG_2\\UserBase.txt"));
+            oos.writeObject(userList);
+            oos.close();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (objectoutputStream != null) {
-                try {
-                    objectoutputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
-    public static List<User> inputStream() throws InvalidObjectException {
+    public static List<User> inputStream() {
         List<User> userList = new ArrayList<>();
-        String way = "src\\Files\\ex_4_RPG_2\\UserBase.txt";
-        File file = new File(way);
         try {
-            ObjectInputStream objectInputStream = null;
-            FileInputStream fileInputStream = new FileInputStream(file);
-            if (fileInputStream != null) {
-                objectInputStream = new ObjectInputStream(fileInputStream);
-                for (User user : userList) {
-                    try {
-                        user = (User) objectInputStream.readObject();
-                        userList.add(user);
-                        return userList;
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }if (objectInputStream != null) {
-                objectInputStream.close();
-            }
-        } catch (IOException e) {
+            ObjectInputStream ois =
+                    new ObjectInputStream(new FileInputStream("src\\Files\\ex_4_RPG_2\\UserBase.txt"));
+            userList = (List<User>)ois.readObject();
+            ois.close();
+            System.out.println(userList);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        throw new InvalidObjectException("Object error");
+        return userList;
     }
 
    /* public static List<User> LoadListUser() {
@@ -225,12 +185,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", playerList=" + playerList +
-                ", selectPlayer=" + selectPlayer +
-                '}';
+        return "id " + id + " : " + "login " + login + " : " + "password " + password + " : " + "playerList " + playerList;
     }
 }
+
