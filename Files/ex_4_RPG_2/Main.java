@@ -1,5 +1,6 @@
 package Files.ex_4_RPG_2;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -28,18 +29,19 @@ public class Main {
                 String login = scn.nextLine().toLowerCase(Locale.ROOT);
                 System.out.println("Entered password");
                 String password = scn.nextLine().toLowerCase(Locale.ROOT);
+                List<Player> playerList = new ArrayList<>();
                 if (userList.size() != 0)
                     id = userList.get(userList.size() - 1).getId() + 1;
-                User user = new User(id, login, password);
+                User user = new User(id, login, password, playerList);
                 boolean contains = userList.contains(user);
-                if (contains) {
+                if (contains == false) {
+                    userList.add(user);
+                } else
                     System.err.println("This login exist, please entered other login");
-                }
-                userList.add(user);
             } else if (input == 2) {
                 for (int i = 0; i < 2; i++) {
                     scn = new Scanner(System.in);
-                    User currentUser = null;
+                    User currentUser;
                     System.out.print("Entered login => ");
                     String login = scn.nextLine().toLowerCase(Locale.ROOT);
                     System.out.print("Entered password => ");
@@ -57,11 +59,11 @@ public class Main {
                                 1.Created hero
                                 2.Deleted hero
                                 3.Show all hero
-                                4.Save
+                                4.Back
                                 """);
                         num = scn.nextInt();
                         if (num == 1) {
-                            userNew.chooseCharacter();
+                            currentUser.chooseCharacter();
                         } else if (num == 2) {
                             createdPlayer.deletedCharacter(currentUser);
                         } else if (num == 3) {
@@ -69,6 +71,9 @@ public class Main {
                             int size = currentUser.getPlayerList().size();
                             System.out.println(size);
                         }
+
+                        if (i == 0) userOne = currentUser;
+                        else otherTwo = currentUser;
                     }
                 }
             } else if (input == 3) {

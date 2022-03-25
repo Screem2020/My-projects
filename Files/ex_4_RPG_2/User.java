@@ -76,13 +76,13 @@ public class User implements Serializable {
                     System.out.println(player.getName());
                 }
                 System.out.println("Entered class Hunter");
-                String nameClass = scanner.nextLine().toLowerCase(Locale.ROOT);
+                String nameClass = scanner.nextLine();
                 Hunter hunter = new Hunter(nameClass);
                 for (Player player : hunterList) {
-                    if (player.equals(hunter)) {
+                    if (player.getName().equalsIgnoreCase(hunter.getName())) {
                         playerList.add(player);
                         System.out.println("Hunter added to you character list");
-                    }
+                    } else System.out.println("not added");
                 }
             } else if (input == 2) {
                 scanner = new Scanner(System.in);
@@ -90,10 +90,10 @@ public class User implements Serializable {
                     System.out.println(player.getName());
                 }
                 System.out.println("Entered class Magic");
-                String nameClass = scanner.nextLine().toLowerCase(Locale.ROOT);
+                String nameClass = scanner.nextLine();
                 Magic magic = new Magic(nameClass);
                 for (Player player : magicsList) {
-                    if (player.equals(magic)) {
+                    if (player.getName().equalsIgnoreCase(magic.getName())) {
                         playerList.add(player);
                     }
                 }
@@ -103,14 +103,14 @@ public class User implements Serializable {
                     System.out.println(player.getName());
                 }
                 System.out.println("Entered class Heather");
-                String nameClass = scanner.nextLine().toLowerCase(Locale.ROOT);
+                String nameClass = scanner.nextLine();
                 Heather heather = new Heather(nameClass);
                 for (Player player : healthersList) {
-                    if (player.equals(heather)) {
+                    if (player.getName().equalsIgnoreCase(heather.getName())){
                         playerList.add(player);
                     }
                 }
-            } else System.err.println("Characters is not found");
+            }
         }
     }
 

@@ -77,8 +77,8 @@ public class Player implements Skills, Serializable {
 
     @Override
     public String toString() {
-        return "name" + name + ", " + "health" + health + ", " + "damage" + damage + ", " + "physicalProtection" +
-                physicalProtection + ", " + "magicProtection" + magicProtection;
+        return "name " + name + ", " + " health " + health + ", " + " damage " + damage + ", " + " physicalProtection " +
+                physicalProtection + ", " + " magicProtection " + magicProtection;
     }
 }
 
