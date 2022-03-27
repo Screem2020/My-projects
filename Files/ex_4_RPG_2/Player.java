@@ -10,6 +10,7 @@ public class Player implements Skills, Serializable {
     private int damage;
     private int physicalProtection;
     private int magicProtection;
+    protected int con;
 
     public Player(String name, int level) {
         this.name = name;
@@ -64,7 +65,8 @@ public class Player implements Skills, Serializable {
 
     @Override
     public void updateLevel() {
-
+        level +=1;
+        System.out.println("Congratulation, your up level");
     }
 
     @Override
@@ -72,13 +74,13 @@ public class Player implements Skills, Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return level == player.level && Objects.equals(name, player.name);
+        return Objects.equals(name, player.name);
     }
 
     @Override
     public String toString() {
-        return "name " + name + ", " + " health " + health + ", " + " damage " + damage + ", " + " physicalProtection " +
-                physicalProtection + ", " + " magicProtection " + magicProtection;
+        return "name: " + name + ", " + " level " + level + ", " + " health " + health + ", " + " damage " + damage + ", " + " physicalProtection " +
+                physicalProtection + ", " + " magicProtection " + magicProtection + " \n";
     }
 }
 

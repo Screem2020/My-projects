@@ -1,21 +1,27 @@
 package Files.ex_4_RPG_2;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 import java.io.*;
-import java.util.*;
 
 
 public class User implements Serializable {
     private int id;
-    private final String login;
-    private final String password;
+    private String login;
+    private String password;
     private List<Player> playerList = new ArrayList<>();
-    public Player selectPlayer;
+    protected Player selectPlayer;
+
+    public User(Player selectPlayer) {
+        this.selectPlayer = selectPlayer;
+    }
+
+    public Player getSelectPlayer() {
+        return selectPlayer;
+    }
 
     public User(String login, String password) {
         this.login = login;
@@ -69,47 +75,56 @@ public class User implements Serializable {
                     4.Back
                     """);
             input = scanner.nextInt();
-
-            if (input == 1) {
-                scanner = new Scanner(System.in);
-                for (Player player : hunterList) {
-                    System.out.println(player.getName());
-                }
-                System.out.println("Entered class Hunter");
-                String nameClass = scanner.nextLine();
-                Hunter hunter = new Hunter(nameClass);
-                for (Player player : hunterList) {
-                    if (player.getName().equalsIgnoreCase(hunter.getName())) {
-                        playerList.add(player);
+            try {
+                if (input == 1) {
+                    scanner = new Scanner(System.in);
+                    for (Player player : hunterList) {
+                        System.out.println(player.getName());
+                    }
+                    System.out.println("Entered class Hunter");
+                    String nameClass = scanner.nextLine();
+                    Hunter hunter = new Hunter(nameClass);
+                    int i = hunterList.indexOf(hunter);
+                    if (i == -1) {
+                        throw new RuntimeException("not added");
+                    } else {
+                        playerList.add(hunterList.get(i));
                         System.out.println("Hunter added to you character list");
-                    } else System.out.println("not added");
-                }
-            } else if (input == 2) {
-                scanner = new Scanner(System.in);
-                for (Player player : magicsList) {
-                    System.out.println(player.getName());
-                }
-                System.out.println("Entered class Magic");
-                String nameClass = scanner.nextLine();
-                Magic magic = new Magic(nameClass);
-                for (Player player : magicsList) {
-                    if (player.getName().equalsIgnoreCase(magic.getName())) {
-                        playerList.add(player);
+                    }
+                } else if (input == 2) {
+                    scanner = new Scanner(System.in);
+                    for (Player player : magicsList) {
+                        System.out.println(player.getName());
+                    }
+                    System.out.println("Entered class Magic");
+                    String nameClass = scanner.nextLine();
+                    Magic magic = new Magic(nameClass);
+                    int i = magicsList.indexOf(magic);
+                    if (i == -1) {
+                        throw new RuntimeException("not added");
+                    } else {
+                        playerList.add(magicsList.get(i));
+                        System.out.println("Magic added to you character list");
+                    }
+
+                } else if (input == 3) {
+                    scanner = new Scanner(System.in);
+                    for (Player player : healthersList) {
+                        System.out.println(player.getName());
+                    }
+                    System.out.println("Entered class Heather");
+                    String nameClass = scanner.nextLine();
+                    Heather heather = new Heather(nameClass);
+                    int i = healthersList.indexOf(heather);
+                    if (i == -1) {
+                        throw new RuntimeException("not added");
+                    } else {
+                        playerList.add(healthersList.get(i));
+                        System.out.println("Heather added to you character list");
                     }
                 }
-            } else if (input == 3) {
-                scanner = new Scanner(System.in);
-                for (Player player : healthersList) {
-                    System.out.println(player.getName());
-                }
-                System.out.println("Entered class Heather");
-                String nameClass = scanner.nextLine();
-                Heather heather = new Heather(nameClass);
-                for (Player player : healthersList) {
-                    if (player.getName().equalsIgnoreCase(heather.getName())){
-                        playerList.add(player);
-                    }
-                }
+            }catch (RuntimeException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -130,13 +145,13 @@ public class User implements Serializable {
         try {
             ObjectInputStream ois =
                     new ObjectInputStream(new FileInputStream("src\\Files\\ex_4_RPG_2\\UserBase.txt"));
-            userList = (List<User>)ois.readObject();
+            userList = (List<User>) ois.readObject();
             ois.close();
             System.out.println(userList);
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return userList;
+        //TODO: Ключевое слово assert аналог if?
     }
 
    /* public static List<User> LoadListUser() {
@@ -185,7 +200,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "id " + id + " : " + "login " + login + " : " + "password " + password + " : " + "playerList " + playerList;
+        return "id " + id + " : " + "login " + login + " : " + "password " + password + " : " + "playerList "+ "\n" + playerList;
     }
 }
 

@@ -16,7 +16,9 @@ public class Hunter extends Player{
 
     @Override
     public void specialAttack(Player player) {
-        System.out.println(20);
+        if (player.con % 2 == 0) {
+            System.out.println(20);
+        }
     }
 }
 class Huskar extends Hunter {

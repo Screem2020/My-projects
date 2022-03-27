@@ -21,7 +21,9 @@ public class Heather extends Player{
 
     @Override
     public void specialAttack(Player player) {
-        System.out.println(player.getHealth() + 17);
+        if (player.con % 2 == 0) {
+            System.out.println(player.getHealth() + 17);
+        }
     }
 
     @Override
