@@ -3,6 +3,10 @@ package Files.ex_4_RPG_2;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Класс Player необходим для создания игроков
+ */
+
 public class Player implements Skills, Serializable {
     private String name;
     private int level;
@@ -63,12 +67,20 @@ public class Player implements Skills, Serializable {
 
     }
 
+    /**
+     * метод updateLevel необходим для повышения левела посе каждого хода
+     */
     @Override
     public void updateLevel() {
         level +=1;
         System.out.println("Congratulation, your up level");
     }
 
+    /**
+     * метод equals производит сравнение по имени созданного Player
+     * @param o - в аргументы подается Player в классе Object
+     * @return возварщает найденного игрока
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

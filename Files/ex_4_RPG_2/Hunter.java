@@ -2,16 +2,17 @@ package Files.ex_4_RPG_2;
 
 public class Hunter extends Player{
 
-    public Hunter(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
-        super(name, level, health, damage, physicalProtection, magicProtection);
-    }
-
     public Hunter(String name, int level) {
         super(name, level);
     }
 
     public Hunter(String name) {
         super(name);
+    }
+
+    @Override
+    public void basicAttack(Player player) {
+        player.getDamage();
     }
 
     @Override
@@ -26,10 +27,6 @@ class Huskar extends Hunter {
         super(name, level);
     }
 
-    public Huskar(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
-        super(name, level, health, damage, physicalProtection, magicProtection);
-    }
-
     @Override
     public int getPhysicalProtection(int num) {
         return super.getPhysicalProtection(30);
@@ -41,10 +38,10 @@ class Huskar extends Hunter {
     }
 }
 class Pudge extends Hunter {
-    public Pudge(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
-        super(name, level, health, damage, physicalProtection, magicProtection);
-    }
 
+    public Pudge(String name, int level) {
+        super(name, level);
+    }
 
     @Override
     public int getPhysicalProtection(int num) {

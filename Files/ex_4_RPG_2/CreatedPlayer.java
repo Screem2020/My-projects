@@ -22,16 +22,32 @@ public class CreatedPlayer {
         try {
             Player attack = user1.selectPlayer;
             Player defend = user2.selectPlayer;
+            Scanner scn = new Scanner(System.in);
+            int input = 0;
+            int idxLevel = 0;
+            while (input != 2) {
+                System.out.println("""
+                        1.Attack
+                        """);
+                input = scn.nextInt();
+                if (input == 1) {
+                    while (attack.getHealth() <= 0) {
+                        stepPlayer(user1, user2);
+                        System.out.println("Player " + attack + " attacked with force " + attack.getDamage());
+                        System.out.println(defend.getHealth() + " left heat points " + defend.getName());
+                        if (idxLevel == 3) {
+                            attack.updateLevel();
+                        }
+                        attack.con++;
+                        idxLevel++;
 
-            while (attack.getHealth() <= 0) {
-                stepPlayer(user1, user2);
-                System.out.println(defend.getHealth() + " left heat points " + defend.getName());
-                attack.updateLevel();
-                attack.con++;
-
-                Player tmp = attack;
-                attack = defend;
-                defend = tmp;
+                        Player tmp = attack;
+                        attack = defend;
+                        defend = tmp;
+                    }
+                    System.out.println("Player " + defend.getName() + " win");
+                    return;
+                }
             }
         } catch (NullPointerException e) {
             e.printStackTrace();

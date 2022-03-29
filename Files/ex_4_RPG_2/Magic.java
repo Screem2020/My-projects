@@ -2,10 +2,6 @@ package Files.ex_4_RPG_2;
 
 public class Magic extends Player{
 
-    public Magic(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
-        super(name, level, health, damage, physicalProtection, magicProtection);
-    }
-
     public Magic(String name) {
         super(name);
     }
@@ -15,18 +11,8 @@ public class Magic extends Player{
     }
 
     @Override
-    public int getPhysicalProtection(int num) {
-        return super.getPhysicalProtection(num);
-    }
-
-    @Override
-    public int getMagicProtection(int num) {
-        return super.getMagicProtection(num);
-    }
-
-    @Override
     public void basicAttack(Player player) {
-        super.basicAttack(player);
+        player.getDamage();
     }
 
     @Override
@@ -35,16 +21,12 @@ public class Magic extends Player{
             System.out.println(getDamage() * 2);
         }
     }
-
-    @Override
-    public void updateLevel() {
-        super.updateLevel();
-    }
 }
 
 class CrystalMaiden extends Magic {
-    public CrystalMaiden(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
-        super(name, level, health, damage, physicalProtection, magicProtection);
+
+    public CrystalMaiden(String name, int level) {
+        super(name, level);
     }
 
     @Override
@@ -59,8 +41,10 @@ class CrystalMaiden extends Magic {
 }
 
 class Viper extends Magic {
-    public Viper(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
-        super(name, level, health, damage, physicalProtection, magicProtection);
+
+
+    public Viper(String name, int level) {
+        super(name, level);
     }
 
     @Override

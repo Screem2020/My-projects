@@ -48,22 +48,23 @@ public class User implements Serializable {
     }
 
     public void chooseCharacter() {
-        List<Player> hunterList = new ArrayList<>();
-        List<Player> magicsList = new ArrayList<>();
-        List<Player> healthersList = new ArrayList<>();
+        List<Hunter> hunterList = new ArrayList<>();
+        List<Magic> magicsList = new ArrayList<>();
+        List<Heather> healthersList = new ArrayList<>();
 
-        Hunter huskar = new Hunter("Huskar", 1);
-        Hunter pudge = new Hunter("Pudge", 1);
+
+        Huskar huskar = new Huskar("Huskar", 1);
+        Pudge pudge = new Pudge("Pudge", 1);
         hunterList.add(huskar);
         hunterList.add(pudge);
-        Magic crystalMaiden = new Magic("Crystal Maiden", 1);
-        Magic viper = new Magic("Viper", 1);
+        CrystalMaiden crystalMaiden = new CrystalMaiden("Crystal Maiden", 1);
+        Viper viper = new Viper("Viper", 1);
         magicsList.add(crystalMaiden);
         magicsList.add(viper);
-        Heather Dazzle = new Heather("Dazzle", 1);
-        Heather Chen = new Heather("Chen", 1);
-        healthersList.add(Dazzle);
-        healthersList.add(Chen);
+        Dazzle dazzle = new Dazzle("Dazzle", 1);
+        Chen chen = new Chen("Chen", 1);
+        healthersList.add(dazzle);
+        healthersList.add(chen);
 
         Scanner scanner = new Scanner(System.in);
         int input = 0;

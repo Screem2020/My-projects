@@ -87,9 +87,13 @@ public class Main {
                     }
                     }
                 } else if (input == 3) {
+                try {
                     if (userOne == null) throw new RuntimeException("user 1 is null");
                     if (otherTwo == null) throw new RuntimeException("user 2 is null");
                     createdPlayer.startGame(userOne, otherTwo);
+                } catch (RuntimeException e) {
+                    e.printStackTrace();
+                }
 
                 } else if (input == 4) {
                     User.outputStream(userList);
