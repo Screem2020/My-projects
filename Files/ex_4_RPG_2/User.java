@@ -10,14 +10,10 @@ import java.io.*;
 
 public class User implements Serializable {
     private int id;
-    private String login;
-    private String password;
+    private final String login;
+    private final String password;
     private List<Player> playerList = new ArrayList<>();
     protected Player selectPlayer;
-
-    public User(Player selectPlayer) {
-        this.selectPlayer = selectPlayer;
-    }
 
     public Player getSelectPlayer() {
         return selectPlayer;
@@ -85,13 +81,13 @@ public class User implements Serializable {
                     System.out.println("Entered class Hunter");
                     String nameClass = scanner.nextLine();
                     Hunter hunter = new Hunter(nameClass);
-                    int i = hunterList.indexOf(hunter);
-                    if (i == -1) {
-                        throw new RuntimeException("not added");
-                    } else {
-                        playerList.add(hunterList.get(i));
-                        System.out.println("Hunter added to you character list");
+                    for (Hunter hunter1 : hunterList) {
+                        if (hunter1.getName().equalsIgnoreCase(hunter.getName())){
+                            playerList.add(hunter1);
+                            System.out.println("Add character");
+                        }
                     }
+
                 } else if (input == 2) {
                     scanner = new Scanner(System.in);
                     for (Player player : magicsList) {
@@ -100,12 +96,11 @@ public class User implements Serializable {
                     System.out.println("Entered class Magic");
                     String nameClass = scanner.nextLine();
                     Magic magic = new Magic(nameClass);
-                    int i = magicsList.indexOf(magic);
-                    if (i == -1) {
-                        throw new RuntimeException("not added");
-                    } else {
-                        playerList.add(magicsList.get(i));
-                        System.out.println("Magic added to you character list");
+                    for (Magic magic1 : magicsList) {
+                        if (magic1.getName().equalsIgnoreCase(magic.getName())){
+                            playerList.add(magic1);
+                            System.out.println("Add character");
+                        }
                     }
 
                 } else if (input == 3) {
@@ -116,18 +111,18 @@ public class User implements Serializable {
                     System.out.println("Entered class Heather");
                     String nameClass = scanner.nextLine();
                     Heather heather = new Heather(nameClass);
-                    int i = healthersList.indexOf(heather);
-                    if (i == -1) {
-                        throw new RuntimeException("not added");
-                    } else {
-                        playerList.add(healthersList.get(i));
-                        System.out.println("Heather added to you character list");
+                    for (Hunter heather1 : hunterList) {
+                        if (heather.getName().equalsIgnoreCase(heather1.getName())){
+                            playerList.add(heather1);
+                            System.out.println("Add character");
+                        }
                     }
                 }
-            }catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 e.printStackTrace();
             }
         }
+
     }
 
     public static void outputStream(List<User> userList) {
@@ -201,7 +196,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "id " + id + " : " + "login " + login + " : " + "password " + password + " : " + "playerList "+ "\n" + playerList;
+        return "id " + id + " : " + "login " + login + " : " + "password " + password + " : " + "playerList " + "\n" + playerList;
     }
 }
 

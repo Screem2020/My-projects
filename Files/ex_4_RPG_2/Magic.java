@@ -29,6 +29,10 @@ class CrystalMaiden extends Magic {
         super(name, level);
     }
 
+    public CrystalMaiden(String name) {
+        super(name);
+    }
+
     @Override
     public int getPhysicalProtection(int num) {
         return super.getPhysicalProtection(5);
@@ -42,6 +46,9 @@ class CrystalMaiden extends Magic {
 
 class Viper extends Magic {
 
+    public Viper(String name) {
+        super(name);
+    }
 
     public Viper(String name, int level) {
         super(name, level);

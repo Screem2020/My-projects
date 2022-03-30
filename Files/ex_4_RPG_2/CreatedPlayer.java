@@ -84,8 +84,9 @@ public class CreatedPlayer {
             }
         } else System.err.println("No heroes created yet");
     }
+}
 
-    /*public static List<Player> loadPlayerList() {
+/*public static List<Player> loadPlayerList() {
         List<Player> playerList = new ArrayList<>();
         String way = "src\\Files\\ex_4_RPG_2\\PlayerBase.txt";
         File file = new File(way);
@@ -118,4 +119,3 @@ public class CreatedPlayer {
             e.printStackTrace();
         }
     }*/
-}

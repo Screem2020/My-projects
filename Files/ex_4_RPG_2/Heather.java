@@ -29,6 +29,10 @@ class Dazzle extends Heather {
         super(name, level);
     }
 
+    public Dazzle(String name) {
+        super(name);
+    }
+
     @Override
     public int getPhysicalProtection(int num) {
         return 5;
@@ -44,6 +48,10 @@ class Chen extends Heather {
 
     public Chen(String name, int level) {
         super(name, level);
+    }
+
+    public Chen(String name) {
+        super(name);
     }
 
     @Override

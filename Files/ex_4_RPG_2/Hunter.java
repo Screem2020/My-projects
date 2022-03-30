@@ -27,6 +27,10 @@ class Huskar extends Hunter {
         super(name, level);
     }
 
+    public Huskar(String name) {
+        super(name);
+    }
+
     @Override
     public int getPhysicalProtection(int num) {
         return super.getPhysicalProtection(30);
@@ -38,6 +42,10 @@ class Huskar extends Hunter {
     }
 }
 class Pudge extends Hunter {
+
+    public Pudge(String name) {
+        super(name);
+    }
 
     public Pudge(String name, int level) {
         super(name, level);

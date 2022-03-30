@@ -85,8 +85,8 @@ public class Main {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    }
-                } else if (input == 3) {
+                }
+            } else if (input == 3) {
                 try {
                     if (userOne == null) throw new RuntimeException("user 1 is null");
                     if (otherTwo == null) throw new RuntimeException("user 2 is null");
@@ -95,9 +95,9 @@ public class Main {
                     e.printStackTrace();
                 }
 
-                } else if (input == 4) {
-                    User.outputStream(userList);
-                }
+            } else if (input == 4) {
+                User.outputStream(userList);
             }
         }
     }
+}
