@@ -7,6 +7,7 @@ public class CreatedPlayer {
 
     public void searchPlayer(User user) {
         List<Player> playerList = user.getPlayerList();
+        System.out.println(playerList);
         System.out.println("Entered player can game");
         Scanner scn = new Scanner(System.in);
         String name = scn.nextLine();
