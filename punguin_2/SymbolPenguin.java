@@ -9,15 +9,14 @@ public enum SymbolPenguin {
         this.name = name;
     }
 
-    public String parseChar(int value) {
+    public char parseChar(int value) {
         SymbolPenguin[] values = SymbolPenguin.values();
         for (SymbolPenguin symbolPenguin : values) {
-            if (symbolPenguin.getName() == value) {
-                char ch = (char) value;
-                return String.valueOf(ch);
+            if (symbolPenguin.name == value) {
+                return  (char) value;
             }
         }
-        return null;
+        return '0';
     }
 
     public char getName(){

@@ -85,7 +85,7 @@ public class Main {
                     e (exit) - завершение работы приложения""");
             input = scn.next();
             switch (input) {
-                case "r", "right": {
+                case "r", "right" -> {
                     direction++;
                     if (direction < 0) {
                         direction = 3;
@@ -93,9 +93,8 @@ public class Main {
                         direction = 0;
                     }
                     gameBoard.setDirection(direction);
-                    break;
                 }
-                case "l", "left": {
+                case "l", "left" -> {
                     direction--;
                     if (direction < 0) {
                         direction = 3;
@@ -103,16 +102,18 @@ public class Main {
                         direction = 0;
                     }
                     gameBoard.setDirection(direction);
-                    break;
                 }
-                case "s", "step": {
+                case "s", "step" -> {
                     gameBoard.stepPenguin();
-                    break;
-                }
-                case "p", "print": {
                     gameBoard.print();
-                    break;
                 }
+                case "p", "print" -> gameBoard.print();
+
+                case "t", "take" -> {
+                    gameBoard.take();
+                    gameBoard.print();
+                }
+
             }
         }
 //
