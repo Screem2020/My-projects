@@ -1,18 +1,13 @@
 package Files.ex_4_RPG_2;
 
-public class Heather extends Player{
+public class Heather extends Player {
 
-    public Heather(String name, int level) {
-        super(name, level);
+    public Heather(String name, int level, int physicalProtection, int magicProtection) {
+        super(name, level, physicalProtection, magicProtection);
     }
 
     public Heather(String name) {
         super(name);
-    }
-
-    @Override
-    public void basicAttack(Player player) {
-        player.getDamage();
     }
 
     @Override
@@ -25,42 +20,15 @@ public class Heather extends Player{
 
 class Dazzle extends Heather {
 
-    public Dazzle(String name, int level) {
-        super(name, level);
-    }
-
-    public Dazzle(String name) {
-        super(name);
-    }
-
-    @Override
-    public int getPhysicalProtection(int num) {
-        return 5;
-    }
-
-    @Override
-    public int getMagicProtection(int num) {
-        return 30;
+    public Dazzle(String name, int level, int physicalProtection, int magicProtection) {
+        super(name, level, physicalProtection, magicProtection);
     }
 }
 
-class Chen extends Heather {
 
-    public Chen(String name, int level) {
-        super(name, level);
-    }
+    class Chen extends Heather {
 
-    public Chen(String name) {
-        super(name);
+        public Chen(String name, int level, int physicalProtection, int magicProtection) {
+            super(name, level, physicalProtection, magicProtection);
+        }
     }
-
-    @Override
-    public int getPhysicalProtection(int num) {
-        return 10;
-    }
-
-    @Override
-    public int getMagicProtection(int num) {
-        return 20;
-    }
-}

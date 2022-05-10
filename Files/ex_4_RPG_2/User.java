@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.io.*;
 
 
-public class User implements Serializable {
+public class User implements Serializable, Comparable<User> {
     private int id;
     private final String login;
     private final String password;
@@ -49,16 +49,16 @@ public class User implements Serializable {
         List<Heather> healthersList = new ArrayList<>();
 
 
-        Huskar huskar = new Huskar("Huskar", 1);
-        Pudge pudge = new Pudge("Pudge", 1);
+        Huskar huskar = new Huskar("Huskar", 1, 30, 10);
+        Pudge pudge = new Pudge("Pudge", 1, 50, 3);
         hunterList.add(huskar);
         hunterList.add(pudge);
-        CrystalMaiden crystalMaiden = new CrystalMaiden("Crystal Maiden", 1);
-        Viper viper = new Viper("Viper", 1);
+        CrystalMaiden crystalMaiden = new CrystalMaiden("Crystal Maiden", 1, 5, 50);
+        Viper viper = new Viper("Viper", 1, 15, 30);
         magicsList.add(crystalMaiden);
         magicsList.add(viper);
-        Dazzle dazzle = new Dazzle("Dazzle", 1);
-        Chen chen = new Chen("Chen", 1);
+        Dazzle dazzle = new Dazzle("Dazzle", 1, 5, 30);
+        Chen chen = new Chen("Chen", 1, 10, 20);
         healthersList.add(dazzle);
         healthersList.add(chen);
 
@@ -197,6 +197,13 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "id " + id + " : " + "login " + login + " : " + "password " + password + " : " + "playerList " + "\n" + playerList;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        boolean equals = this.login.equals(o.login);
+        if (equals) return 1; // при сравнении стрингов через икулс 2 исхода
+        else return -1;
     }
 }
 

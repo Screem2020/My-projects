@@ -6,42 +6,28 @@ public class Magic extends Player{
         super(name);
     }
 
-    public Magic(String name, int level) {
-        super(name, level);
-    }
-
-    @Override
-    public void basicAttack(Player player) {
-        player.getDamage();
+    public Magic(String name, int level, int physicalProtection, int magicProtection) {
+        super(name, level, physicalProtection, magicProtection);
     }
 
     @Override
     public void specialAttack(Player player) {
         if (player.con % 2 == 0) {
-            System.out.println(getDamage() * 2);
+            System.out.println((player.getDamage() * 2));
         }
     }
 }
 
 class CrystalMaiden extends Magic {
 
-    public CrystalMaiden(String name, int level) {
-        super(name, level);
+    public CrystalMaiden(String name, int level, int physicalProtection, int magicProtection) {
+        super(name, level, physicalProtection, magicProtection);
     }
 
     public CrystalMaiden(String name) {
         super(name);
     }
 
-    @Override
-    public int getPhysicalProtection(int num) {
-        return super.getPhysicalProtection(5);
-    }
-
-    @Override
-    public int getMagicProtection(int num) {
-        return super.getMagicProtection(50);
-    }
 }
 
 class Viper extends Magic {
@@ -50,18 +36,8 @@ class Viper extends Magic {
         super(name);
     }
 
-    public Viper(String name, int level) {
-        super(name, level);
-    }
-
-    @Override
-    public int getPhysicalProtection(int num) {
-        return super.getPhysicalProtection(15);
-    }
-
-    @Override
-    public int getMagicProtection(int num) {
-        return super.getMagicProtection(30);
+    public Viper(String name, int level, int physicalProtection, int magicProtection) {
+        super(name, level, physicalProtection, magicProtection);
     }
 }
 

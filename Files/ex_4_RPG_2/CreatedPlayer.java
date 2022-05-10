@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CreatedPlayer {
-
     public void searchPlayer(User user) {
         List<Player> playerList = user.getPlayerList();
         System.out.println(playerList);
@@ -32,15 +31,14 @@ public class CreatedPlayer {
                         """);
                 input = scn.nextInt();
                 if (input == 1) {
-                    while (attack.getHealth() <= 0) {
+                    while (attack.getHealth() >= 0) {
                         stepPlayer(user1, user2);
-                        System.out.println("Player " + attack + " attacked with force " + attack.getDamage());
+                        System.out.println("Player " + attack.getName() + " attacked with force " + attack.getDamage());
                         System.out.println(defend.getHealth() + " left heat points " + defend.getName());
-                        if (idxLevel == 3) {
+                        if (idxLevel++ % 3 == 0 && idxLevel != 1) {
                             attack.updateLevel();
                         }
                         attack.con++;
-                        idxLevel++;
 
                         Player tmp = attack;
                         attack = defend;
@@ -58,11 +56,10 @@ public class CreatedPlayer {
     public void stepPlayer(User user1, User user2) {
         Player selectPlayer1 = user1.getSelectPlayer();
         Player selectPlayer2 = user2.getSelectPlayer();
-        int val;
-        val = (int) (Math.random() * 2);
-        if (val == 1) {
+        int val = (int) (Math.random() * 2);
+        if (val == 0) {
             selectPlayer1.basicAttack(selectPlayer2);
-        } else selectPlayer1.specialAttack(selectPlayer2);
+        } else selectPlayer1.specialAttack(selectPlayer1);
     }
 
     public void deletedCharacter(User user) {

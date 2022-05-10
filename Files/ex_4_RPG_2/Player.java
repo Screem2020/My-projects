@@ -12,33 +12,29 @@ public class Player implements Skills, Serializable {
     private int level;
     private int health;
     private int damage;
-    private int physicalProtection;
-    private int magicProtection;
+    private double physicalProtection;
+    private double magicProtection;
     protected int con;
 
-    public Player(String name, int level) {
+    public Player(String name, int level, double physicalProtection, double magicProtection) {
         this.name = name;
         this.level = level;
+        this.health = (int) (50 * level * 1.5);
+        this.damage = (int) (10 * level * 1.2);
+        this.physicalProtection = physicalProtection / 100.0;
+        this.magicProtection = magicProtection / 100.0;
     }
 
     public Player(String name) {
         this.name = name;
     }
 
-    public Player(String name, int level, int health, int damage, int physicalProtection, int magicProtection) {
-        this(name, level);
-        this.health = health;
-        this.damage = damage;
-        this.physicalProtection = physicalProtection;
-        this.magicProtection = magicProtection;
+    public double getPhysicalProtection() {
+        return physicalProtection;
     }
 
-    public int getPhysicalProtection(int num) {
-        return num / 100;
-    }
-
-    public int getMagicProtection(int num) {
-        return num / 100;
+    public double getMagicProtection() {
+        return magicProtection;
     }
 
     public String getName() {
@@ -49,35 +45,49 @@ public class Player implements Skills, Serializable {
         return level;
     }
 
-    public int getHealth() {
-        return (int) (50*level*1.5);
+    public int getDamage() {
+        return damage;
     }
 
-    public int getDamage() {
-        return (int) (10*level*1.2);
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     @Override
     public void basicAttack(Player player) {
-
+        player.setHealth((int) (player.getHealth() - (this.getDamage() - player.physicalProtection)));
     }
 
     @Override
     public void specialAttack(Player player) {
-
     }
 
     /**
-     * метод updateLevel необходим для повышения левела посе каждого хода
+     * метод updateLevel необходим для повышения левела посе каждого хода  и обновления параметров
      */
     @Override
     public void updateLevel() {
-        level +=1;
-        System.out.println("Congratulation, your up level");
+        setLevel(level += 1);
+        setHealth((int) (50 * level * 1.5));
+        setDamage((int) (10 * level * 1.2));
+        System.out.println("Congratulation, your up level: " + level);
     }
 
     /**
      * метод equals производит сравнение по имени созданного Player
+     *
      * @param o - в аргументы подается Player в классе Object
      * @return возварщает найденного игрока
      */
