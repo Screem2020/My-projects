@@ -1,7 +1,5 @@
 package Files.ex_4_RPG_2;
-
 public class Hunter extends Player{
-
     public Hunter(String name, int level, int physicalProtection, int magicProtection) {
         super(name, level, physicalProtection, magicProtection);
     }
@@ -18,7 +16,7 @@ public class Hunter extends Player{
     }
 }
 class Huskar extends Hunter {
-    public Huskar(String name, int level, int physicalProtection, int magicProtection) {
+     public Huskar(String name, int level, int physicalProtection, int magicProtection) {
         super(name, level, physicalProtection, magicProtection);
     }
 }

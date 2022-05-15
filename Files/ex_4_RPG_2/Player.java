@@ -19,8 +19,8 @@ public class Player implements Skills, Serializable {
     public Player(String name, int level, double physicalProtection, double magicProtection) {
         this.name = name;
         this.level = level;
-        this.health = (int) (50 * level * 1.5);
-        this.damage = (int) (10 * level * 1.2);
+        this.health = colcHealth();
+        this.damage = colcDamage();
         this.physicalProtection = physicalProtection / 100.0;
         this.magicProtection = magicProtection / 100.0;
     }
@@ -65,6 +65,23 @@ public class Player implements Skills, Serializable {
         this.damage = damage;
     }
 
+    /**
+     * @return возвращает damage с учетом level и базового коэффицента
+     */
+    private int colcDamage() {
+        return (int) (10 * level * 1.2);
+    }
+    /**
+     * @return возвращает количество health с учетом level и базового коэффицента
+     */
+    private int colcHealth() {
+        return (int) (50 * level * 1.5);
+    }
+
+    /**
+     * Метод производит базавую атаку с учетом обновленных параметров и physicalProtection
+     * @param player игрок которого атакуют
+     */
     @Override
     public void basicAttack(Player player) {
         player.setHealth((int) (player.getHealth() - (this.getDamage() - player.physicalProtection)));
@@ -80,8 +97,8 @@ public class Player implements Skills, Serializable {
     @Override
     public void updateLevel() {
         setLevel(level += 1);
-        setHealth((int) (50 * level * 1.5));
-        setDamage((int) (10 * level * 1.2));
+        setHealth(colcHealth());
+        setDamage(colcDamage());
         System.out.println("Congratulation, your up level: " + level);
     }
 
