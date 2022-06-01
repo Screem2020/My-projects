@@ -1,11 +1,14 @@
 package punguin_2;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  * Класс описывает игровое поле
  */
+@Getter
 public class GameBoard {
 
     private int[][] gameBoard;
@@ -32,23 +35,6 @@ public class GameBoard {
         }
         //gameBoard[0][0] = SymbolPenguin.PENGUIN_RIGHT.getName();
     }
-
-    public int getPinguinI() {
-        return pinguinI;
-    }
-
-    public int getPinguinJ() {
-        return pinguinJ;
-    }
-
-    public int[][] getGameBoard() {
-        return gameBoard;
-    }
-
-    public void startGame() {
-
-    }
-
 
     /**
      * Метод создает дополнительные знаки отрисовки поля
@@ -95,6 +81,11 @@ public class GameBoard {
         return direction;
     }
 
+    public void posUpdate(int punguinI, int punguinY) {
+        this.pinguinI = punguinI;
+        this.pinguinJ = punguinY;
+    }
+
     public void print() {
         for (int i = 0; i < gameBoard.length; i++) {
             for (int j = 0; j < gameBoard.length; j++) {
@@ -120,7 +111,7 @@ public class GameBoard {
         // необходимо разпарсить число в чар и внести в массив
         // необходимо сохранять текущие координаты пингвина для дальнейшего продвижению по полю
         if (direction == 0) {
-            gameBoard[pinguinI][pinguinJ + 1] = SymbolPenguin.PENGUIN_RIGHT.parseChar(9654);
+            gameBoard[pinguinI][pinguinJ + 1] = SymbolPenguin.PENGUIN_RIGHT.parseChar(9654);    //TODO: написать логику движения
 
         } else if (direction == 1) {
 

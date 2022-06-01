@@ -1,7 +1,5 @@
 package Comparable.ex_1_Planet;
 
-import Files.ex_4_RPG.Player;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

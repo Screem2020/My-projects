@@ -1,9 +1,6 @@
 package Anotation.RemoteControl;
 
-import java.lang.reflect.Method;
-import java.util.Comparator;
-
-public class AudioPlayer implements Comparator<Method> {
+public class AudioPlayer {
     @Control(number = 1, menultemName = "Включить первый трек")
     public void playFirstTrack() {
         System.out.println("Включить первый трек");
@@ -24,9 +21,9 @@ public class AudioPlayer implements Comparator<Method> {
         System.out.println("Выключить плеер");
     }
 
-    @Override
-    public int compare(Method o1, Method o2) {
-        return o1.getDeclaredAnnotation(Control.class).number() - (o2.getDeclaredAnnotation(Control.class).number());
-    }
+
+
+
+
 }
 

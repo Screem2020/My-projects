@@ -5,21 +5,21 @@ import java.util.Scanner;
 
 public class Colculator {
 
-    @Test.MyTest
+
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("enter one number");
         int a = scanner.nextInt();
+        System.out.println("enter two number");
         int b = scanner.nextInt();
-        ColcularNew colcularNew = new ColcularNew();
-        Class<ColcularNew> colcularNewClass = ColcularNew.class;
+        Colc colc = new Colc();
+        Class<? extends Colc> colcularNewClass = colc.getClass();
         Method[] declaredMethods = colcularNewClass.getDeclaredMethods();
-        Method method = null;
         for (Method declaredMethod : declaredMethods) {
             if (declaredMethod.isAnnotationPresent(Test.MyTest.class)) {
-                method = declaredMethod;
+                System.out.println(declaredMethod.invoke(colc, a, b));
             }
         }
-        System.out.println(method != null ? method.invoke(colcularNew, a, b) : null);
     }
 
     static class ColcularNew {

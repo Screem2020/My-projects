@@ -3,7 +3,7 @@ package Anotation.RemoteControl;
 import java.lang.reflect.Method;
 import java.util.Comparator;
 
-public class Tv implements Comparator<Method> {
+public class Tv {
     @Control(number = 1,menultemName = "Включить первый канал")
     public void switchToOne() {
         System.out.println("Включить первый канал");
@@ -39,8 +39,4 @@ public class Tv implements Comparator<Method> {
 
     }
 
-    @Override
-    public int compare(Method o1, Method o2) {
-        return o1.getDeclaredAnnotation(Control.class).number() - (o2.getDeclaredAnnotation(Control.class).number());
-    }
 }

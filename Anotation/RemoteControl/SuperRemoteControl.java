@@ -3,22 +3,31 @@ package Anotation.RemoteControl;
 import java.lang.reflect.Method;
 import java.util.*;
 
+class MethodComparator implements Comparator<Method>{
+
+    @Override
+    public int compare(Method o1, Method o2) {
+        return o1.getDeclaredAnnotation(Control.class).number()-o2.getDeclaredAnnotation(Control.class).number();
+    }
+}
+
 public class SuperRemoteControl {
     public void control(Object ob) throws Exception {
         List<Method> list = new ArrayList<>();
         Scanner scn = new Scanner(System.in);
         Class<?> clazz = ob.getClass();
         Method[] declaredMethods = clazz.getDeclaredMethods();
+        //able
+        //tor
+
+
         for (Method declaredMethod : declaredMethods) {
-            if (declaredMethod.isAnnotationPresent(Control.class)) {
+            if (declaredMethod.isAnnotationPresent(Control.class))  {
                 list.add(declaredMethod);
             }
         }
-        for (Method method : list) {
-            System.out.println(method.getAnnotation(Control.class).number() + ") " + " " + method.getAnnotation(Control.class).menultemName());
-        }
-        System.out.println();
-        System.out.println("Введите номер на плеере");
+        list.sort(new MethodComparator());// при переопределенном компараторе выдает класс каст эксепшен
+        System.out.println("Введите номер");
         int val = scn.nextInt();
         Method methodTarget = null;
         for (Method method : list) {
@@ -26,12 +35,8 @@ public class SuperRemoteControl {
                 methodTarget = method;
             }
         }
-        assert methodTarget != null;
-        methodTarget.invoke(clazz, val);
-        System.out.println(list);
-
-
-        //method.invoke(clazz, val, name);
+        //assert methodTarget != null;
+        methodTarget.invoke(ob);
     }
 }
 

@@ -1,2 +1,0 @@
-1, mis, 123, Huskar:1;
-2, dim, 123, Chen:1;
