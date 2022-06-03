@@ -1,4 +1,4 @@
-package Regex.Ex_2_TextSearchPrice;
+package Recursion.Regex.Ex_2_TextSearchPrice;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,7 +14,7 @@ public class Main {
                 "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat " +
                 "cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
-        Pattern pattern = Pattern.compile("\\W?\\d{0,}(\\s|\\S)(руб|Руб|\\$)");
+        Pattern pattern = Pattern.compile("-?\\d{0,}\\s*(руб|Руб|\\$)");
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
             System.out.println(matcher.group());

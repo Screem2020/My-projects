@@ -85,11 +85,9 @@ public class Main {
                     "     * e (exit) - завершение работы приложения");
             input = scn.next();
             switch (input) {
-                case "r", "right": {
+                case "r", "right" ->
                     System.out.println("good");
-                    break;
                 }
             }
         }
     }
-}

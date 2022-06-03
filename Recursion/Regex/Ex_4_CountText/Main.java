@@ -1,11 +1,10 @@
-package Regex.Ex_4_CountText;
+package Recursion.Regex.Ex_4_CountText;
 
 import lombok.SneakyThrows;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -26,7 +25,8 @@ public class Main {
         args[1] = output;
         String line = Files.readString(Path.of(args[0]));
         WordStat wordStat = new WordStat();
-        List<String> strings = wordStat.counterText(line);
-        Files.write(Path.of(args[1]), strings, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+        HashMap<String, Integer> stringIntegerHashMap = wordStat.counterText(line);
+        //TODO: как передать мап в поток
+        //Files.write(Path.of(args[1]), str, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
     }
 }

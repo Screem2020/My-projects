@@ -1,4 +1,4 @@
-package Regex.SystemRegistration;
+package Recursion.Regex.SystemRegistration;
 
 import lombok.SneakyThrows;
 
@@ -15,7 +15,7 @@ public class Main {
         clientList.add(new RegistrationField("name1", "1234"));
         InputOutputClient iopc = new InputOutputClient();
         iopc.loadDateClient();
-        Class<?> clazzClient = Class.forName("Regex.SystemRegistration.RegistrationField");
+        Class<?> clazzClient = Class.forName("Recursion.Regex.SystemRegistration.RegistrationField");
         int input = 0;
         while (input != 3) {
             System.out.println("""

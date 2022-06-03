@@ -1,4 +1,4 @@
-package Regex.Ex_3_PhoneNumber;
+package Recursion.Regex.Ex_3_PhoneNumber;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,7 +44,7 @@ public class Main {
     }
 
     public static Matcher createdMatecher(String num) {
-        Pattern pattern = Pattern.compile("[+|8]?\\d{10,11}(L?)"); // разница в скопках есть! ([] - не подходят)
+        Pattern pattern = Pattern.compile("[+|8]?\\d{10,11}L?"); // разница в скопках есть! ([] - не подходят)
         return pattern.matcher(num);
     }
 }

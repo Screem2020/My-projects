@@ -38,7 +38,6 @@ public class Main {
             Path path1 = Paths.get(way);
             stack.forEach(s -> stack.add(path1));
         }
-        //Files.createDirectories(Path.of(way));
         Files.move(Path.of(String.valueOf(root)), stack.pop(), StandardCopyOption.REPLACE_EXISTING);
         //TODO: не получается вывести фотографии по 1 штуке для сортировке по папкам
     }
@@ -59,18 +58,18 @@ public class Main {
         }
     }
 
-    public static void copy(File root) {
-        if (root.isDirectory()) {
-            File[] listFiles = root.listFiles();
-            if (listFiles != null) {
-                for (File listFile : listFiles) {
-                    if (listFile.isDirectory()) {
-                        copy(listFile);
-                    } else if (listFile.getName().endsWith(".jpg")) {
-
-                    }
-                }
-            }
-        }
-    }
+//    public static void copy(File root) {
+//        if (root.isDirectory()) {
+//            File[] listFiles = root.listFiles();
+//            if (listFiles != null) {
+//                for (File listFile : listFiles) {
+//                    if (listFile.isDirectory()) {
+//                        copy(listFile);
+//                    } else if (listFile.getName().endsWith(".jpg")) {
+//
+//                    }
+//                }
+//            }
+//        }
+//    }
 }

@@ -1,4 +1,4 @@
-package Regex.Ex_1_DataBrich;
+package Recursion.Regex.Ex_1_DataBrich;
 
 import java.util.Scanner;
 
