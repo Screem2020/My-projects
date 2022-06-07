@@ -44,9 +44,9 @@ public class Main {
         //minus
         System.out.println(calcMethod.minus(a, b));
         //multiplication
-        System.out.println(calcMethod.calc((a1, b1) -> a1 * b1, a, b));
+        System.out.println(calcMethod.calc((a1,b1) -> a1 * b1, a, b));
         //division
-        System.out.println(calcMethod.calc((a1, b1) -> a1 / b1, a, b));
+        System.out.println(calcMethod.calc((a1,b1) -> a1 / b1, a, b));
 
     }
 }

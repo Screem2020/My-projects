@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class Calculator {
-    static class CalculatorMethod {
+     static class CalculatorMethod {
         public double sum(double a, double b) {
             return a + b;
         }

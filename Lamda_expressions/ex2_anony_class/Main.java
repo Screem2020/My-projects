@@ -1,5 +1,7 @@
 package Lamda_expressions.ex2_anony_class;
 
+import java.util.Arrays;
+
 public class Main {
     // Создать функциональный интерфейс с методом
     //T apply(int[] arr)
@@ -27,26 +29,33 @@ public class Main {
         };
 
 
-        SunInterface<Integer> integerSunInterface1 = new SunInterface<>() {
+        SunInterface<int[]> integerSunInterface1 = new SunInterface<>() {
             @Override
-            public Integer apply(int[] arr) {
-                for (int i = arr.length - 1; i >= 0; --i) {
-                    return arr[i];
+            public int[] apply(int[] arr) {
+                int[] arr1 = new int[arr.length];
+                int j = 0;
+                for (int i = arr.length-1; i >= 0; i--) {
+                        arr1[j] = arr[i];
+                        j++;
                 }
-                return -1;
+                return arr1;
             }
         };
-        SunInterface<Integer> integerSunInterface2 = arr -> {
-            for (int i = arr.length - 1; i >= 0; --i) {
-                return arr[i];
+        //TODO: как можно решить задачу без for
+        SunInterface<int[]> integerSunInterface2 = arr -> {
+            int[] arr2 = new int[arr.length];
+            int index = 0;
+            for (int i = arr.length - 1; i >= 0; i--) {
+                arr2[index] = arr[i];
+                index++;
             }
-            return -1;
+            return arr2;
         };
 
         System.out.println(integerSunInterface.apply(ints));
         System.out.println(sunInterface.apply(ints));
 
-        System.out.println(integerSunInterface1.apply(ints));
-        System.out.println(integerSunInterface2.apply(ints));
+        System.out.println(Arrays.toString(integerSunInterface1.apply(ints)));
+        System.out.println(Arrays.toString(integerSunInterface2.apply(ints)));
     }
 }
