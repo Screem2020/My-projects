@@ -147,7 +147,6 @@ public class User implements Serializable, Comparable<User> {
         } catch (IOException | ClassNotFoundException e) {
         }
         return userList;
-        //TODO: Ключевое слово assert аналог if?
     }
 
    /* public static List<User> LoadListUser() {

@@ -22,9 +22,10 @@ public class Bank {
         client.setBalance(price);
     }
     public void serveClient(Service service, Client client) {
-        clientList.stream()
-                .filter(a -> a.getName().equalsIgnoreCase(client.getName()))
-                .filter(a -> a.getSurname().equalsIgnoreCase(client.getSurname()))
-                .forEach(a -> service.serve(a, Bank.this));
+        service.serve(client, this);
+//        clientList.stream()
+//                .filter(a -> a.getName().equalsIgnoreCase(client.getName()))
+//                .filter(a -> a.getSurname().equalsIgnoreCase(client.getSurname()))
+//                .forEach(a -> service.serve(a, Bank.this));
     }
 }

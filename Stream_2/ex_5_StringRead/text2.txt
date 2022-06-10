@@ -1,0 +1,3 @@
+
+
+Nmap умеет сканировать различными методами — например, UDP, TCP connect(), TCP SYN (полуоткрытое), FTP proxy (прорыв через ftp), Reverse-ident, ICMP (ping), FIN, ACK, SYN и NULL-сканирование Nmap.
