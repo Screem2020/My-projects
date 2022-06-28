@@ -29,6 +29,7 @@ public class Main {
                 .flatMap(c -> Arrays.stream(c).distinct())
                 .collect(Collectors.joining(System.lineSeparator()));
 
-        System.out.println(collect + collect1);
+//        System.out.println(collect + collect1);
+        System.out.println(collect.concat(collect1));
     }
 }

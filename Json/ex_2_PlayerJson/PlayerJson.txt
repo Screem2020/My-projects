@@ -1,0 +1,12 @@
+[{
+  "rassa" : "Human",
+  "damage" : 300
+},
+{
+  "rassa" : "Human",
+  "damage" : 400
+},
+{
+  "rassa" : "Root",
+  "damage" : 400
+}]
