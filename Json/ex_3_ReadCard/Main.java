@@ -1,11 +1,11 @@
 package Json.ex_3_ReadCard;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -62,11 +62,15 @@ public class Main {
     //validDate должен содеражать дату, соответствующую последнему дню заданного месяца
     @SneakyThrows
     public static void main(String[] args) {
+        String str = "3234567890121687";
+        String start = str.substring(0,4);
+        String end = str.substring(str.length()-4);
+        str = start+"*".repeat(str.length()-8)+end;
+        System.out.println(str);
         ObjectMapper mapper = new ObjectMapper();
         String way = "C:\\Users\\OMEN\\IdeaProjects\\Repeet\\src\\main\\java\\Json\\ex_3_ReadCard\\jsonFile.json";
         String string = Files.readString(Path.of(way));
-        List<Card> cards = mapper.readValue(string, new TypeReference<>() {
-        });
+        List<Card> cards = mapper.readValue(string, ArrayList.class);
 //        cards.stream().map(a -> a.setCardNum(a.getCardNum().substring(5, 12)))
         cards.stream()
                 .filter(a -> a.getCardNum().startsWith("1234") || a.getCardNum().startsWith("4234"))
