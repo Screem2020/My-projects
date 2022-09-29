@@ -1,11 +1,11 @@
 package Json.ex_3_ReadCard;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -62,23 +62,47 @@ public class Main {
     //validDate должен содеражать дату, соответствующую последнему дню заданного месяца
     @SneakyThrows
     public static void main(String[] args) {
-        String str = "3234567890121687";
-        String start = str.substring(0,4);
-        String end = str.substring(str.length()-4);
-        str = start+"*".repeat(str.length()-8)+end;
-        System.out.println(str);
         ObjectMapper mapper = new ObjectMapper();
         String way = "C:\\Users\\OMEN\\IdeaProjects\\Repeet\\src\\main\\java\\Json\\ex_3_ReadCard\\jsonFile.json";
         String string = Files.readString(Path.of(way));
-        List<Card> cards = mapper.readValue(string, ArrayList.class);
-//        cards.stream().map(a -> a.setCardNum(a.getCardNum().substring(5, 12)))
-        cards.stream()
+        List<Card> cards = mapper.readValue(string, new TypeReference<List<Card>>() {});
+//        List<String> strings = cards.stream()
+//                .map(a -> a.getCardNum().substring(0, 4) + "*".repeat(8) + a.getCardNum().substring(12)).toList();
+//        System.out.println(strings);
+
+//        String start = str.substring(0,4);
+//        String end = str.substring(str.length()-4);
+//        str = start+"*".repeat(str.length()-8)+end;
+
+        List<Card> filterCards = cards.stream()
                 .filter(a -> a.getCardNum().startsWith("1234") || a.getCardNum().startsWith("4234"))
                 .filter(a -> a.getCardStatus().contains("+") || a.getCardStatus().contains("X"))
-                .map(a -> a.getValidTill());
-        //.filter(a -> a.substring(0,5) && a.)
+                .map(a -> a).toList();
+
+        filterCards.stream()
+                .map(a -> a.getCardNum().substring(0, 4) + " " + "*".repeat(8) + " " + a.getCardNum().substring(12));
+        for (int i = 0; i < filterCards.size(); i++) {
+            String product = filterCards.get(i).getProduct();
+            List<String> stringsCardNum = filterCards.stream().map(a -> a.getCardNum().substring(0, 4) + " " + "*".repeat(8) + " " + a.getCardNum().substring(12)).toList();
+            List<String> stringsDateMother = filterCards.stream()
+                    .map(a -> a.getValidTill().substring(0, 2)).toList();
+            System.out.println(stringsDateMother);
+            List<String> stringsDateYear = filterCards.stream()
+                    .map(a -> a.getValidTill().substring(3)).toList();
+            System.out.println(stringsDateYear);
+//            TemporalAdjuster temporalAdjuster = TemporalAdjusters.lastDayOfMonth();
+//            LocalDateTime lastDayOfMonth = localDateTime.with(temporalAdjuster);
+            //LocalDateTime parse = LocalDateTime.parse(Integer.parseInt(stringsDateYear.get(i)), Integer.parseInt(stringsDateMother.get(i)), 31);
+//            LocalDate of = LocalDate.of(Integer.parseInt(stringsDateYear.iterator().next()), Integer.parseInt(stringsDateMother.iterator().next()), 31);
+//            System.out.println(of);
+//            AnswerCard answerCard = new AnswerCard(product, stringsCardNum.get(i), );
+        }
 
 
-        //создать обьект и сконвертировать в ответную строку
+
+
+        //.map(a -> a.getCardNum().substring(0, 4) + " " + "*".repeat(8) + " " + a.getCardNum().substring(12));
+                //.map(a -> a.getValidTill().substring(0, 2) + " " + a.getValidTill().substring(3)).toList();
+                //создать обьект и скeонвертировать в ответную строку
     }
 }

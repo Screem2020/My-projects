@@ -16,17 +16,23 @@ public class Main {
     //Используйте wait и notifyAll для экономии ресурсов. К примеру, если баланс равен нулю, его не нужно списывать.
 
     public static void main(String[] args) {
-        BankAccount target = new BankAccount();
-        BankAccount target1 = new BankAccount();
+        Object monitor = new Object();
+        BankAccount target = new BankAccount(monitor);
+        BankAccount target1 = new BankAccount(monitor);
         new Thread(target).start();
         new Thread(target1).start();
     }
     public static class BankAccount implements Runnable {
         private int balance;
+        Object monitor;
+
+        public BankAccount(Object monitor) {
+            this.monitor = monitor;
+        }
 
         @Override
         public void run() {
-            synchronized (this) {
+            synchronized (monitor) {
 
                 Random random = new Random();
                 balance = random.nextInt(50000);
@@ -48,6 +54,7 @@ public class Main {
                 balance += minusRnd;
                 System.out.println("Balance after sum " + balance);
                 notifyAll();
+                //TODO: поправить программу что бы осуществлялось пробуждение и уход в сон
             }
         }
     }
